@@ -120,10 +120,12 @@
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git #下载git工具</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/chide-org/chide-org.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><hr>
 <ul>
 <li><p>:hugs:恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
@@ -131,20 +133,11 @@
 <li><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
 </li>
 <li><p>hexo常用命令</p>
-<pre><code class="powershell">$ hexo init    #初始换当前文件夹
-$ hexo new &quot;NEW_BLOG&quot;   #新建blog
-$ hexo clean   #清除缓存文件 (db.json) 和已生成的静态文件 (public)
-$ hexo generate   #根据md和theme生成静态文件
-$ hexo deploy   #部署网站
-$ hexo server   #启动本地预览
-
-## 祝你拥有一个快乐的博客搭建体验！
-</code></pre>
-</li>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> hexo init    <span class="comment">#初始换当前文件夹</span></span><br><span class="line"><span class="variable">$</span> hexo new <span class="string">&quot;NEW_BLOG&quot;</span>   <span class="comment">#新建blog</span></span><br><span class="line"><span class="variable">$</span> hexo clean   <span class="comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span></span><br><span class="line"><span class="variable">$</span> hexo generate   <span class="comment">#根据md和theme生成静态文件</span></span><br><span class="line"><span class="variable">$</span> hexo deploy   <span class="comment">#部署网站</span></span><br><span class="line"><span class="variable">$</span> hexo server   <span class="comment">#启动本地预览</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
-
+<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>
             </div>
         </article>
     </div>
