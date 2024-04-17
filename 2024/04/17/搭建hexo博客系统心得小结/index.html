@@ -1,180 +1,420 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>搭建hexo博客系统心得小结 - Rapheal&#39;s blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="HUST, 生信, R, JS, 日常">
+  <meta name="description" content="
+我是windows系统，之前尝试用 jekyll 搭...">
+  <meta name="author" content="Rapheal">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
 
-<!-- Title -->
-<title>搭建hexo博客系统心得小结 - Rapheal&#39;s blog</title>
-
-<!-- Icon -->
-<link rel="icon" href="https://img2.imgtp.com/2024/04/17/8esjMX5t.jpg">
-
-<!-- Fonts -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
-
-
-
-<!-- Style -->
-
-<link rel="stylesheet" href="/styles/main.css">
-
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
-
-
-
-
-
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+<link rel="stylesheet" href="/css/style.css">
 
 
-    <meta name="generator" content="Hexo 7.1.1"></head>
-    <body>
-        <div class="main gt-bg-theme-color-first">
-            <div class="main-content">
-                <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="/">
-        <img class="user-avatar" src="https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            Rapheal&#39;s blog
-        </div>
-    </a>
-    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
-        <i class="gt-c-content-color-first" style="font-size: 18px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
-                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-            </svg>
-        </i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center; ">
-            
-                <div class="nav-item">
-                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
-                </div>
-            
-        </div>
-    </div>
-</nav>
+  
+    
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
 
-<script>
-    /* 移动端导航栏展开/收起切换 */
-    document.getElementById('changeNavbar').onclick = function() {
-        let element = document.getElementById('navbarSupportedContent');
-        if (element.style.display === 'none' || element.style.display === '') {
-            element.style.display = 'block';
-        } else { 
-            element.style.display = 'none';
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
         }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
     }
-</script>
+  </script>
 
-                <div class="post-container">
-    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
-        <article class="gt-post-content">
-            <h1 class="post-title">搭建hexo博客系统心得小结</h1>
-            <div class="post-info">
-                <time class="post-time gt-c-content-color-first">
-                    · 2024-04-17 ·</time>
-                
-                    
-                        <a href="/tags/hexo-%E5%8D%9A%E5%AE%A2/" class="post-tag">
-                            #hexo,博客</a>
-                    
-                
-            </div>
-            <hr>
-            <div class="post-content gt-c-content-color-first">
-                <blockquote>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">搭建hexo博客系统心得小结</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">搭建hexo博客系统心得小结</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 17, 2024</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1434</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <blockquote>
 <p>我是windows系统，之前尝试用 jekyll 搭建博客，发现在windows上会出现很多问题，比如界面css丢失，解决办法很繁琐，于是转到 hexo ，意外的发现 hexo 在windows上的搭建非常简单优雅，特意写了一个小结作为记录。</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">原教程传送门</a></p>
-<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><hr>
-<ul>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
 <li><p>下载node.js，<a target="_blank" rel="noopener" href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> node <span class="literal">-v</span>	<span class="comment">#查看node版本</span></span><br><span class="line"><span class="variable">$</span> npm <span class="literal">-v</span>	<span class="comment">#查看npm版本</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
+
 </li>
 <li><p>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</p>
 </li>
 </ul>
-<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><hr>
-<ul>
+<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
 <li><p>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a target="_blank" rel="noopener" href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span>    <span class="comment">#安装hexo框架</span></span><br><span class="line"><span class="variable">$</span> hexo <span class="literal">-v</span>	<span class="comment">#查看hexo版本</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">pwd</span>  <span class="comment">#查看当前工作路径</span></span><br><span class="line"><span class="variable">$</span> mkdir blog	<span class="comment">#创建blog文件夹</span></span><br><span class="line"><span class="variable">$</span> <span class="built_in">cd</span> blog       <span class="comment">#导航到blog文件夹下</span></span><br><span class="line"><span class="variable">$</span> hexo init 	<span class="comment">#初始化博客</span></span><br><span class="line"><span class="variable">$</span> hexo server   <span class="comment">#启动本地预览，点http://localhost:4000/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><hr>
-</li>
+<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3></li>
 <li><p>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</p>
+  <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
 </li>
+<li><p>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</p>
+  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git #下载git工具</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/chide-org/chide-org.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><hr>
-<ul>
+<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
 <li><p>:hugs:恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
 </li>
 <li><p>hexo常用命令</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> hexo init    <span class="comment">#初始换当前文件夹</span></span><br><span class="line"><span class="variable">$</span> hexo new <span class="string">&quot;NEW_BLOG&quot;</span>   <span class="comment">#新建blog</span></span><br><span class="line"><span class="variable">$</span> hexo clean   <span class="comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span></span><br><span class="line"><span class="variable">$</span> hexo generate   <span class="comment">#根据md和theme生成静态文件</span></span><br><span class="line"><span class="variable">$</span> hexo deploy   <span class="comment">#部署网站</span></span><br><span class="line"><span class="variable">$</span> hexo server   <span class="comment">#启动本地预览</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 <h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>
-            </div>
-        </article>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Rapheal</li>
+    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/04/17/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%BF%83%E5%BE%97%E5%B0%8F%E7%BB%93/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%BF%83%E5%BE%97%E5%B0%8F%E7%BB%93&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%BF%83%E5%BE%97%E5%B0%8F%E7%BB%93&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-%E5%8D%9A%E5%AE%A2/" rel="tag">hexo,博客</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2024/04/17/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text"># 环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo%E6%A1%86%E6%9E%B6%E4%B8%8B%E8%BD%BD"><span class="toc-text"># hexo框架下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2%E8%87%B3GitHub"><span class="toc-text"># 远程部署至GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%AE%E5%8A%A9"><span class="toc-text"># 其他帮助</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9D%E4%BD%A0%E6%8B%A5%E6%9C%89%E4%B8%80%E4%B8%AA%E5%BF%AB%E4%B9%90%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%BD%93%E9%AA%8C%EF%BC%81"><span class="toc-text"># 祝你拥有一个快乐的博客搭建体验！</span></a>
+  </aside>
+
+        
+      </div>
     </div>
-    <br>
-    
-        <div class="next-prev-post">
-            
-            
-                <div class="next-post">
-                    <div class="next gt-c-content-color-first">
-                        下一篇：<a href="/2024/04/17/hello-world/" 
-                            class="post-title gt-a-link">Hello World</a>
-                    </div>
-                </div>
-            
-        </div>
-    
-    
+  </div>
+</main>
+  
 
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/zhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
     
+<script src="/js/color-mode.js"></script>
 
-    
-</div>
+  
+  
+</body>
 
-                <div class="site-footer gt-c-content-color-first">
-    <div class="footer-main">
-        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
-        <!-- 文件位置：layout/_includes/footer.ejs -->
-        <span style="text-align: right; float: right;">Theme <a 
-            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
-            href="https://hexo.io" target="_blank">Hexo</a></span>
-        <span style="text-align: left;">"备案号：ssss"
-</span>
-    </div>
-</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            </div>
-        </div>
-    </body>
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
 </html>
