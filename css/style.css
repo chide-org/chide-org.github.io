@@ -6,7 +6,7 @@
   --color-text-secondary: #4e4e4e;
   --color-text-third: #999;
   --color-border: #eee;
-  --background-image: url("/images/theme/welcome-image.jpg");
+  --background-image: url("https://img2.imgtp.com/2024/04/17/QH6yx2Yu.jpg");
   --loading-image: url("/images/theme/loading.gif");
   --lazyload-image: url("/images/theme/loading.gif");
 }
@@ -22,7 +22,7 @@
     --color-text-secondary: #9899ab;
     --color-text-third: #7d8594;
     --color-border: #2b3038;
-    --background-image: url("/images/theme/welcome-image.jpg");
+    --background-image: url("https://img2.imgtp.com/2024/04/17/8etEZTQ0.jpg");
     --loading-image: url("/images/theme/loading.gif");
     --lazyload-image: url("/images/theme/loading.gif");
   }
@@ -35,7 +35,7 @@
   --color-text-secondary: #9899ab;
   --color-text-third: #7d8594;
   --color-border: #2b3038;
-  --background-image: url("/images/theme/welcome-image.jpg");
+  --background-image: url("https://img2.imgtp.com/2024/04/17/8etEZTQ0.jpg");
   --loading-image: url("/images/theme/loading.gif");
   --lazyload-image: url("/images/theme/loading.gif");
 }
@@ -62,7 +62,7 @@
 }
 body {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--color-text);
   font-family: Hiragino Sans GB;
   background-color: var(--color-background);
