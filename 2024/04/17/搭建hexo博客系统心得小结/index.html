@@ -95,9 +95,55 @@
             <hr>
             <div class="post-content gt-c-content-color-first">
                 <blockquote>
-<p>我是windows系统，之前尝试用 jekyll 搭建博客，发现在windows上会出现很多问题，比如界面css丢失，解决办法很繁琐，于是转到 hexo ，意外的发现 hexo 在windows上的搭建非常简单优雅，特意写了一个小结作为记录。<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">原教程传送门</a></p>
+<p>我是windows系统，之前尝试用 jekyll 搭建博客，发现在windows上会出现很多问题，比如界面css丢失，解决办法很繁琐，于是转到 hexo ，意外的发现 hexo 在windows上的搭建非常简单优雅，特意写了一个小结作为记录。</p>
 </blockquote>
-<p>…</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">原教程传送门</a></p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><hr>
+<ul>
+<li><p>下载node.js，<a target="_blank" rel="noopener" href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> node <span class="literal">-v</span>	<span class="comment">#查看node版本</span></span><br><span class="line"><span class="variable">$</span> npm <span class="literal">-v</span>	<span class="comment">#查看npm版本</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</p>
+</li>
+</ul>
+<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><hr>
+<ul>
+<li><p>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a target="_blank" rel="noopener" href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span>    <span class="comment">#安装hexo框架</span></span><br><span class="line"><span class="variable">$</span> hexo <span class="literal">-v</span>	<span class="comment">#查看hexo版本</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">pwd</span>  <span class="comment">#查看当前工作路径</span></span><br><span class="line"><span class="variable">$</span> mkdir blog	<span class="comment">#创建blog文件夹</span></span><br><span class="line"><span class="variable">$</span> <span class="built_in">cd</span> blog       <span class="comment">#导航到blog文件夹下</span></span><br><span class="line"><span class="variable">$</span> hexo init 	<span class="comment">#初始化博客</span></span><br><span class="line"><span class="variable">$</span> hexo server   <span class="comment">#启动本地预览，点http://localhost:4000/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><hr>
+</li>
+<li><p>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git #下载git工具</span><br></pre></td></tr></table></figure>
+<ul>
+<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/chide-org/chide-org.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><hr>
+<ul>
+<li><p>:hugs:恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
+</li>
+<li><p>hexo常用命令</p>
+<pre><code class="powershell">$ hexo init    #初始换当前文件夹
+$ hexo new &quot;NEW_BLOG&quot;   #新建blog
+$ hexo clean   #清除缓存文件 (db.json) 和已生成的静态文件 (public)
+$ hexo generate   #根据md和theme生成静态文件
+$ hexo deploy   #部署网站
+$ hexo server   #启动本地预览
+
+## 祝你拥有一个快乐的博客搭建体验！
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
             </div>
         </article>
