@@ -6,11 +6,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>搭建hexo博客系统心得小结 - Rapheal&#39;s blog</title>
+  <title>hexo start - Rapheal&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-  <meta name="keywords" content="HUST, 生信, R, JS, 日常, hexo-theme-zhaoo, hexo, 主题, 使用文档, document">
+  <meta name="keywords" content="HUST, 生信, R, JS, 日常">
   <meta name="description" content="
 我是windows系统，之前尝试用 jekyll 搭...">
   <meta name="author" content="Rapheal">
@@ -153,7 +153,7 @@
       
       
     </div>
-    <div class="center">搭建hexo博客系统心得小结</div>
+    <div class="center">hexo start</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -193,11 +193,11 @@
     <section class="head">
   <img   class="lazyload" data-original="https://img2.imgtp.com/2024/04/17/Zg3sQhkF.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">搭建hexo博客系统心得小结</h1>
+    <h1 class="head-title">hexo start</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 17, 2024</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1434</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1440</span>
     </div>
   </div>
 </section>
@@ -207,7 +207,7 @@
         <blockquote>
 <p>我是windows系统，之前尝试用 jekyll 搭建博客，发现在windows上会出现很多问题，比如界面css丢失，解决办法很繁琐，于是转到 hexo ，意外的发现 hexo 在windows上的搭建非常简单优雅，特意写了一个小结作为记录。</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">原教程传送门</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
 <li><p>下载node.js，<a target="_blank" rel="noopener" href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</p>
   <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
@@ -218,10 +218,10 @@
 </ul>
 <h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
 <li><p>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a target="_blank" rel="noopener" href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3></li>
 <li><p>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</p>
@@ -247,7 +247,7 @@
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>Rapheal</li>
-    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/04/17/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%BF%83%E5%BE%97%E5%B0%8F%E7%BB%93/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%BF%83%E5%BE%97%E5%B0%8F%E7%BB%93&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%BF%83%E5%BE%97%E5%B0%8F%E7%BB%93&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/04/17/hexo%20start/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;hexo%20start&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;hexo%20start&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -264,12 +264,12 @@
 </section>
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-%E5%8D%9A%E5%AE%A2/" rel="tag">hexo,博客</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-start/" rel="tag">hexo start</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2024/04/18/%E7%B3%96%E5%B0%BF%E7%97%85%E4%BC%A4%E5%8F%A3%E5%A4%84%E7%90%86%E6%80%9D%E8%B7%AF/"><i class="iconfont iconleft"></i>糖尿病伤口处理思路</a>
-    <a href="/2024/04/17/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+    <a href="/2024/04/18/%E7%B3%96%E5%B0%BF%E7%97%85%E4%BC%A4%E5%8F%A3%E5%88%86%E6%9E%90/"><i class="iconfont iconleft"></i>糖尿病伤口分析</a>
+    <a></a>
   </nav>
 
       </section>
