@@ -7,7 +7,7 @@
   --color-text-third: #999;
   --color-border: #eee;
   --background-image: url("/images/theme/welcome-image-light.png");
-  --loading-image: url("/images/theme/loading.gif");
+  --loading-image: url("/images/theme/Aniki Hamster.gif");
   --lazyload-image: url("/images/theme/loading.gif");
 }
 @media (prefers-color-scheme: dark) {
@@ -23,7 +23,7 @@
     --color-text-third: #7d8594;
     --color-border: #2b3038;
     --background-image: url("/images/theme/welcome-image-dark.png");
-    --loading-image: url("/images/theme/loading.gif");
+    --loading-image: url("/images/theme/Aniki Hamster.gif");
     --lazyload-image: url("/images/theme/loading.gif");
   }
 }
@@ -36,7 +36,7 @@
   --color-text-third: #7d8594;
   --color-border: #2b3038;
   --background-image: url("/images/theme/welcome-image-dark.png");
-  --loading-image: url("/images/theme/loading.gif");
+  --loading-image: url("/images/theme/Aniki Hamster.gif");
   --lazyload-image: url("/images/theme/loading.gif");
 }
 [color-mode='dark'] .tags a {
