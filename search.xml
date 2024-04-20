@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>糖尿病伤口分析</title>
+    <url>/2024/04/18/%E7%B3%96%E5%B0%BF%E7%97%85%E4%BC%A4%E5%8F%A3%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<blockquote>
+<p>为了找到可能存在的糖尿病伤口有效治疗方法, 我首先找了一些糖尿病伤口无法正常修复的原因, 随后从治疗角度(通路调控, 控制感染, 提高温度, 营养物质, 清除自由基, 调节 pH 等)进行分类, 并提出可能的解决方案</p>
+</blockquote>
+<h1 id="1-伤口无法正常修复的原因"><a href="#1-伤口无法正常修复的原因" class="headerlink" title="#1 伤口无法正常修复的原因"></a>#1 伤口无法正常修复的原因</h1><h4 id="1-1-高血糖"><a href="#1-1-高血糖" class="headerlink" title="1.1 高血糖"></a>1.1 高血糖</h4><ul>
+<li>动脉粥样硬化-&gt;血流量减少-&gt;阻止营养物质到达伤口</li>
+<li>(潜在)内皮细胞功能障碍-&gt;压力诱导血管舒张障碍-&gt;影响血管修复</li>
+<li>破坏角质形成蛋白表达-&gt;破坏再上皮化</li>
+<li>自由基损伤-&gt;对伤口修复前期有利,但是对后期不利</li>
+<li>改变紧密连接蛋白 1 的分布等-&gt;增加感染风险</li>
+</ul>
+<h4 id="1-2-神经病变"><a href="#1-2-神经病变" class="headerlink" title="1.2 神经病变"></a>1.2 神经病变</h4><ul>
+<li>自主神经病变-&gt;降低汗腺活动-&gt;使皮肤干燥和开裂</li>
+<li>(DFU)运动神经病变-&gt;增加足底表面的压力-&gt;导致组织缺血和死亡</li>
+</ul>
+<h4 id="1-3-微血管并发症"><a href="#1-3-微血管并发症" class="headerlink" title="1.3 微血管并发症"></a>1.3 微血管并发症</h4><ul>
+<li>外周动脉疾病(有研究表明在血运重建后提高提高皮肤表明温度和伤口愈合加速有关)</li>
+<li>缺氧环境-&gt;各种细胞群有不同的基因表达</li>
+<li>(存在争议)贫血</li>
+</ul>
+<h4 id="1-4-屏障破坏和感染"><a href="#1-4-屏障破坏和感染" class="headerlink" title="1.4 屏障破坏和感染"></a>1.4 屏障破坏和感染</h4><ul>
+<li>表皮脂质减少, 角质层水合作用降低, AGEs(一种由蛋白质或脂质与还原糖非酶性反应形成的分子) 增加-&gt;(存在争议)经表皮失水</li>
+<li>糖尿病中常用药物已被证明会影响抗菌肽(AMP)-&gt;增加感染风险,延缓伤口组织形成</li>
+<li>皮肤微生物组失调-&gt;产生破坏皮肤屏障的蛋白水解因子(研究表明,来自链球菌的 SpeB 可裂解桥粒芯蛋白 1 和 3，损害表皮屏障并促进皮肤感染)</li>
+<li>全身性抗生素对慢性伤口部位的递送受到限制,特别是存在细菌生物膜的情况下-&gt;感染会扩散到血液和骨骼中(已有局部抗生素缓释水凝胶方案)</li>
+<li>糖尿病患者间擦部位的皮肤 pH 略高-&gt;有研究表明会促进生物膜的形成,抗生素的作用效果也会改变</li>
+</ul>
+<h4 id="1-5-慢性伤口的炎症和免疫系统缺陷"><a href="#1-5-慢性伤口的炎症和免疫系统缺陷" class="headerlink" title="1.5 慢性伤口的炎症和免疫系统缺陷"></a>1.5 慢性伤口的炎症和免疫系统缺陷</h4><ul>
+<li><p>炎症期不消退&lt;-大量中性粒细胞和巨噬细胞+促炎细胞因子的慢性释放+细菌增殖</p>
+</li>
+<li><p>血管生成不足-&gt;持续缺氧状态-&gt;ROS 增加和愈合功能失调</p>
+</li>
+<li><p>结缔组织生长因子的下调-&gt;影响成纤维细胞增殖和血管细胞群-&gt;延迟伤口闭合</p>
+</li>
+<li><p>(可能)激活<a href="https://onlinelibrary.wiley.com/doi/10.1002/mog2.53#:~:text=P38MAPK">p38MAPK 通路</a> ,p38MAPK 抑制剂已被证明在许多体外和体内炎症模型中有效(哮喘和类风湿性关节炎)-&gt;诱导细胞因子的释放并下调 miR-21(miR-21 参与炎症期的终止)</p>
+</li>
+</ul>
+<p><img  src="/images/post/p38MAPK.jpg"  ><span class="image-caption">p38MAPK级联通路.jpg</span></p>
+<ul>
+<li>(可能) lncRNA MALAT1 的下调-&gt;降低 VEGF(血管内皮生长因子),促进炎症-&gt;抑制血管生成&#x3D;&#x3D;&gt;已经证明在糖尿病小鼠模型中<a href="https://pubmed.ncbi.nlm.nih.gov/18160990/">利用 HIF-1 通路可以诱导 MALAT1 可以恢复正常的成纤维细胞活性并促进伤口愈合</a></li>
+</ul>
+<p><img  src="/images/post/HIF-1.jpg"  ><span class="image-caption">HIF-1通路</span></p>
+<h1 id="2-治疗角度"><a href="#2-治疗角度" class="headerlink" title="#2 治疗角度"></a>#2 治疗角度</h1><h4 id="2-1-通路调节"><a href="#2-1-通路调节" class="headerlink" title="2.1 通路调节"></a>2.1 通路调节</h4><ul>
+<li>(可能)抑制 p38MAPK 通路-&gt;上调 miR-21-&gt;促进炎症期的终止</li>
+<li>(可能)激活 HIF-1 通路-&gt;诱导 MALAT1-&gt;上调 VEGF-&gt;促进血管生成</li>
+</ul>
+<h4 id="2-2-控制感染"><a href="#2-2-控制感染" class="headerlink" title="2.2 控制感染"></a>2.2 控制感染</h4><ul>
+<li>利用局部抗生素给药可以有效消除细菌生物膜感染</li>
+<li>抗生素联合疗法</li>
+<li>Quorum sensing 抑制剂-&gt;抑制生物膜形成</li>
+<li>调节细菌中的 c-di-GMP 信号通路-&gt;抑制生物膜形成</li>
+<li>抑制淀粉样蛋白结构形成-&gt;抑制生物膜形成</li>
+<li>噬菌体疗法(效果显著)</li>
+</ul>
+<h4 id="2-3-营养物质"><a href="#2-3-营养物质" class="headerlink" title="2.3 营养物质"></a>2.3 营养物质</h4><ul>
+<li>添加产氧物质(如二氧化锰,在清除过氧化氢自由基的同时为伤口组织提供氧气)</li>
+<li>添加适量的锌, 虽然锌对伤口愈合的机理还不清楚, 但是已经有研究证明锌对伤口愈合有促进作用</li>
+<li>(可能)精氨酸、谷氨酰胺和 β-羟基-β-甲基丁酸盐可能会改善肢体灌注不良和&#x2F;或白蛋白水平低患者的伤口愈合</li>
+</ul>
+<h4 id="2-4-清除自由基"><a href="#2-4-清除自由基" class="headerlink" title="2.4 清除自由基"></a>2.4 清除自由基</h4><ul>
+<li>通过某些机制, 在伤口愈合后期清除自由基, 比如利用GSH等抗氧化剂</li>
+</ul>
+<h4 id="2-5-调节微环境"><a href="#2-5-调节微环境" class="headerlink" title="2.5 调节微环境"></a>2.5 调节微环境</h4><ul>
+<li>调节伤口pH, 例如增加缓冲溶液等</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>hexo start</title>
     <url>/2024/04/17/hexo%20start/</url>
     <content><![CDATA[<blockquote>
@@ -40,9 +109,6 @@
 </li>
 </ul>
 <h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
-      <tags>
-        <tag>hexo start</tag>
-      </tags>
   </entry>
   <entry>
     <title>孟德尔随机化笔记</title>
@@ -309,80 +375,5 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs &#123;R&#125;">exposure &lt;- extract_instruments(<br>  outcomes = &quot;ieu-b-40&quot;<br>  )<br>View(exposure)<br><br>outcome &lt;-extract_outcome_data(<br>  snps = exposure$SNP,<br>  outcome = &quot;ieu-b-2&quot;<br>  )<br>View(outcome)<br></code></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>TwoSampleMRz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>糖尿病伤口分析</title>
-    <url>/2024/04/18/%E7%B3%96%E5%B0%BF%E7%97%85%E4%BC%A4%E5%8F%A3%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<blockquote>
-<p>为了找到可能存在的糖尿病伤口有效治疗方法, 我首先找了一些糖尿病伤口无法正常修复的原因, 随后从治疗角度(通路调控, 控制感染, 提高温度, 营养物质, 清除自由基, 调节 pH 等)进行分类, 并提出可能的解决方案</p>
-</blockquote>
-<h1 id="1-伤口无法正常修复的原因"><a href="#1-伤口无法正常修复的原因" class="headerlink" title="#1 伤口无法正常修复的原因"></a>#1 伤口无法正常修复的原因</h1><h4 id="1-1-高血糖"><a href="#1-1-高血糖" class="headerlink" title="1.1 高血糖"></a>1.1 高血糖</h4><ul>
-<li>动脉粥样硬化-&gt;血流量减少-&gt;阻止营养物质到达伤口</li>
-<li>(潜在)内皮细胞功能障碍-&gt;压力诱导血管舒张障碍-&gt;影响血管修复</li>
-<li>破坏角质形成蛋白表达-&gt;破坏再上皮化</li>
-<li>自由基损伤-&gt;对伤口修复前期有利,但是对后期不利</li>
-<li>改变紧密连接蛋白 1 的分布等-&gt;增加感染风险</li>
-</ul>
-<h4 id="1-2-神经病变"><a href="#1-2-神经病变" class="headerlink" title="1.2 神经病变"></a>1.2 神经病变</h4><ul>
-<li>自主神经病变-&gt;降低汗腺活动-&gt;使皮肤干燥和开裂</li>
-<li>(DFU)运动神经病变-&gt;增加足底表面的压力-&gt;导致组织缺血和死亡</li>
-</ul>
-<h4 id="1-3-微血管并发症"><a href="#1-3-微血管并发症" class="headerlink" title="1.3 微血管并发症"></a>1.3 微血管并发症</h4><ul>
-<li>外周动脉疾病(有研究表明在血运重建后提高提高皮肤表明温度和伤口愈合加速有关)</li>
-<li>缺氧环境-&gt;各种细胞群有不同的基因表达</li>
-<li>(存在争议)贫血</li>
-</ul>
-<h4 id="1-4-屏障破坏和感染"><a href="#1-4-屏障破坏和感染" class="headerlink" title="1.4 屏障破坏和感染"></a>1.4 屏障破坏和感染</h4><ul>
-<li>表皮脂质减少, 角质层水合作用降低, AGEs(一种由蛋白质或脂质与还原糖非酶性反应形成的分子) 增加-&gt;(存在争议)经表皮失水</li>
-<li>糖尿病中常用药物已被证明会影响抗菌肽(AMP)-&gt;增加感染风险,延缓伤口组织形成</li>
-<li>皮肤微生物组失调-&gt;产生破坏皮肤屏障的蛋白水解因子(研究表明,来自链球菌的 SpeB 可裂解桥粒芯蛋白 1 和 3，损害表皮屏障并促进皮肤感染)</li>
-<li>全身性抗生素对慢性伤口部位的递送受到限制,特别是存在细菌生物膜的情况下-&gt;感染会扩散到血液和骨骼中(已有局部抗生素缓释水凝胶方案)</li>
-<li>糖尿病患者间擦部位的皮肤 pH 略高-&gt;有研究表明会促进生物膜的形成,抗生素的作用效果也会改变</li>
-</ul>
-<h4 id="1-5-慢性伤口的炎症和免疫系统缺陷"><a href="#1-5-慢性伤口的炎症和免疫系统缺陷" class="headerlink" title="1.5 慢性伤口的炎症和免疫系统缺陷"></a>1.5 慢性伤口的炎症和免疫系统缺陷</h4><ul>
-<li><p>炎症期不消退&lt;-大量中性粒细胞和巨噬细胞+促炎细胞因子的慢性释放+细菌增殖</p>
-</li>
-<li><p>血管生成不足-&gt;持续缺氧状态-&gt;ROS 增加和愈合功能失调</p>
-</li>
-<li><p>结缔组织生长因子的下调-&gt;影响成纤维细胞增殖和血管细胞群-&gt;延迟伤口闭合</p>
-</li>
-<li><p>(可能)激活<a href="https://onlinelibrary.wiley.com/doi/10.1002/mog2.53#:~:text=P38MAPK">p38MAPK 通路</a> ,p38MAPK 抑制剂已被证明在许多体外和体内炎症模型中有效(哮喘和类风湿性关节炎)-&gt;诱导细胞因子的释放并下调 miR-21(miR-21 参与炎症期的终止)</p>
-</li>
-</ul>
-<p><img  src="/images/post/p38MAPK.jpg"  ><span class="image-caption">p38MAPK级联通路.jpg</span></p>
-<ul>
-<li>(可能) lncRNA MALAT1 的下调-&gt;降低 VEGF(血管内皮生长因子),促进炎症-&gt;抑制血管生成&#x3D;&#x3D;&gt;已经证明在糖尿病小鼠模型中<a href="https://pubmed.ncbi.nlm.nih.gov/18160990/">利用 HIF-1 通路可以诱导 MALAT1 可以恢复正常的成纤维细胞活性并促进伤口愈合</a></li>
-</ul>
-<p><img  src="/images/post/HIF-1.jpg"  ><span class="image-caption">HIF-1通路</span></p>
-<h1 id="2-治疗角度"><a href="#2-治疗角度" class="headerlink" title="#2 治疗角度"></a>#2 治疗角度</h1><h4 id="2-1-通路调节"><a href="#2-1-通路调节" class="headerlink" title="2.1 通路调节"></a>2.1 通路调节</h4><ul>
-<li>(可能)抑制 p38MAPK 通路-&gt;上调 miR-21-&gt;促进炎症期的终止</li>
-<li>(可能)激活 HIF-1 通路-&gt;诱导 MALAT1-&gt;上调 VEGF-&gt;促进血管生成</li>
-</ul>
-<h4 id="2-2-控制感染"><a href="#2-2-控制感染" class="headerlink" title="2.2 控制感染"></a>2.2 控制感染</h4><ul>
-<li>利用局部抗生素给药可以有效消除细菌生物膜感染</li>
-<li>抗生素联合疗法</li>
-<li>Quorum sensing 抑制剂-&gt;抑制生物膜形成</li>
-<li>调节细菌中的 c-di-GMP 信号通路-&gt;抑制生物膜形成</li>
-<li>抑制淀粉样蛋白结构形成-&gt;抑制生物膜形成</li>
-<li>噬菌体疗法(效果显著)</li>
-</ul>
-<h4 id="2-3-营养物质"><a href="#2-3-营养物质" class="headerlink" title="2.3 营养物质"></a>2.3 营养物质</h4><ul>
-<li>添加产氧物质(如二氧化锰,在清除过氧化氢自由基的同时为伤口组织提供氧气)</li>
-<li>添加适量的锌, 虽然锌对伤口愈合的机理还不清楚, 但是已经有研究证明锌对伤口愈合有促进作用</li>
-<li>(可能)精氨酸、谷氨酰胺和 β-羟基-β-甲基丁酸盐可能会改善肢体灌注不良和&#x2F;或白蛋白水平低患者的伤口愈合</li>
-</ul>
-<h4 id="2-4-清除自由基"><a href="#2-4-清除自由基" class="headerlink" title="2.4 清除自由基"></a>2.4 清除自由基</h4><ul>
-<li>通过某些机制, 在伤口愈合后期清除自由基, 比如利用GSH等抗氧化剂</li>
-</ul>
-<h4 id="2-5-调节微环境"><a href="#2-5-调节微环境" class="headerlink" title="2.5 调节微环境"></a>2.5 调节微环境</h4><ul>
-<li>调节伤口pH, 例如增加缓冲溶液等</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>糖尿病伤口</tag>
-      </tags>
   </entry>
 </search>
