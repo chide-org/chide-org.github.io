@@ -68,6 +68,9 @@
 <li>调节伤口pH, 例如增加缓冲溶液等</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>生信</category>
+      </categories>
   </entry>
   <entry>
     <title>hexo start</title>
@@ -109,6 +112,9 @@
 </li>
 </ul>
 <h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
   </entry>
   <entry>
     <title>孟德尔随机化笔记</title>
@@ -375,5 +381,8 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs &#123;R&#125;">exposure &lt;- extract_instruments(<br>  outcomes = &quot;ieu-b-40&quot;<br>  )<br>View(exposure)<br><br>outcome &lt;-extract_outcome_data(<br>  snps = exposure$SNP,<br>  outcome = &quot;ieu-b-2&quot;<br>  )<br>View(outcome)<br></code></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>生信</category>
+      </categories>
   </entry>
 </search>
