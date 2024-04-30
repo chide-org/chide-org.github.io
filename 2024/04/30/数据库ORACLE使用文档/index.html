@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数据库ORACLE使用文档 - Rapheal&#39;s blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="HUST, 生信, R, JS, 日常">
+  <meta name="description" content="1，打开耳朵lsnrctl12345$ lsnrctl...">
+  <meta name="author" content="Rapheal">
+  <link rel="icon" href="/images/icons/rapheal-logo.jpg" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/rapheal-logo.jpg" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/rapheal-logo.jpg" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/rapheal-logo.jpg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/rapheal-logo.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/Aniki Hamster.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wxpay.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: 'Hi! I am Rapheal',
+          typing: true,
+          api: '',
+          data_contents: ''
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'image',
+        image: 'images/theme/wx.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">数据库ORACLE使用文档</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Rapheal's blog by <a target="_blank" rel="noopener" href="https://github.com/chide-org">Rapheal</a> is licensed under <a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener noreferrer" style="display:inline-flex;">BY-NC-SA 4.0</a></p><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> and <a target="_blank" href="https://pages.github.com/" >Github Pages</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p><a target="_blank" href="http://beian.miit.gov.cn/">备案号：湘ICP备2024043771号</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">数据库ORACLE使用文档</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 30, 2024</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3019</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="1，打开耳朵lsnrctl"><a href="#1，打开耳朵lsnrctl" class="headerlink" title="1，打开耳朵lsnrctl"></a>1，打开耳朵lsnrctl</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ lsnrctl status<br>$ <span class="hljs-built_in">cd</span> /opt/app/admin/product/21.3.000/db_home/network/admin<br>$ vim listener.ora<br>$ vim tnsnames.ora <span class="hljs-comment"># 共修改四处ipv4地址为本机地址</span><br>$ lsnrctl start<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2，登录oracle"><a href="#2，登录oracle" class="headerlink" title="2，登录oracle"></a>2，登录oracle</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba <span class="hljs-comment"># 直接进入数据库</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3，启动数据库"><a href="#3，启动数据库" class="headerlink" title="3，启动数据库"></a>3，启动数据库</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> pdbs<br>ERROR: #检查数据库状态<br>ORA<span class="hljs-number">-01034</span>: ORACLE <span class="hljs-keyword">not</span> available<br>进程 ID: <span class="hljs-number">0</span><br>会话 ID: <span class="hljs-number">0</span> 序列号: <span class="hljs-number">0</span><br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> startup<br>ORACLE 例程已经启动。<br>Total <span class="hljs-keyword">System</span> <span class="hljs-keyword">Global</span> Area <span class="hljs-number">4932500048</span> bytes<br>Fixed Size                  <span class="hljs-number">9697872</span> bytes<br>Variable Size             <span class="hljs-number">956301312</span> bytes<br>Database Buffers         <span class="hljs-number">3959422976</span> bytes<br>Redo Buffers                <span class="hljs-number">7077888</span> bytes<br>数据库装载完毕。<br>数据库已经打开。<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> pdbs<br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">2</span> PDB$SEED                       READ <span class="hljs-keyword">ONLY</span>  <span class="hljs-keyword">NO</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      MOUNTED   #此时还是挂载状态<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> PLUGGABLE DATABASE PDBDRUGDB <span class="hljs-keyword">OPEN</span>; #更改数据库的挂载状态<br>插接式数据库已变更。<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> PDBS #检查状态<br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">2</span> PDB$SEED                       READ <span class="hljs-keyword">ONLY</span>  <span class="hljs-keyword">NO</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      READ WRITE <span class="hljs-keyword">NO</span><br>         <br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB; #将会话的上下文切换到指定数据库<br><br>会话已更改。<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> PDBS<br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      READ WRITE <span class="hljs-keyword">NO</span><br>         <br>#补充<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> shutdown immediate<br>数据库已经关闭。<br>已经卸载数据库。<br>ORACLE 例程已经关闭。<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4，连接数据库"><a href="#4，连接数据库" class="headerlink" title="4，连接数据库"></a>4，连接数据库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sqldeveloper <span class="hljs-comment">#打开图形化界面，如果你有显示器的话</span><br><span class="hljs-comment"># 手动创建连接，修改ipv4地址之后连接数据库即可</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5，进入RH模式"><a href="#5，进入RH模式" class="headerlink" title="5，进入RH模式"></a>5，进入RH模式</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> @<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span><span class="hljs-operator">/</span>human_resources<span class="hljs-operator">/</span>hr_main.sql<br><br>specify password <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">1</span>:<br>输入 <span class="hljs-number">1</span> 的值:  HR<br><br>specify <span class="hljs-keyword">default</span> tablespeace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">2</span>:<br>输入 <span class="hljs-number">2</span> 的值:  USERS<br><br>specify temporary tablespace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">3</span>:<br>输入 <span class="hljs-number">3</span> 的值:  TEMP<br><br>specify password <span class="hljs-keyword">for</span> SYS <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">4</span>:<br>输入 <span class="hljs-number">4</span> 的值:  wtsgyh2024<br><br>specify log path <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">5</span>:<br>输入 <span class="hljs-number">5</span> 的值:  $ORACLE_HOME<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<br><br>specify <span class="hljs-keyword">connect</span> string <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">6</span>:<br>输入 <span class="hljs-number">6</span> 的值:  PDBDURG21<br><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">USER</span> hr CASCADE<br>          <span class="hljs-operator">*</span><br>第 <span class="hljs-number">1</span> 行出现错误:<br>ORA<span class="hljs-number">-01918</span>: 用户 <span class="hljs-string">&#x27;HR&#x27;</span> 不存在<br><br><br><br>用户已创建。<br><br><br>用户已更改。<br><br><br>用户已更改。<br><br><br>授权成功。<br><br><br>授权成功。<br><br>ERROR:<br>ORA<span class="hljs-number">-12154</span>: TNS: 无法解析指定的连接标识符<br><br><br>警告: 您不再连接到 ORACLE。<br>SP2<span class="hljs-number">-0640</span>: 未连接<br>ERROR:<br>ORA<span class="hljs-number">-12154</span>: TNS: 无法解析指定的连接标识符<br><br><br>SP2<span class="hljs-number">-0640</span>: 未连接<br>SP2<span class="hljs-number">-0640</span>: 未连接<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_cre.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_popul.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_idx.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_code.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_comnt.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_analz.sql&quot; #出现报错，需要修改<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> /home/admin/db-sample-schemas-21.1 <span class="hljs-comment"># 进入文件目录</span><br>$ perl -p -i.bak -e <span class="hljs-string">&#x27;s#__SUB__CWD__#&#x27;</span>$(<span class="hljs-built_in">pwd</span>)<span class="hljs-string">&#x27;#g&#x27;</span> *.sql*/*.sql*/*.dat<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Rapheal</li>
+    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/04/30/%E6%95%B0%E6%8D%AE%E5%BA%93ORACLE%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;30&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93ORACLE%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;30&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93ORACLE%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2024/04/17/hexo%20start/">hexo博客搭建<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%8C%E6%89%93%E5%BC%80%E8%80%B3%E6%9C%B5lsnrctl"><span class="toc-text">1，打开耳朵lsnrctl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8C%E7%99%BB%E5%BD%95oracle"><span class="toc-text">2，登录oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%8C%E5%90%AF%E5%8A%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">3，启动数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%8C%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">4，连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%8C%E8%BF%9B%E5%85%A5RH%E6%A8%A1%E5%BC%8F"><span class="toc-text">5，进入RH模式</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://github.com/chide-org "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Rapheal's blog by <a target="_blank" rel="noopener" href="https://github.com/chide-org">Rapheal</a> is licensed under <a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener noreferrer" style="display:inline-flex;">BY-NC-SA 4.0</a></p><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> and <a target="_blank" href="https://pages.github.com/" >Github Pages</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p><a target="_blank" href="http://beian.miit.gov.cn/">备案号：湘ICP备2024043771号</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  <script defer src='https://hm.baidu.com/hm.js?02839f96a996f0ba68b104ab624106f0# id'></script>
+
+
+
+
+
+
+
+
+
+
+</html>
