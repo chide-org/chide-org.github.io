@@ -3,7 +3,10 @@
   <entry>
     <title>Database Initialization</title>
     <url>/2024/04/30/Database%20Initialization/</url>
-    <content><![CDATA[<h2 id="1，修改ip地址并打开耳朵lsnrctl"><a href="#1，修改ip地址并打开耳朵lsnrctl" class="headerlink" title="1，修改ip地址并打开耳朵lsnrctl"></a>1，修改ip地址并打开耳朵lsnrctl</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ lsnrctl status<br>$ <span class="hljs-built_in">cd</span> /opt/app/admin/product/21.3.000/db_home/network/admin<br>$ vim listener.ora<br>$ vim tnsnames.ora <span class="hljs-comment"># 共修改四处ipv4地址为本机地址</span><br>$ lsnrctl start<br></code></pre></td></tr></table></figure>
+    <content><![CDATA[<blockquote>
+<p>这是我们数据库课程的上机操作指南，通过指引，你大概率可以成功完成数据库的初始化，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
+</blockquote>
+<h2 id="1，修改ip地址并打开耳朵lsnrctl"><a href="#1，修改ip地址并打开耳朵lsnrctl" class="headerlink" title="1，修改ip地址并打开耳朵lsnrctl"></a>1，修改ip地址并打开耳朵lsnrctl</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ lsnrctl status<br>$ <span class="hljs-built_in">cd</span> /opt/app/admin/product/21.3.000/db_home/network/admin<br>$ vim listener.ora<br>$ vim tnsnames.ora <span class="hljs-comment"># 共修改四处ipv4地址为本机地址</span><br>$ lsnrctl start<br></code></pre></td></tr></table></figure>
 
 
 
@@ -32,7 +35,7 @@
       </categories>
   </entry>
   <entry>
-    <title>Blog Start with HEXO</title>
+    <title>Blog Start with HEXO(and Github Pag)</title>
     <url>/2024/04/17/Blog%20Start%20with%20HEXO/</url>
     <content><![CDATA[<blockquote>
 <p>我之前尝试在windows系统上用 jekyll 搭建博客，发现会出现很多问题，比如界面css丢失，解决办法很繁琐，于是转到 hexo ，意外的发现 hexo 在windows上的搭建非常简单优雅，特意写了一个小结作为记录。本文仅作参考。</p>
