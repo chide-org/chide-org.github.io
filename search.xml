@@ -35,10 +35,10 @@
       </categories>
   </entry>
   <entry>
-    <title>Blog Start with HEXO(and Github Pag)</title>
+    <title>Blog Start with HEXO and GitHub</title>
     <url>/2024/04/17/Blog%20Start%20with%20HEXO/</url>
     <content><![CDATA[<blockquote>
-<p>我之前尝试在windows系统上用 jekyll 搭建博客，发现会出现很多问题，比如界面css丢失，解决办法很繁琐，于是转到 hexo ，意外的发现 hexo 在windows上的搭建非常简单优雅，特意写了一个小结作为记录。本文仅作参考。</p>
+<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
 </blockquote>
 <p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
