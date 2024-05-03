@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>hexo博客搭建 - Rapheal&#39;s blog</title>
+  <title>Blog Start with HEXO - Rapheal&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -155,7 +155,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center">hexo博客搭建</div>
+    <div class="center">Blog Start with HEXO</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -195,11 +195,11 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/post/hexo.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">hexo博客搭建</h1>
+    <h1 class="head-title">Blog Start with HEXO</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 17, 2024</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1438</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1433</span>
     </div>
   </div>
 </section>
@@ -211,37 +211,46 @@
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
-<li><p>下载node.js，<a target="_blank" rel="noopener" href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
+<li>下载node.js，<a target="_blank" rel="noopener" href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
 
-</li>
-<li><p>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</p>
-</li>
+
+<ul>
+<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
 </ul>
 <h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
-<li><p>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a target="_blank" rel="noopener" href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3></li>
-<li><p>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</p>
-  <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</p>
-  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure></li>
+<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a target="_blank" rel="noopener" href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
 </ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
+<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
-<li><p>:hugs:恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
+<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
 </li>
 <li><p>hexo常用命令</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure></li>
+</li>
 </ul>
 </li>
 </ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>
       </section>
       <section class="extra">
@@ -249,7 +258,7 @@
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>Rapheal</li>
-    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/04/17/hexo%20start/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;hexo%20start&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;hexo%20start&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/04/17/Blog%20Start%20with%20HEXO/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;Blog%20Start%20with%20HEXO&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;04&#x2F;17&#x2F;Blog%20Start%20with%20HEXO&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -258,7 +267,7 @@
         
         
   <nav class="nav">
-    <a href="/2024/04/30/%E6%95%B0%E6%8D%AE%E5%BA%93ORACLE%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/"><i class="iconfont iconleft"></i>数据库ORACLE使用文档</a>
+    <a href="/2024/04/30/Database%20Initialization/"><i class="iconfont iconleft"></i>Database Initialization</a>
     <a href="/2024/01/31/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AC%94%E8%AE%B0/">孟德尔随机化笔记<i class="iconfont iconright"></i></a>
   </nav>
 
