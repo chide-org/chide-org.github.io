@@ -35,8 +35,8 @@
       </categories>
   </entry>
   <entry>
-    <title>Blog Start with HEXO and GitHub</title>
-    <url>/2024/04/17/Blog%20Start%20with%20HEXO/</url>
+    <title>Blog start：HEXO + GitHub</title>
+    <url>/2024/04/17/Blog%20Start/</url>
     <content><![CDATA[<blockquote>
 <p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
 </blockquote>
