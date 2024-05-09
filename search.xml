@@ -1,115 +1,530 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Blog start：HEXO + GitHub</title>
-    <url>/2024/04/17/Blog%20Start/</url>
+    <title>仪器分析复习</title>
+    <url>/2024/05/08/%E4%BB%AA%E5%99%A8%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0/</url>
     <content><![CDATA[<blockquote>
-<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
+<p>这是一份考前复习资料，当然，你作为一份快速了解这门学科的资料也不是不可以…</p>
 </blockquote>
-<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
-<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
-<li>下载node.js，<a href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
-
-
-<ul>
-<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
-</ul>
-<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
-<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
-<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
-<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
-<ul>
-<li><p><a href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
-</li>
-<li><p>hexo常用命令</p>
-</li>
+<h1 id="光学分析"><a href="#光学分析" class="headerlink" title="光学分析"></a>光学分析</h1><h2 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h2><ul>
+<li><strong>光学分析法</strong>：依据物质发射的电磁辐射或物质与电磁辐射相互作用而建立起来的各种分析法的统称<ul>
+<li><strong>光谱法</strong>：物质与辐射能作用时，测量由物质内部发生量子化能级跃迁而 产生的吸收、发射或散射辐射的波长和强度变化而进行定性、定量和结构分析</li>
+<li><strong>非光谱法</strong>：物质与辐射作用时，测量电磁辐射的的反射、折射、干涉、衍射和偏振等基本性质变化的分析方法</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508120349629.png"  ><span class="image-caption">电磁辐射的波动性</span></p>
+<h3 id="方法分类："><a href="#方法分类：" class="headerlink" title="方法分类："></a>方法分类：</h3><h4 id="1-基于原子、分子外层电子能级跃迁的光谱法"><a href="#1-基于原子、分子外层电子能级跃迁的光谱法" class="headerlink" title="1.基于原子、分子外层电子能级跃迁的光谱法"></a><strong>1.基于原子、分子外层电子能级跃迁的光谱法</strong></h4><ul>
+<li>包括原子吸收光谱法、原子发射光谱法、原子荧光光谱法、紫外-可见吸收光谱法、分子荧光光谱法、分子磷光光谱法、化学发光分析法</li>
+<li>吸收或发射光谱的波段范围在紫外-可见光区，即200nm～800nm之间</li>
+<li>对于原子，只存在不同的电子能级，线状光谱</li>
+<li>对于分子，存在不同的电子能级，振动和转动能级，带状光谱</li>
+<li><em><strong>分子荧光光谱法</strong></em>：分子吸收电磁辐射后激发至激发单重态，并通过内转移和振动驰豫等非辐射驰豫释放部分能量而到达第一激发单重态的最低振动能层，然后通过发光的形式跃迁返回到基态，所发射的光即为荧光</li>
+<li><em><strong>分子磷光光谱法</strong></em>：分子吸收电磁辐射后激发至激发单重态，并通过内转移、振动驰豫和系间窜跃等非辐射驰豫释放部分能量而到达第一激发三重态的最低振动能层，然后通过发光的形式跃迁返回到基态，所发射的光即为磷光</li>
+</ul>
+<h4 id="2-基于分子转动、振动能级跃迁的光谱法"><a href="#2-基于分子转动、振动能级跃迁的光谱法" class="headerlink" title="2. 基于分子转动、振动能级跃迁的光谱法"></a><strong>2. 基于分子转动、振动能级跃迁的光谱法</strong></h4><ul>
+<li>基于分子转动、振动能级跃迁的光谱法即红外吸收光谱法</li>
+<li>波段范围在近红外光区和微波光区之间（750nm～1000μm）</li>
+<li>复杂带状光谱</li>
+<li>分子精细复杂的振动和转动能级蕴涵了大量的分子中各种官能团的结构信息，因此红外吸收光谱是一种有效的结构分析手段</li>
+<li>无电子能级之间的跃迁，有振动能级和转动能级之间的跃迁</li>
+</ul>
+<h4 id="3-基于原子内层电子能级跃迁的光谱法"><a href="#3-基于原子内层电子能级跃迁的光谱法" class="headerlink" title="3.基于原子内层电子能级跃迁的光谱法"></a><strong>3.基于原子内层电子能级跃迁的光谱法</strong></h4><ul>
+<li>X射线分析法：基于高能电子的减速运动或原子内层电子跃迁所产生的短波电磁辐射所建立的分析方法</li>
+<li>包括X射线荧光法、X射线吸收法</li>
+</ul>
+<h4 id="4-基于原子核能级跃迁的光谱法"><a href="#4-基于原子核能级跃迁的光谱法" class="headerlink" title="4.基于原子核能级跃迁的光谱法"></a><strong>4.基于原子核能级跃迁的光谱法</strong></h4><ul>
+<li>核磁共振波谱法：在强磁场作用下，核自旋磁矩与外磁场相互作用分裂为能量不同的核磁能级，核磁能级之间的跃迁吸收或发射射频区的电磁波</li>
+</ul>
+<h4 id="5-基于Raman散射的光谱法"><a href="#5-基于Raman散射的光谱法" class="headerlink" title="5.基于Raman散射的光谱法"></a><strong>5.基于Raman散射的光谱法</strong></h4><ul>
+<li>利用Raman位移研究物质结构的方法称为Raman光谱法</li>
+<li>Raman散射：光子与物质分子发生能量交换所产生，不仅光子的运动方向发生变化，它的能量也发生变化</li>
+<li>散射光的频率与入射光的频率不同，产生Raman位移</li>
+<li>Raman位移的大小与分子的振动和转动能级有关</li>
+</ul>
+<h3 id="光谱仪器"><a href="#光谱仪器" class="headerlink" title="光谱仪器"></a>光谱仪器</h3><h4 id="1-光源系统"><a href="#1-光源系统" class="headerlink" title="1.光源系统"></a><strong>1.光源系统</strong></h4><ul>
+<li>连续光源<ul>
+<li>足够的光强度</li>
+<li>在所属波长区域内发射连续光谱</li>
+<li>其发射强度与波长无关，即光源发射的光在所属波长区域强度恒定不变</li>
+</ul>
+</li>
+<li>线光源<ul>
+<li>发射几条不连续谱线的光源</li>
+<li>广泛应用于原子吸收、原子荧光光谱及拉曼光谱中</li>
+<li>金属蒸气灯：汞蒸气灯和钠蒸气灯等；空心阴极灯：阴极呈空心圆柱型的气体放电管</li>
+<li>激光器：通过原子或分子受激辐射产生激光。与普通光源相比，单色性好、强度高、相干性好</li>
+</ul>
+</li>
+<li>脉冲光源<ul>
+<li>持续时间短、强度大、按照一定时间间隔时断时续发光的光源</li>
+<li>线光源和连续光源都可以采用脉冲方式发光，可以延长光源寿命</li>
+<li>最大应用在与时间分辨技术的结合，如荧光寿命分析</li>
+<li>脉冲激光器是典型的脉冲光源，普遍用于时间分辨光谱分析</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-波长选择系统（单色器）"><a href="#2-波长选择系统（单色器）" class="headerlink" title="2.波长选择系统（单色器）"></a><strong>2.波长选择系统（单色器）</strong></h4><ul>
+<li>单一波长光是相对的一个概念，是具有极小带宽的连续光</li>
+<li>狭缝越小，所采集的光越接近单色光，光谱的分辨率越高，越接近真实光谱</li>
+<li>狭缝太小可能导致光通量太小，光信号太弱，难以有效地检测到光信号</li>
+<li>单色器基本组成部分<ul>
+<li>入射狭缝</li>
+<li>准直装置</li>
+<li>色散装置（棱镜或光栅）</li>
+<li>聚焦透镜或凹面反射镜</li>
+<li>出射狭缝</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-样品引入系统"><a href="#3-样品引入系统" class="headerlink" title="3.样品引入系统"></a><strong>3.样品引入系统</strong></h4><ul>
+<li>原子光谱：要求保证有效进样和有效原子化，同时不损害进样和原子化系统</li>
+<li>紫外-可见吸收光谱、分子荧光光谱、分子磷光光谱、化学发光光谱：均采用溶液样品</li>
+<li>红外光谱：通常采用溴化钾固体压片或者直接上样</li>
+</ul>
+<h4 id="4-检测系统"><a href="#4-检测系统" class="headerlink" title="4.检测系统"></a><strong>4.检测系统</strong></h4><ul>
+<li><p>理想的检测器</p>
+<ul>
+<li>在整个研究波长范围内对光辐射有恒定的响应</li>
+<li>具有高灵敏度、高信噪比、响应时间快的特点</li>
+<li>在没有光辐射时，检测器输出信号应该为零</li>
+<li>响应光辐射所产生的信号还应该正比于光辐射的强度</li>
+</ul>
+</li>
+<li><p>光电检测器</p>
+</li>
+<li><p>将光信号转换为可量化输出的电信号的检测器</p>
+</li>
+<li><p>两种材料：光敏材料和半导体材料</p>
+</li>
+<li><p>单波长检测器：硒光电池、真空光电管、光导检测器、硅二极管和光电倍增管</p>
+</li>
+<li><p>多道检测器：硅二极管阵列和电荷转移器件</p>
+</li>
+<li><p>热检测器</p>
+<ul>
+<li>基于黑体吸收辐射并根据吸收引起的热效应，测定辐射强度的一类检测器</li>
+<li>真空热电偶：利用不同导体构成回路时的热电效应，将温差转变为电动势</li>
+<li>热释电检测器：利用具有温敏偶极矩性质的晶体受到红外辐射照射时，晶体表面电荷分布的变化来测量红外辐射强度</li>
+<li>测热辐射计：基于导体（如铂、镍）或半导体吸收辐射后，温度的改变使其电阻改变，从而产生输出信号而构建的检测器，所采用的测量电路为惠斯通电桥</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-信号处理和读出系统"><a href="#5-信号处理和读出系统" class="headerlink" title="5.信号处理和读出系统"></a><strong>5.信号处理和读出系统</strong></h4><ul>
+<li>信号处理和读出系统主要由信号处理器和读出器件组成</li>
+<li>信号处理器通常是一种电子器件，可放大检测器的输出信号，改变信号相位，过滤信号，执行信号的数学运算等</li>
+<li>读出器件：数字表、记录仪、电位计标尺、阴极射线管等</li>
+<li>光电检测器的输出采用模拟技术处理和显示</li>
+<li>光电倍增管的输出采用光计数技术处理和显示</li>
+</ul>
+<h2 id="二、紫外-可见分光光度法（UV）"><a href="#二、紫外-可见分光光度法（UV）" class="headerlink" title="二、紫外-可见分光光度法（UV）"></a>二、紫外-可见分光光度法（UV）</h2><h4 id="分子吸收光谱的形成"><a href="#分子吸收光谱的形成" class="headerlink" title="分子吸收光谱的形成"></a>分子吸收光谱的形成</h4><ul>
+<li><p>分子吸收紫外-可见光区的电磁辐射，分子中价电子（或外层电子）从电子基态能级跃迁至电子激发态能级而产生</p>
+</li>
+<li><p>分子特征吸收——<strong>最大吸收处的波长λ[max]</strong></p>
+</li>
+<li><p>定性分析依据：λ[max]和曲线形状</p>
+</li>
+</ul>
+<h4 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h4><ul>
+<li>与紫外－可见光谱有关的电子有：σ电子、π电子、n电子</li>
+<li>对应的分子轨道：σ轨道、π轨道、n轨道、 π*轨道、 σ*轨道<ul>
+<li>n轨道：未参与成键的p轨道</li>
+<li>σ轨道：s-s, s-p, p-p（电荷相同相近，单电子云相连，近大远小）</li>
+<li>σ*轨道：s-s, s-p, p-p（电荷相异相近，单电子云相连，电子云近小远大）</li>
+<li>π轨道：p-p, p-d（电荷相同相近，双电子云相连）</li>
+<li>π*轨道：p-p, p-d（电荷相异相近，双电子云相连，电子云近小远大）</li>
+</ul>
+</li>
+</ul>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508131535969.png"  ><span class="image-caption">image-20240508131535969</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508131714774.png"  ><span class="image-caption">image-20240508131714774</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508131737470.png"  ><span class="image-caption">image-20240508131737470</span></p>
+<h4 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h4><ul>
+<li><strong>生色团</strong> ：能吸收紫外、可见光的原子团或结构系统。如： C＝C、C＝O、C＝N、N＝N</li>
+<li><strong>助色团</strong>：与生色团相连时，会使生色团的吸收峰向<strong>长波</strong>方向移动，并且增加其吸光度。带有非键电子对的基团，它们本身不能吸收大于200 nm的光如：-OH、 -OR、 -NHR、-SH、-Cl、-Br、-I等</li>
+<li><strong>红移</strong>：有机化合物经取代反应引入含有未共享电子对的基团之后，吸收峰的波长将向长波方向移动的效应。使某化合物红移动的基团称为<strong>向红基团</strong>。 如：-OH、 -OR、 -NH<del>2</del>、-SH 、-Cl、-Br、-SR、- NR<del>2</del></li>
+<li><strong>蓝移（紫移）</strong>：在某些生色团如羰基的碳原子一端引入一些取代基之后，吸收峰的波长会向<strong>短波</strong>方向移动的效应。使某化合物蓝移（紫移）的基团称为<strong>向蓝（紫）基团</strong>。如： -CH<del>2</del>、-CH<del>2</del>CH<del>3</del>、-OCOCH<del>3</del></li>
+</ul>
+<h4 id="各类有机化合物紫外-可见吸收光谱"><a href="#各类有机化合物紫外-可见吸收光谱" class="headerlink" title="各类有机化合物紫外-可见吸收光谱"></a>各类有机化合物紫外-可见吸收光谱</h4><p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133347928.png"  ><span class="image-caption">image-20240508133347928</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133436718.png"  ><span class="image-caption">image-20240508133436718</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133449963.png"  ><span class="image-caption">image-20240508133449963</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133501470.png"  ><span class="image-caption">image-20240508133501470</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133517233.png"  ><span class="image-caption">image-20240508133517233</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133534629.png"  ><span class="image-caption">image-20240508133534629</span></p>
+<h4 id="影响紫外-可见吸收光谱的因素"><a href="#影响紫外-可见吸收光谱的因素" class="headerlink" title="影响紫外-可见吸收光谱的因素"></a>影响紫外-可见吸收光谱的因素</h4><p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133606820.png"  ><span class="image-caption">image-20240508133606820</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133616241.png"  ><span class="image-caption">image-20240508133616241</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133656752.png"  ><span class="image-caption">image-20240508133656752</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133732619.png"  ><span class="image-caption">image-20240508133732619</span></p>
+<h4 id="溶剂的选择"><a href="#溶剂的选择" class="headerlink" title="溶剂的选择"></a>溶剂的选择</h4><ul>
+<li>溶剂应能很好地溶解被测试样，溶剂对溶质应该是惰性的。即所成溶液应具有良好的化学和光化学稳定性</li>
+<li>在溶解度允许范围内，尽量选择极性较小的溶剂</li>
+<li>溶剂在样品的吸收光谱区应无明显吸收</li>
+<li>pH值的影响：如果化合物在不同的pH值下存在的型体不同，则其吸收峰的位置会随pH值的改变而改变</li>
+</ul>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133857569.png"  ><span class="image-caption">image-20240508133857569</span></p>
+<h4 id="朗伯-比尔定律"><a href="#朗伯-比尔定律" class="headerlink" title="朗伯-比尔定律"></a>朗伯-比尔定律</h4><p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133922611.png"  ><span class="image-caption">image-20240508133922611</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508133940818.png"  ><span class="image-caption">image-20240508133940818</span></p>
+<h4 id="分光光度计的校正"><a href="#分光光度计的校正" class="headerlink" title="分光光度计的校正"></a>分光光度计的校正</h4><ul>
+<li>通常在实验室工作中，验收新仪器或实验室使用过一段时间后都要进行<strong>波长校正</strong>和<strong>吸光度校正</strong></li>
+<li>方法：<strong>镨铷玻璃</strong>或<strong>钬玻璃</strong>都有若干特征的吸收峰，可用来校正分光光度计的<strong>波长标尺</strong>，前者用于<strong>可见光区</strong>，后者则对<strong>紫外和可见光区</strong>都适用。也可用<strong>K<del>2</del>CrO<del>4</del>标准溶液</strong>来校正<strong>吸光度标度</strong></li>
+</ul>
+<h4 id="显色反应"><a href="#显色反应" class="headerlink" title="显色反应"></a>显色反应</h4><p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508134546835.png"  ><span class="image-caption">image-20240508134546835</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508134606358.png"  ><span class="image-caption">image-20240508134606358</span></p>
+<h4 id="参比溶液的选择"><a href="#参比溶液的选择" class="headerlink" title="参比溶液的选择"></a>参比溶液的选择</h4><p>测量试样溶液的吸光度时，先要用参比溶液调节**透射比为100%**，以消除溶液中其他成分以及吸收池和溶剂对光的反射和吸收带来的误差</p>
+<h4 id="干扰及消除方法"><a href="#干扰及消除方法" class="headerlink" title="干扰及消除方法"></a>干扰及消除方法</h4><p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508134732981.png"  ><span class="image-caption">image-20240508134732981</span></p>
+<h3 id="定性定量分析"><a href="#定性定量分析" class="headerlink" title="定性定量分析"></a>定性定量分析</h3><h4 id="定性分析"><a href="#定性分析" class="headerlink" title="定性分析"></a>定性分析</h4><ul>
+<li>定性鉴别的依据→吸收光谱的特征</li>
+<li>吸收光谱的形状</li>
+<li>吸收峰的数目</li>
+<li>吸收峰的位置（波长）</li>
+<li>吸收峰的强度</li>
+<li>相应的吸光系数</li>
+</ul>
+<h4 id="最大吸收波长计算法"><a href="#最大吸收波长计算法" class="headerlink" title="最大吸收波长计算法"></a>最大吸收波长计算法</h4><p><strong>1.Woodward-Fieser经验规则：</strong>计算<strong>共轭二烯、多烯烃及共轭烯酮</strong>类化合物π—π*跃迁最大吸收波长的经验规则。</p>
+<ul>
+<li>母体二烯：214nm </li>
+<li>母体二丙烯酮：215nm</li>
+<li>母体同环二烯：253nm</li>
+<li>共轭双键：30nm</li>
+<li>α-Br：25nm</li>
+<li>β-烷基：12nm</li>
+<li>（烯烃上）取代烷基：5nm</li>
+<li>环外双键（有环外双键的环数）：5nm</li>
+<li>酰氧取代基：0</li>
+</ul>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508162716019.png"  ><span class="image-caption">例1</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508162739696.png"  ><span class="image-caption">例2</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508162757937.png"  ><span class="image-caption">例2</span></p>
+<p><strong>2.Fieser-Kuhn经验规则：</strong>如果一个多烯分子中含有<strong>四个以上的共轭双键</strong>，则其在己烷中的λ<del>max</del>和ε<del>max</del>值可按Fieser-Kuhn经验规则来计算：</p>
+<p>​	<strong>λ<del>max</del>&#x3D;114+5M+n(48.0–1.7n)-19.5R<del>环内</del>-10R<del>环外</del></strong></p>
+<p>​	<strong>ε<del>max</del>&#x3D;1.74x10^4^xn</strong></p>
+<p>M为取代烷基数，n为共轭双键数，R<del>环内</del>为有环内双键的环数，R<del>环外</del>为有环外双键的环数。</p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508164725030.png"  ><span class="image-caption">例1</span></p>
+<p><strong>3.Scott经验规则：</strong>对于<strong>苯环</strong>上的取代基引起的波长变化有较好的预测能力</p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508165311251.png"  ><span class="image-caption">image-20240508165311251</span></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508165330303.png"  ><span class="image-caption">image-20240508165330303</span></p>
+<h4 id="定性鉴别"><a href="#定性鉴别" class="headerlink" title="定性鉴别"></a>定性鉴别</h4><p><strong>1.对比吸收谱的一致性：</strong>同一测定条件下，与标准对照物谱图或标准谱图进行对照比较</p>
+<p><strong>2.对比吸收光谱的特征值：</strong>λ<del>max</del>，ε<del>max</del>，E</p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508165749538.png"    /><span class="image-caption">image-20240508165749538</span>
 
-<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
+
+
+<p><strong>3.对比吸光度或吸光系数的比值：</strong></p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508165929085.png"  ><span class="image-caption">image-20240508165929085</span></p>
+<h4 id="纯度检查和杂质限量测定"><a href="#纯度检查和杂质限量测定" class="headerlink" title="纯度检查和杂质限量测定"></a>纯度检查和杂质限量测定</h4><p><strong>1.纯度检查：</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508170411036.png"   style="zoom:33%;" /><span class="image-caption">image-20240508170411036</span>
+
+
+
+<p><strong>2.杂志限量测定：</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508170345680.png"   style="zoom: 33%;" /><span class="image-caption">image-20240508170345680</span>
+
+<h4 id="定量分析"><a href="#定量分析" class="headerlink" title="定量分析"></a>定量分析</h4><ul>
+<li><p><strong>单组分</strong>定量方法</p>
+<ul>
+<li><p>吸光系数法：利用朗伯-比尔定律，<strong>C &#x3D; A&#x2F;(ε·l)</strong></p>
+<blockquote>
+<p>C为浓度，A为吸光度，ε为吸光系数，l为比色池尺寸</p>
+</blockquote>
+</li>
+<li><p>对照法：测定<strong>标准溶液</strong>的吸光度，与未知溶液的吸光度对比而得浓度</p>
+<blockquote>
+<p>需要标准溶液与未知溶液浓度相近</p>
+</blockquote>
+</li>
+<li><p>标准曲线法：配置<strong>标准系列</strong>溶液，获得标准曲线</p>
+</li>
+</ul>
+</li>
+<li><p><strong>多组分</strong>定量方法</p>
+<ul>
+<li>两组分吸收光谱不重叠（互不干扰）：两组分在各自λmax下不重叠→分别按单组分定量</li>
+<li>两组分吸收光谱部分重叠</li>
+</ul>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508172416071.png"  ><span class="image-caption">image-20240508172416071</span></p>
+<ul>
+<li>两组分吸收光谱完全重叠——混合样品测定：解线性方程组法，等吸收双波长消去法，系数倍率法</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、红外光谱法（IR）"><a href="#三、红外光谱法（IR）" class="headerlink" title="三、红外光谱法（IR）"></a>三、红外光谱法（IR）</h2><blockquote>
+<p>红外光谱法：利用物质对红外光区电磁辐射的选择性吸收的特性来进行<strong>结构分析</strong>、定性和定量的分析方法。</p>
+</blockquote>
+<p>###概述</p>
+<h4 id="红外光的区划"><a href="#红外光的区划" class="headerlink" title="红外光的区划"></a>红外光的区划</h4><p>红外线：波长在0.78~1000μm 范围内的电磁波</p>
+<p><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508173134262.png"  ><span class="image-caption">image-20240508173134262</span></p>
+<h4 id="红外吸收过程"><a href="#红外吸收过程" class="headerlink" title="红外吸收过程"></a>红外吸收过程</h4><ul>
+<li><p>UV——分子<strong>外层价电子</strong>能级的跃迁（<strong>电子光谱</strong>）</p>
+</li>
+<li><p>IR——分子<strong>振动和转动</strong>能级的跃迁（<strong>振转光谱</strong>）</p>
+</li>
+</ul>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508173358736.png"   style="zoom: 67%;" /><span class="image-caption">image-20240508173358736</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508173444764.png"   style="zoom:67%;" /><span class="image-caption">image-20240508173444764</span>
+
+<h4 id="红外光谱的作用"><a href="#红外光谱的作用" class="headerlink" title="红外光谱的作用"></a>红外光谱的作用</h4><ul>
+<li>可以确定化合物的类别（芳香类）</li>
+<li>确定官能团：C&#x3D;O，C&#x3D;C，C≡C</li>
+<li>推测分子结构（简单化合物）</li>
+<li>定量分析</li>
+</ul>
+<h4 id="红外光谱的表示方法"><a href="#红外光谱的表示方法" class="headerlink" title="红外光谱的表示方法"></a>红外光谱的表示方法</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508173946400.png"   style="zoom:67%;" /><span class="image-caption">image-20240508173946400</span>
+
+<h4 id="IR与UV的区别"><a href="#IR与UV的区别" class="headerlink" title="IR与UV的区别"></a>IR与UV的区别</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508174018151.png"   style="zoom:67%;" /><span class="image-caption">image-20240508174018151</span>
+
+<h4 id="红外吸收光谱的特点"><a href="#红外吸收光谱的特点" class="headerlink" title="红外吸收光谱的特点"></a>红外吸收光谱的特点</h4><ul>
+<li>红外吸收只有振-转跃迁，能量低</li>
+<li>应用范围广：除单原子分子及同核分子外，几乎所有有机物均有红外吸收</li>
+<li>分子结构更为精细的表征：通过IR谱的波数位置、波峰数目及强度确定分子基团、分子结构</li>
+<li>定量分析</li>
+<li>固、液、气态样均可用，且用量少、不破坏样品</li>
+<li>分析速度快</li>
+<li>与色谱等联用（GC-FTIR）具有强大的定性功能</li>
+</ul>
+<h3 id="红外光谱基本原理"><a href="#红外光谱基本原理" class="headerlink" title="红外光谱基本原理"></a>红外光谱基本原理</h3><h4 id="红外光谱的产生"><a href="#红外光谱的产生" class="headerlink" title="红外光谱的产生"></a>红外光谱的产生</h4><ul>
+<li>红外光谱主要由分子的振动能级跃迁产生</li>
+<li>分子的振动能级差远大于转动能级差</li>
+<li>分子发生振动能级跃迁必然同时伴随转动能级跃迁</li>
+</ul>
+<p><strong>基频峰：</strong>分子吸收一定频率红外线，振动能级从基态跃迁至第一振动激发态产生的吸收峰（即V&#x3D;0 → 1产生的峰）</p>
+<ul>
+<li>基频峰的峰位等于分子的振动频率</li>
+<li>基频峰强度大——红外主要吸收峰</li>
+</ul>
+<p><strong>泛频峰</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508174715338.png"   style="zoom:50%;" /><span class="image-caption">image-20240508174715338</span>
+
+<p><strong>红外光谱产生条件：</strong>分子振动产生<strong>偶极矩</strong>的变化…</p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508202045716.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508202045716</span>
+
+
+
+<h4 id="振动形式（多原子分子）"><a href="#振动形式（多原子分子）" class="headerlink" title="振动形式（多原子分子）"></a>振动形式（多原子分子）</h4><p><strong>伸缩振动：</strong>指<strong>键长</strong>沿键轴方向发生周期性变化的振动</p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203634513.png"   style="zoom:50%;" /><span class="image-caption">image-20240508203634513</span>
+
+<p><strong>弯曲振动（变形振动，变角振动）：</strong>指<strong>键角</strong>发生周期性变化、而键长不变的振动</p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203702484.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508203702484</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203744850.png"   style="zoom:50%;" /><span class="image-caption">image-20240508203744850</span>
+
+<p><strong>变形振动：</strong>三个AX键与轴线的夹角同时变化</p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203836608.png"   style="zoom:50%;" /><span class="image-caption">image-20240508203836608</span>
+
+
+
+<h4 id="振动的自由度"><a href="#振动的自由度" class="headerlink" title="振动的自由度"></a>振动的自由度</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203011616.png"   style="zoom:50%;" /><span class="image-caption">image-20240508203011616</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203119557.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508203119557</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508203137739.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508203137739</span>
+
+<h4 id="特征峰与相关峰"><a href="#特征峰与相关峰" class="headerlink" title="特征峰与相关峰"></a>特征峰与相关峰</h4><p><strong>特征峰：</strong>可用于鉴别<strong>官能团存在</strong>的吸收峰</p>
+<p><strong>相关峰：</strong>由一个官能团引起的一组具有相互<strong>依存关系</strong>的特征峰</p>
+<ul>
+<li>相关峰的数目与基团的<strong>活性振动</strong>及光谱的<strong>波数范围</strong>有关</li>
+<li>用<strong>一组</strong>相关峰才可以确定<strong>一个</strong>官能团的存在</li>
+</ul>
+<h4 id="吸收峰位置"><a href="#吸收峰位置" class="headerlink" title="吸收峰位置"></a>吸收峰位置</h4><blockquote>
+<p>吸收峰的位置（峰位）：即振动能级跃迁所吸收的红外线的<strong>波长或波数</strong>，λ<del>max</del>，σ<del>max</del>或ν <del>max</del></p>
+</blockquote>
+<p>K：化学键的力常数（N·cm^-1^)，定义为两原子由平衡位置伸长单位长度时的恢复力</p>
+<p>m<del>折</del>：为折合质量(g)</p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508204809434.png"   style="zoom: 67%;" /><span class="image-caption">image-20240508204809434</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508204828600.png"   style="zoom:67%;" /><span class="image-caption">image-20240508204828600</span>
+
+
+
+<p><strong>影响吸收峰位的内部因素</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508204912669.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508204912669</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508204933272.png"   style="zoom:50%;" /><span class="image-caption">image-20240508204933272</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508205840046.png"   style="zoom:50%;" /><span class="image-caption">image-20240508205840046</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508210049671.png"   style="zoom:50%;" /><span class="image-caption">image-20240508210049671</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508210103859.png"   style="zoom:50%;" /><span class="image-caption">image-20240508210103859</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508210151875.png"   style="zoom:50%;" /><span class="image-caption">image-20240508210151875</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508210216517.png"   style="zoom:50%;" /><span class="image-caption">image-20240508210216517</span>
+
+<p><strong>影响吸收峰位的外部因素：</strong>受溶剂的<strong>极性</strong>和仪器<strong>色散元件</strong>性能影响</p>
+<ul>
+<li>溶剂极性↑，极性基团的伸缩振动频率↓，向低波数区移动</li>
+<li>色散元件性能优劣影响相邻峰的分辨率</li>
+</ul>
+<p><strong>特征区与指纹区</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508210500484.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508210500484</span>
+
+<h4 id="吸收峰强度"><a href="#吸收峰强度" class="headerlink" title="吸收峰强度"></a>吸收峰强度</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508210659331.png"   style="zoom:50%;" /><span class="image-caption">image-20240508210659331</span>
+
+<p><strong>影响偶极矩的因素：</strong></p>
+<ul>
+<li>化学键连有原子电负性的大小，电负性差别↑， Δμ ↑，峰强度↑</li>
+<li>分子的对称性<ul>
+<li>完全对称的结构，Δμ&#x3D;0，产生红外非活性振动</li>
+<li>不对称的结构，Δμ≠0，产生红外活性振动</li>
+</ul>
+</li>
+</ul>
+<h3 id="各种化合物的典型光谱"><a href="#各种化合物的典型光谱" class="headerlink" title="各种化合物的典型光谱"></a>各种化合物的典型光谱</h3><h4 id="脂肪烃类化合物"><a href="#脂肪烃类化合物" class="headerlink" title="脂肪烃类化合物"></a>脂肪烃类化合物</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508211007236.png"   style="zoom: 50%;" /><span class="image-caption">image-20240508211007236</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508211028806.png"   style="zoom:50%;" /><span class="image-caption">image-20240508211028806</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508211044411.png"   style="zoom:50%;" /><span class="image-caption">image-20240508211044411</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508211708643.png"   style="zoom:50%;" /><span class="image-caption">image-20240508211708643</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212132032.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212132032</span>
+
+<h4 id="芳香族化合物"><a href="#芳香族化合物" class="headerlink" title="芳香族化合物"></a>芳香族化合物</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212658866.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212658866</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212711093.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212711093</span>
+
+<blockquote>
+<p>vs:very strong	m:middle	w:weak</p>
+</blockquote>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212721709.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212721709</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212810980.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212810980</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212823641.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212823641</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508212839685.png"   style="zoom:50%;" /><span class="image-caption">image-20240508212839685</span>
+
+<h4 id="醇、酚、醚"><a href="#醇、酚、醚" class="headerlink" title="醇、酚、醚"></a>醇、酚、醚</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508213702208.png"   style="zoom:50%;" /><span class="image-caption">image-20240508213702208</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508213714608.png"   style="zoom:50%;" /><span class="image-caption">image-20240508213714608</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508213728566.png"   style="zoom:50%;" /><span class="image-caption">image-20240508213728566</span>
+
+<h4 id="羰基化合物（1900-1600cm-1-强"><a href="#羰基化合物（1900-1600cm-1-强" class="headerlink" title="羰基化合物（1900-1600cm^-1^强)"></a>羰基化合物（1900-1600cm^-1^强)</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508213901494.png"   style="zoom:50%;" /><span class="image-caption">image-20240508213901494</span>
+
+
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214127104.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214127104</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214213953.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214213953</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214244994.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214244994</span>
+
+<h4 id="含氮化合物"><a href="#含氮化合物" class="headerlink" title="含氮化合物"></a>含氮化合物</h4><img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214427385.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214427385</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214443438.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214443438</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214457462.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214457462</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214509748.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214509748</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240508214522417.png"   style="zoom:50%;" /><span class="image-caption">image-20240508214522417</span>
+
+<h3 id="红外光谱仪"><a href="#红外光谱仪" class="headerlink" title="红外光谱仪"></a>红外光谱仪</h3><h4 id="红外光谱仪的组成"><a href="#红外光谱仪的组成" class="headerlink" title="红外光谱仪的组成"></a>红外光谱仪的组成</h4><blockquote>
+<p>红外光谱仪与紫外-可见分光光度计的组成基本相同，由<strong>光源</strong>、<strong>样品室</strong>、<strong>单色器</strong>以及<strong>检测器</strong>等部分组成。两种仪器在各元件的具体材料上有较大差别。色散型红外光谱仪的单色器一般在样品池之后。</p>
+</blockquote>
+<p><strong>光源</strong></p>
+<ul>
+<li><strong>能斯特灯</strong>: 材料是稀土氧化物，其工作温度为1200-2200 K。此种光源具有很大的<strong>电阻负温度系数</strong>，需要预先加热并设计电源电路能控制电流强度，以免灯过热损坏</li>
+</ul>
+<blockquote>
+<p>电阻负温度系数：<strong>电阻随着温度的升高而降低</strong>。 半导体材料（碳、硅、锗）通常具有负温度系数的电阻</p>
+</blockquote>
+<ul>
+<li><p><strong>硅碳棒:</strong> 工作温度1300-1500 K。与能斯特灯相反,硅碳棒具有<strong>正的电阻温度系数</strong>，电触点需水冷以防放电。其辐射能量与能斯特灯接近，但在&gt;2000 cm-1区域能量输出远大于能斯特灯</p>
+</li>
+<li><p><strong>白炽线圈</strong>: 用镍铬丝螺旋线圈或铑线做成。工作温度约1100 K。其辐射能量略低于前两种，但<strong>寿命长</strong></p>
+</li>
+<li><p>一般<strong>近红外</strong>区的光源用<strong>钨灯</strong>即可，<strong>远红外</strong>区用<strong>水银放电灯</strong>作光源</p>
+</li>
+</ul>
+<p><strong>检测器</strong> </p>
+<ul>
+<li>红外检测器有<strong>热检测器</strong>、<strong>热电检测器</strong>和<strong>光电导检测器</strong>三种。前两种用于色散型仪器，后两种在傅立叶变换红外光谱仪中多见。</li>
+<li><strong>热检测器：</strong>热检测器依据的是<strong>辐射的热效应</strong>。辐射被一小黑体吸收后，黑体温度升高，测量升高的温度可检测红外吸收。以热检测器检测红外辐射时，最主要的是要防止周围<strong>环境的热噪声</strong>。</li>
+<li><strong>热电检测器：</strong>热电检测器使用具有特殊<strong>热电性质的绝缘体</strong>，如硫酸三甘氨酸酯TGS。当辐射照射时，温度会发生变化，从而影响晶体的电荷分布，这种变化可以被检测。电流的大小与晶体的表面积、极化度随温度变化的速率成正比。当热电材料的温度升至某一特定值时极化会消失，此温度称为居里点。TGS的居里点为47C。热电检测器的响应速率很快，可以跟踪干涉仪随时间的变化，故多用于<strong>傅立叶变换红外光谱仪</strong>中。</li>
+<li><strong>光电导检测器：</strong>光电导检测器采用<strong>半导体材料薄膜</strong>，如Hg-Cd-Te或PbS或InSb，将其置于非导电的玻璃表面密闭于真空舱内。吸收辐射后非导电性的价电子跃迁至高能量的导电带，从而降低半导体的电阻，产生信号。Hg-Cd-Te缩写为MCT，该检测器用于<strong>中红外区及远红外区</strong>，需冷至液氮温度(77K)以降低噪声。这种检测器比热电检测器<strong>灵敏</strong>，在FT-IR及GC&#x2F;FT-IR仪器中获得广泛应用。</li>
+</ul>
+<p><strong>色散型红外光谱仪</strong></p>
+<ul>
+<li>为<strong>双光束</strong>。使用单光束仪器时，大气中的H<del>2</del>O、CO<del>2</del>在重要的红外区域内有较强的吸收，因此需要一参比光路来补偿，使这两种物质的吸收补偿到零。采用双光束光路可以消除它们的影响，测定时<strong>不必严格控制室内的湿度及人数</strong>。</li>
+<li><strong>单色器在样品室之后</strong>。由于红外光源的低强度，检测器的低灵敏度(使用热电偶时)，故需要对<strong>信号进行大幅度放大</strong>。而红外光谱仪的光源能量低，即使靠近样品也不足以使其产生光分解。而单色器在样品室之后可以消除大部分散射光而不至于到达检测器。</li>
+<li><strong>切光器转动频率低，响应速率慢</strong>，以消除检测器周围物体的红外辐射。</li>
+<li>色散型仪器的主要不足是<strong>扫描速度慢，灵敏度低，分辨率低</strong>。因此色散型仪器自身局限性很大。</li>
+</ul>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509002125493.png"   style="zoom:67%;" /><span class="image-caption">image-20240509002125493</span>
+
+<p><strong>傅立叶变换红外光谱仪</strong> </p>
+<ul>
+<li><strong>高信噪比</strong>。FT-IR仪器所用的光学元件少，无狭缝和光栅分光器，因此到达检测器的辐射强度大，信噪比大。</li>
+<li>波长(数)<strong>精度高</strong>(±0.01cm-1)，重现性好。 </li>
+<li><strong>分辨率高</strong>。 </li>
+<li><strong>扫描速度快</strong>。傅立叶变换仪器动镜一次运动完成一次扫描所需时间仅为一至数秒，可同时测定所有的波数区间。而色散型仪器在任一瞬间只观测一个很窄的频率范围，一次完整的扫描需数分钟。</li>
+<li>由于傅立叶变换红外光谱仪的突出优点，目前已经取代了色散型红外光谱仪。</li>
+</ul>
+<h4 id="红外光谱测定中的样品处理技术"><a href="#红外光谱测定中的样品处理技术" class="headerlink" title="红外光谱测定中的样品处理技术"></a>红外光谱测定中的样品处理技术</h4><p><strong>液体样品</strong></p>
+<ul>
+<li><strong>液膜法：</strong>液体样品常用液膜法。该法适用于<strong>不易挥发</strong>(沸点高于80℃)的液体或<strong>粘稠溶液</strong>。使用两块KBr或NaCl盐片。将液体滴1-2滴到盐片上，用另一块盐片将其夹住，用螺丝固定后放入样品室测量。若测定碳氢类吸收较低的化合物时，可在中间放入夹片(spacer，约0.05-0.1mm厚)，增加膜厚。测定时需注意不要让气泡混入，螺丝不应拧得过紧以免窗板破裂。使用以后要立即拆除，用脱脂棉沾氯仿、丙酮擦净。 </li>
+<li><strong>溶液法：</strong>溶液法适用于<strong>挥发性液体</strong>样品的测定。使用固定液池，将样品溶于适当溶剂中配成一定浓度的溶液(一般以10%w&#x2F;w左右为宜)，用注射器注入液池中进行测定。所用溶剂应<strong>易于溶解样品</strong>；<strong>非极性</strong>，不与样品形成氢键；溶剂的吸收<strong>不与样品吸收重合</strong>。常用溶剂为CS<del>2</del>、CCl<del>4</del>、CHCl<del>3</del>等。 </li>
+<li><strong>水溶液的简易测定法：</strong>由于盐片窗口怕水，因此一般水溶液不能测定红外光谱。利用<strong>聚乙烯薄膜</strong>是水溶液红外光谱测定的一种简易方法。在金属管上铺一层聚乙烯薄膜，其上压入一橡胶圈。滴下水溶液后，再盖一层聚乙烯薄膜，用另一橡胶圈固定后测定。需注意的是，<strong>聚乙烯、水及重水都有红外吸收</strong>。</li>
+</ul>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509002941797.png"   style="zoom: 50%;" /><span class="image-caption">image-20240509002941797</span>
+
+<p>**固体样品 **</p>
+<ul>
+<li><strong>压片法：</strong>固体样品常用压片法，它也是固体样品红外测定的标准方法。将固体样品0.5-1.0mg与150mg左右的<strong>KBr一起粉碎</strong>，用压片机<strong>压成薄片</strong>。薄片应透明均匀。压片模具及压片机因生产厂家不同而异。 </li>
+<li><strong>调糊法：</strong>固体样品还可用调糊法(或重烃油法，Nujol法)。将固体样品(5-10mg)放入研钵中充分研细，滴1-2滴<strong>重烃油</strong>调成糊状，涂在<strong>盐片</strong>上用组合窗板组装后测定。若重烃油的吸收妨碍样品测定，可改用<strong>六氯丁二烯</strong>。</li>
+<li><strong>薄膜法：</strong>适用于<strong>高分子化合物</strong>的测定。将样品溶于<strong>挥发性溶剂</strong>后倒在洁净的玻璃板上，在减压干燥器中使溶剂挥发后形成<strong>薄膜</strong>，固定后进行测定。常见盐片的红外透明范围为：KBr(400 cm^-1^)，NaCl(650 cm^-1^)，CsI(150 cm^-1^)等。</li>
+</ul>
+<p><strong>气体样品</strong></p>
+<ul>
+<li>气体样品的测定可使用窗板间隔为2.5-10cm的<strong>大容量气体池</strong>。抽真空后，向池内导入待测气体。测定气体中的<strong>少量组分</strong>时使用池中的<strong>反射镜</strong>，其作用是将光路长增加到数十米。气体池还可用于<strong>挥发性很强的液体</strong>样品的测定。</li>
+</ul>
+<h3 id="红外光谱解析方法"><a href="#红外光谱解析方法" class="headerlink" title="红外光谱解析方法"></a>红外光谱解析方法</h3><h4 id="IR光谱解析方法"><a href="#IR光谱解析方法" class="headerlink" title="IR光谱解析方法"></a>IR光谱解析方法</h4><p><strong>1.计算不饱和度</strong></p>
+<blockquote>
+<p><strong>n<del>4</del>: C	n<del>3</del>: N	n<del>1</del>: H</strong></p>
+</blockquote>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509003641031.png"   style="zoom:50%;" /><span class="image-caption">image-20240509003641031</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509003709362.png"   style="zoom:50%;" /><span class="image-caption">image-20240509003709362</span>
+
+<p><strong>2.看吸收峰</strong></p>
+<ul>
+<li>先特征、后指纹；先强峰，后次强峰；先粗查，后细找；先否定，后肯定;寻找有关一组相关峰→佐证</li>
+<li>先识别特征区的第一强峰，找出其相关峰，并进行峰归属</li>
+<li>再识别特征区的第二强峰，找出其相关峰，并进行峰归属</li>
+</ul>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509003906779.png"   style="zoom:67%;" /><span class="image-caption">image-20240509003906779</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509003940630.png"   style="zoom:67%;" /><span class="image-caption">image-20240509003940630</span>
+
+<h4 id="IR光谱解析实例"><a href="#IR光谱解析实例" class="headerlink" title="IR光谱解析实例"></a>IR光谱解析实例</h4><p><strong>1.</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004300412.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004300412</span>
+
+<p><strong>2.</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004328391.png"   style="zoom:67%;" /><span class="image-caption">image-20240509004328391</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004351993.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004351993</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004433454.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004433454</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004447689.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004447689</span>
+
+<p><strong>3.</strong></p>
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004540711.png"   style="zoom: 67%;" /><span class="image-caption">image-20240509004540711</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004610311.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004610311</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004626300.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004626300</span>
+
+<img  src="C:\Users\21198\AppData\Roaming\Typora\typora-user-images\image-20240509004640141.png"   style="zoom:50%;" /><span class="image-caption">image-20240509004640141</span>
+
+
+
+<h2 id="四、拉曼光谱法（RS）"><a href="#四、拉曼光谱法（RS）" class="headerlink" title="四、拉曼光谱法（RS）"></a>四、拉曼光谱法（RS）</h2>]]></content>
       <categories>
-        <category>hexo</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Database Initialization</title>
-    <url>/2024/04/30/Database%20Initialization/</url>
-    <content><![CDATA[<blockquote>
-<p>这是我们数据库课程的上机操作指南，通过指引，你大概率可以成功完成数据库的初始化，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
-</blockquote>
-<h2 id="1，修改ip地址并打开耳朵lsnrctl"><a href="#1，修改ip地址并打开耳朵lsnrctl" class="headerlink" title="1，修改ip地址并打开耳朵lsnrctl"></a>1，修改ip地址并打开耳朵lsnrctl</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ lsnrctl status<br>$ <span class="hljs-built_in">cd</span> /opt/app/admin/product/21.3.000/db_home/network/admin<br>$ vim listener.ora<br>$ vim tnsnames.ora <span class="hljs-comment"># 共修改四处ipv4地址为本机地址</span><br>$ lsnrctl start<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="2，登录oracle"><a href="#2，登录oracle" class="headerlink" title="2，登录oracle"></a>2，登录oracle</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba <span class="hljs-comment"># 直接进入数据库无需密码</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="3，启动并切换数据库"><a href="#3，启动并切换数据库" class="headerlink" title="3，启动并切换数据库"></a>3，启动并切换数据库</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> pdbs<br>ERROR: #检查数据库状态<br>ORA<span class="hljs-number">-01034</span>: ORACLE <span class="hljs-keyword">not</span> available<br>进程 ID: <span class="hljs-number">0</span><br>会话 ID: <span class="hljs-number">0</span> 序列号: <span class="hljs-number">0</span><br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> startup<br>ORACLE 例程已经启动。<br>Total <span class="hljs-keyword">System</span> <span class="hljs-keyword">Global</span> Area <span class="hljs-number">4932500048</span> bytes<br>Fixed Size                  <span class="hljs-number">9697872</span> bytes<br>Variable Size             <span class="hljs-number">956301312</span> bytes<br>Database Buffers         <span class="hljs-number">3959422976</span> bytes<br>Redo Buffers                <span class="hljs-number">7077888</span> bytes<br>数据库装载完毕。<br>数据库已经打开。<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> pdbs<br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br><br>         <span class="hljs-number">2</span> PDB$SEED                       READ <span class="hljs-keyword">ONLY</span>  <span class="hljs-keyword">NO</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      MOUNTED   #此时还是挂载状态<br></code></pre></td></tr></table></figure>
-
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> PLUGGABLE DATABASE PDBDRUGDB <span class="hljs-keyword">OPEN</span>; #更改数据库的挂载状态<br>插接式数据库已变更。<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> PDBS #检查状态<br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">2</span> PDB$SEED                       READ <span class="hljs-keyword">ONLY</span>  <span class="hljs-keyword">NO</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      READ WRITE <span class="hljs-keyword">NO</span> #数据库已经可以使用<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB; #将会话的上下文切换到指定数据库<br><br>会话已更改。<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> PDBS<br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      READ WRITE <span class="hljs-keyword">NO</span> #只有一个说明切换成功<br><br><br>#补充<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> shutdown immediate #关闭数据库<br>数据库已经关闭。<br>已经卸载数据库。<br>ORACLE 例程已经关闭。<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="4，连接数据库"><a href="#4，连接数据库" class="headerlink" title="4，连接数据库"></a>4，连接数据库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqldeveloper <span class="hljs-comment">#打开图形化界面，如果你有显示器的话</span><br><span class="hljs-comment"># 手动创建连接，修改ipv4地址之后连接数据库即可</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="5，安装HR"><a href="#5，安装HR" class="headerlink" title="5，安装HR"></a>5，安装HR</h2><h4 id="直接用下面的命令很大可能会报错"><a href="#直接用下面的命令很大可能会报错" class="headerlink" title="直接用下面的命令很大可能会报错"></a>直接用下面的命令很大可能会报错</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> @<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span><span class="hljs-operator">/</span>human_resources<span class="hljs-operator">/</span>hr_main.sql<br><br>specify password <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">1</span>:<br>输入 <span class="hljs-number">1</span> 的值:  HR<br><br>specify <span class="hljs-keyword">default</span> tablespeace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">2</span>:<br>输入 <span class="hljs-number">2</span> 的值:  USERS<br><br>specify temporary tablespace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">3</span>:<br>输入 <span class="hljs-number">3</span> 的值:  TEMP<br><br>specify password <span class="hljs-keyword">for</span> SYS <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">4</span>:<br>输入 <span class="hljs-number">4</span> 的值:  wtsgyh2024<br><br>specify log path <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">5</span>:<br>输入 <span class="hljs-number">5</span> 的值:  $ORACLE_HOME<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log <br>#或者 <span class="hljs-operator">/</span>opt<span class="hljs-operator">/</span>app<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>product<span class="hljs-operator">/</span><span class="hljs-number">21.3</span><span class="hljs-number">.000</span><span class="hljs-operator">/</span>db_home<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<span class="hljs-operator">/</span><br><br>specify <span class="hljs-keyword">connect</span> string <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">6</span>:<br>输入 <span class="hljs-number">6</span> 的值:  PDBDRUGDB #注意要和前面设置的container一致<br><br>···<br><br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_cre.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_popul.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_idx.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_code.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_comnt.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_analz.sql&quot; #出现报错，需要修改<br></code></pre></td></tr></table></figure>
-<h4 id="进入db-sample-schemas-21-1文件目录，执行perl命令"><a href="#进入db-sample-schemas-21-1文件目录，执行perl命令" class="headerlink" title="进入db-sample-schemas-21.1文件目录，执行perl命令"></a>进入db-sample-schemas-21.1文件目录，执行perl命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> /home/admin/db-sample-schemas-21.1 <span class="hljs-comment"># 进入文件目录，按照你自己的下载路径做相应修改</span><br>$ perl -p -i.bak -e <span class="hljs-string">&#x27;s#__SUB__CWD__#&#x27;</span>$(<span class="hljs-built_in">pwd</span>)<span class="hljs-string">&#x27;#g&#x27;</span> *.sql */*.sql */*.dat <span class="hljs-comment">#注意有空格</span><br></code></pre></td></tr></table></figure>
-<ul>
-<li><code>perl</code>: 这指定了要运行的程序，即 Perl 解释器。</li>
-<li><code>-p</code>: 这个选项告诉 Perl 在处理输入时，打印每行的结果。</li>
-<li><code>-i.bak</code>: 这个选项告诉 Perl 在原始文件上进行 “in-place” 编辑，并将原始文件备份为扩展名为 <code>.bak</code> 的文件。</li>
-<li><code>-e</code>: 这个选项允许你在命令行上提供 Perl 代码。</li>
-<li><code>&#39;s#__SUB__CWD__#&#39;$(pwd)&#39;#g&#39;</code>: 这是 Perl 代码的一部分。它使用正则表达式将 <code>__SUB__CWD__</code> 替换为当前工作目录的路径。<code>$(pwd)</code> 是一个 Shell 命令，用于获取当前工作目录的路径。</li>
-<li><code>*.sql*/*.sql*/*.dat</code>: 这是文件名的模式。它告诉 Perl 在当前目录下找到所有以 <code>.sql</code> 或 <code>.dat</code> 结尾的文件。</li>
-</ul>
-<h4 id="再次运行命令，得到下面的输出即表示成功进入RH模式"><a href="#再次运行命令，得到下面的输出即表示成功进入RH模式" class="headerlink" title="再次运行命令，得到下面的输出即表示成功进入RH模式"></a>再次运行命令，得到下面的输出即表示成功进入RH模式</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> @<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span><span class="hljs-operator">/</span>human_resources<span class="hljs-operator">/</span>hr_main.sql<br><br>specify password <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">1</span>:<br>输入 <span class="hljs-number">1</span> 的值:  HR<br><br>specify <span class="hljs-keyword">default</span> tablespeace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">2</span>:<br>输入 <span class="hljs-number">2</span> 的值:  USERS<br><br>specify temporary tablespace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">3</span>:<br>输入 <span class="hljs-number">3</span> 的值:  TEMP<br><br>specify password <span class="hljs-keyword">for</span> SYS <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">4</span>:<br>输入 <span class="hljs-number">4</span> 的值:  wtsgyh2024<br><br>specify log path <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">5</span>:<br>输入 <span class="hljs-number">5</span> 的值:  $ORACLE_HOME<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<br>#或者 <span class="hljs-operator">/</span>opt<span class="hljs-operator">/</span>app<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>product<span class="hljs-operator">/</span><span class="hljs-number">21.3</span><span class="hljs-number">.000</span><span class="hljs-operator">/</span>db_home<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<span class="hljs-operator">/</span><br><br>specify <span class="hljs-keyword">connect</span> string <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">6</span>:<br>输入 <span class="hljs-number">6</span> 的值:  PDBDRUGDB<br><br> ···<br> <br><span class="hljs-keyword">Commit</span> complete.<br><br>PL<span class="hljs-operator">/</span><span class="hljs-keyword">SQL</span> <span class="hljs-keyword">procedure</span> successfully completed. # 出现这样的显示说明连接成功<br><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> table_name <span class="hljs-keyword">FROM</span> user_tables;  #测试<br>TABLE_NAME<br><span class="hljs-comment">--------------------------------------------------------------------------------</span><br>REGIONS<br>COUNTRIES<br>LOCATIONS<br>DEPARTMENTS<br>JOBS<br>EMPLOYEES<br>JOB_HISTORY<br><br><span class="hljs-number">7</span> <span class="hljs-keyword">rows</span> selected. #表示已成功安装好了<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">USER</span>; #测试有无HR用户<br><span class="hljs-keyword">USER</span> <span class="hljs-keyword">is</span> &quot;HR&quot;  <br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="6-连接HR数据库"><a href="#6-连接HR数据库" class="headerlink" title="6.连接HR数据库"></a>6.连接HR数据库</h1><h4 id="用户密码就是"><a href="#用户密码就是" class="headerlink" title="用户密码就是"></a>用户密码就是</h4><blockquote>
-<p>输入 1 的值:  HR (这里输入什么就是什么)</p>
-</blockquote>
-<ul>
-<li><h4 id="在终端中连接"><a href="#在终端中连接" class="headerlink" title="在终端中连接"></a>在终端中连接</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$  sqlplus HR/HR@PDBDRUGDB <br><span class="hljs-comment">#无需输入任何用户名和密码，直接进入SQL&gt;模式</span><br></code></pre></td></tr></table></figure>
-
-
-</li>
-<li><h4 id="在sqldeveloper图形化界面中连接"><a href="#在sqldeveloper图形化界面中连接" class="headerlink" title="在sqldeveloper图形化界面中连接"></a>在sqldeveloper图形化界面中连接</h4><figure class="highlight vbnet"><table><tr><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">username:</span> HR<br><span class="hljs-symbol">password:</span>HR<br><span class="hljs-symbol">role:</span> <span class="hljs-keyword">default</span><br><span class="hljs-symbol">hostname:</span> <span class="hljs-number">210.42</span>.<span class="hljs-number">105.109</span> (改成你自己的ip)<br><span class="hljs-symbol">port:</span> <span class="hljs-number">1521</span><br><span class="hljs-symbol">ServerName:</span> PDBDRUGDB<br></code></pre></td></tr></table></figure></li>
-</ul>
-<p><em><strong>补充：删除HR的表（不会删除HR用户本身）</strong></em></p>
-<figure class="highlight plaintext"><figcaption><span>alter session set container</span></figcaption><table><tr><td class="code"><pre><code class="hljs sqlSQL>">SQL&gt;@/home/admin/db-sample-schemas-21.1/human_resources/hr_dro__p.sql  #小心使用！)<br>输入 password_hr 的值: HR<br>输入 connect_string 的值: PDBDRUGDB<br>表已删除。<br>表已删除。<br>提交完成。<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了"><a href="#恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了" class="headerlink" title="恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了"></a>恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了</h3>]]></content>
-      <categories>
-        <category>数据库</category>
+        <category>基础学科</category>
       </categories>
   </entry>
   <entry>
@@ -168,6 +583,125 @@
 ]]></content>
       <categories>
         <category>数据库</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Database Initialization</title>
+    <url>/2024/04/30/Database%20Initialization/</url>
+    <content><![CDATA[<blockquote>
+<p>这是我们数据库课程的上机操作指南，通过指引，你大概率可以成功完成数据库的初始化，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
+</blockquote>
+<h1 id="pre"><a href="#pre" class="headerlink" title="pre"></a>pre</h1><p>首先下载文件，<a href="https://github.com/chide-org/Database-Initialization/releases/download/db-sample-schemas-21.1/db-sample-schemas-21.1.zip">点击此处下载db-sample-schemas-21.1.zip</a>（由于是GitHub中转，可能会有些慢）</p>
+<p>接下来找到下载的db-sample-schemas-21.1.zip文件夹，在终端中解压（必须解压才能使用）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 首先移动到下载文件的目录下</span><br>$ <span class="hljs-built_in">cd</span> /home/admin/ <span class="hljs-comment">#！！！替换成你自己的下载路径</span><br><span class="hljs-comment"># 利用unzip解压压缩文件</span><br>$ unzip db-sample-schemas-21.1.zip<br><span class="hljs-comment"># 如果不是.zip文件，可以尝试下面的方法</span><br>$ tar -czf db-sample-schemas-21.1.tar.gz<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="1，修改ip地址并打开耳朵lsnrctl"><a href="#1，修改ip地址并打开耳朵lsnrctl" class="headerlink" title="1，修改ip地址并打开耳朵lsnrctl"></a>1，修改ip地址并打开耳朵lsnrctl</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 首先查看耳朵是否打开</span><br>$ lsnrctl status<br><span class="hljs-comment"># 没有打开（回显不是成功）则先修改文件的ip地址</span><br>$ <span class="hljs-built_in">cd</span> /opt/app/admin/product/21.3.000/db_home/network/admin<br>$ vim listener.ora <span class="hljs-comment">#在打开的窗口中修改所有210.42.105.109为！！！你自己的ip地址</span><br>$ vim tnsnames.ora <span class="hljs-comment">#按i进入编辑模式，编辑完成按Esc退出编辑模式，输入:wq保存并退出</span><br><span class="hljs-comment"># 打开耳朵，成功则进入下一步</span><br>$ lsnrctl start<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2，登录oracle"><a href="#2，登录oracle" class="headerlink" title="2，登录oracle"></a>2，登录oracle</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 密码外显式直接进入数据库</span><br>$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba <br><span class="hljs-comment"># 下面的代码也可以</span><br>$ sqlplus / as sysdba<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3，启动并切换数据库"><a href="#3，启动并切换数据库" class="headerlink" title="3，启动并切换数据库"></a>3，启动并切换数据库</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">#检查数据库状态<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> pdbs<br>ERROR: <br>ORA<span class="hljs-number">-01034</span>: ORACLE <span class="hljs-keyword">not</span> available<br>进程 ID: <span class="hljs-number">0</span><br>会话 ID: <span class="hljs-number">0</span> 序列号: <span class="hljs-number">0</span><br><br># 启动数据库<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> startup<br>ORACLE 例程已经启动。<br>Total <span class="hljs-keyword">System</span> <span class="hljs-keyword">Global</span> Area <span class="hljs-number">4932500048</span> bytes<br>Fixed Size                  <span class="hljs-number">9697872</span> bytes<br>Variable Size             <span class="hljs-number">956301312</span> bytes<br>Database Buffers         <span class="hljs-number">3959422976</span> bytes<br>Redo Buffers                <span class="hljs-number">7077888</span> bytes<br>数据库装载完毕。<br>数据库已经打开。<br><br>#可以看到挂载状态的数据库了<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> pdbs<br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br><br>         <span class="hljs-number">2</span> PDB$SEED                       READ <span class="hljs-keyword">ONLY</span>  <span class="hljs-keyword">NO</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      MOUNTED   #此时还是挂载状态<br></code></pre></td></tr></table></figure>
+
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">#更改数据库的挂载状态<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> PLUGGABLE DATABASE PDBDRUGDB <span class="hljs-keyword">OPEN</span>; <br>插接式数据库已变更。<br><br>#可以看到数据库状态已经切换了<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> PDBS <br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">2</span> PDB$SEED                       READ <span class="hljs-keyword">ONLY</span>  <span class="hljs-keyword">NO</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      READ WRITE <span class="hljs-keyword">NO</span> #数据库已经可以使用<br><br>#将会话的上下文切换到指定数据库PDBDRUGDB<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB; <br><br>会话已更改。<br><br>#只能看到数据库PDBDRUGDB了<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> PDBS<br><br>    CON_ID CON_NAME                       <span class="hljs-keyword">OPEN</span> MODE  RESTRICTED<br><span class="hljs-comment">---------- ------------------------------ ---------- ----------</span><br>         <span class="hljs-number">3</span> PDBDRUGDB                      READ WRITE <span class="hljs-keyword">NO</span> #只有一个说明切换成功<br><br><br>#补充命令！！！正常操作不要执行<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> shutdown immediate #关闭数据库<br>数据库已经关闭。<br>已经卸载数据库。<br>ORACLE 例程已经关闭。<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4，安装HR"><a href="#4，安装HR" class="headerlink" title="4，安装HR"></a>4，安装HR</h2><h4 id="直接用下面的命令很大可能会报错"><a href="#直接用下面的命令很大可能会报错" class="headerlink" title="直接用下面的命令很大可能会报错"></a>直接用下面的命令很大可能会报错</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"># ！！！home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>必须更改成你的db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span>文件夹路径<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> @<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span><span class="hljs-operator">/</span>human_resources<span class="hljs-operator">/</span>hr_main.sql<br><br>specify password <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">1</span>:<br>输入 <span class="hljs-number">1</span> 的值:  HR #记住这个值，这是HR用户的密码，后面连接HR数据库要用，会改密码当我没说<br><br>specify <span class="hljs-keyword">default</span> tablespeace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">2</span>:<br>输入 <span class="hljs-number">2</span> 的值:  USERS<br><br>specify temporary tablespace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">3</span>:<br>输入 <span class="hljs-number">3</span> 的值:  TEMP<br><br>specify password <span class="hljs-keyword">for</span> SYS <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">4</span>:<br>输入 <span class="hljs-number">4</span> 的值:  wtsgyh2024<br><br>specify log path <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">5</span>:<br>输入 <span class="hljs-number">5</span> 的值:  $ORACLE_HOME<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log <br>#或者 <span class="hljs-operator">/</span>opt<span class="hljs-operator">/</span>app<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>product<span class="hljs-operator">/</span><span class="hljs-number">21.3</span><span class="hljs-number">.000</span><span class="hljs-operator">/</span>db_home<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<span class="hljs-operator">/</span><br><br>specify <span class="hljs-keyword">connect</span> string <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">6</span>:<br>输入 <span class="hljs-number">6</span> 的值:  PDBDRUGDB #注意要和前面设置的container一致，`<span class="hljs-keyword">ALTER</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB;`<br><br>···<br><br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_cre.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_popul.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_idx.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_code.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_comnt.sql&quot;<br>SP2<span class="hljs-number">-0310</span>: 无法打开文件 &quot;__SUB__CWD__/human_resources/hr_analz.sql&quot; <br>#这个报错说明文件路径出现了问题，我们需要把__SUB__CWD__改成可用的文件路径<br></code></pre></td></tr></table></figure>
+<h4 id="进入db-sample-schemas-21-1文件目录，执行perl命令"><a href="#进入db-sample-schemas-21-1文件目录，执行perl命令" class="headerlink" title="进入db-sample-schemas-21.1文件目录，执行perl命令"></a>进入db-sample-schemas-21.1文件目录，执行perl命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#新开一个bash终端</span><br>$ <span class="hljs-built_in">cd</span> /home/admin/db-sample-schemas-21.1 <span class="hljs-comment"># ！！！修改成你自己的下载路径，进入文件夹</span><br><span class="hljs-comment">#使用perl命令将__SUB__CWD__路径修改成当前文件目录</span><br><span class="hljs-comment">#使用pwd查看当前文件目录，注意：__SUB__CWD__替换后，__SUB__CWD__/human_resources/hr_analz.sql需要是可用路径</span><br>$ perl -p -i.bak -e <span class="hljs-string">&#x27;s#__SUB__CWD__#&#x27;</span>$(<span class="hljs-built_in">pwd</span>)<span class="hljs-string">&#x27;#g&#x27;</span> *.sql */*.sql */*.dat <span class="hljs-comment">#注意有空格</span><br><span class="hljs-comment">#没有报错则可以进入下一步</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>perl</code>: 这指定了要运行的程序，即 Perl 解释器。</li>
+<li><code>-p</code>: 这个选项告诉 Perl 在处理输入时，打印每行的结果。</li>
+<li><code>-i.bak</code>: 这个选项告诉 Perl 在原始文件上进行 “in-place” 编辑，并将原始文件备份为扩展名为 <code>.bak</code> 的文件。</li>
+<li><code>-e</code>: 这个选项允许你在命令行上提供 Perl 代码。</li>
+<li><code>&#39;s#__SUB__CWD__#&#39;$(pwd)&#39;#g&#39;</code>: 这是 Perl 代码的一部分。它使用正则表达式将 <code>__SUB__CWD__</code> 替换为当前工作目录的路径。<code>$(pwd)</code> 是一个 Shell 命令，用于获取当前工作目录的路径。</li>
+<li><code>*.sql */*.sql */*.dat</code>: 这是文件名的模式。它告诉 Perl 在当前目录下找到所有以 <code>.sql</code>  结尾和当前目录所有文件夹下的所有以 <code>.sql</code> 或 <code>.dat</code> 结尾的文件。</li>
+</ul>
+<h4 id="再次运行命令，得到下面的输出即表示成功进入RH模式"><a href="#再次运行命令，得到下面的输出即表示成功进入RH模式" class="headerlink" title="再次运行命令，得到下面的输出即表示成功进入RH模式"></a>再次运行命令，得到下面的输出即表示成功进入RH模式</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"># ！！！home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>必须更改成你的db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span>文件夹路径<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> @<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span><span class="hljs-operator">/</span>human_resources<span class="hljs-operator">/</span>hr_main.sql<br><br>specify password <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">1</span>:<br>输入 <span class="hljs-number">1</span> 的值:  HR #记住这个值，这是HR用户的密码，后面连接HR数据库要用，会改密码当我没说<br><br>specify <span class="hljs-keyword">default</span> tablespeace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">2</span>:<br>输入 <span class="hljs-number">2</span> 的值:  USERS<br><br>specify temporary tablespace <span class="hljs-keyword">for</span> HR <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">3</span>:<br>输入 <span class="hljs-number">3</span> 的值:  TEMP<br><br>specify password <span class="hljs-keyword">for</span> SYS <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">4</span>:<br>输入 <span class="hljs-number">4</span> 的值:  wtsgyh2024<br><br>specify log path <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">5</span>:<br>输入 <span class="hljs-number">5</span> 的值:  $ORACLE_HOME<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<br>#或者 <span class="hljs-operator">/</span>opt<span class="hljs-operator">/</span>app<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>product<span class="hljs-operator">/</span><span class="hljs-number">21.3</span><span class="hljs-number">.000</span><span class="hljs-operator">/</span>db_home<span class="hljs-operator">/</span>demo<span class="hljs-operator">/</span>schema<span class="hljs-operator">/</span>log<span class="hljs-operator">/</span><br><br>specify <span class="hljs-keyword">connect</span> string <span class="hljs-keyword">as</span> <span class="hljs-keyword">parameter</span> <span class="hljs-number">6</span>:<br>输入 <span class="hljs-number">6</span> 的值:  PDBDRUGDB #注意要和前面设置的container一致，`<span class="hljs-keyword">ALTER</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB;`<br><br> ···<br> <br><span class="hljs-keyword">Commit</span> complete.<br><br>PL<span class="hljs-operator">/</span><span class="hljs-keyword">SQL</span> <span class="hljs-keyword">procedure</span> successfully completed. # 出现这样的显示说明连接成功<br><br>#测试，出现这样的显示表示已成功安装好了<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> table_name <span class="hljs-keyword">FROM</span> user_tables;  <br>TABLE_NAME<br><span class="hljs-comment">--------------------------------------------------------------------------------</span><br>REGIONS<br>COUNTRIES<br>LOCATIONS<br>DEPARTMENTS<br>JOBS<br>EMPLOYEES<br>JOB_HISTORY<br><br><span class="hljs-number">7</span> <span class="hljs-keyword">rows</span> selected. <br><br>#测试有无HR用户<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">USER</span>; <br><span class="hljs-keyword">USER</span> <span class="hljs-keyword">is</span> &quot;HR&quot;  <br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-连接HR数据库"><a href="#5-连接HR数据库" class="headerlink" title="5.连接HR数据库"></a>5.连接HR数据库</h1><h4 id="用户密码就是"><a href="#用户密码就是" class="headerlink" title="用户密码就是"></a>用户密码就是</h4><blockquote>
+<p>输入 1 的值:  HR (这里输入什么就是什么，忘记了可以自己搜索’数据库用户改密码’)</p>
+</blockquote>
+<ul>
+<li><h4 id="法一：在终端中连接"><a href="#法一：在终端中连接" class="headerlink" title="法一：在终端中连接"></a>法一：在终端中连接</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#显示密码进入HR模式</span><br>$  sqlplus HR/HR@PDBDRUGDB <span class="hljs-comment">#！！！后一个HR修改成你自己的HR密码</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><h4 id="法二：在sqldeveloper图形化界面中连接"><a href="#法二：在sqldeveloper图形化界面中连接" class="headerlink" title="法二：在sqldeveloper图形化界面中连接"></a>法二：在sqldeveloper图形化界面中连接</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">username: HR<br>password:HR  #！！！修改成你自己的HR密码<br>role: <span class="hljs-keyword">default</span><br>hostname: <span class="hljs-number">210.42</span><span class="hljs-number">.105</span><span class="hljs-number">.109</span>  #！！！修改成你自己的ip<br>port: <span class="hljs-number">1521</span><br>ServerName: PDBDRUGDB<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><em><strong>补充：删除HR的表（不会删除HR用户本身，！！！正常操作不要执行）</strong></em></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"># ！！！home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>修改成你自己的下载路径<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span>@<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>admin<span class="hljs-operator">/</span>db<span class="hljs-operator">-</span>sample<span class="hljs-operator">-</span>schemas<span class="hljs-number">-21.1</span><span class="hljs-operator">/</span>human_resources<span class="hljs-operator">/</span>hr_dro__p.sql  #小心使用！<br>输入 password_hr 的值: HR  <br>输入 connect_string 的值: PDBDRUGDB<br>表已删除。<br>表已删除。<br>提交完成。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了"><a href="#恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了" class="headerlink" title="恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了"></a>恭喜你！完成了HR数据库的初始化，现在你可以利用HR数据库中的表开始练习SQL语句了</h3><p><strong>运行以下命令看看HR的COUNTRIES表里面有什么吧~</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> COUNTRIES<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Blog start：HEXO + GitHub</title>
+    <url>/2024/04/17/Blog%20Start/</url>
+    <content><![CDATA[<blockquote>
+<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
+</blockquote>
+<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
+<li>下载node.js，<a href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
+</ul>
+<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
+<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
+<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
+<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
+<ul>
+<li><p><a href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
+</li>
+<li><p>hexo常用命令</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
+      <categories>
+        <category>hexo</category>
       </categories>
   </entry>
   <entry>
