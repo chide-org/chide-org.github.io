@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Blog start：HEXO + GitHub</title>
-    <url>/2024/04/17/Blog%20Start/</url>
+    <title>Database practice</title>
+    <url>/2024/05/07/Database%20practice/</url>
     <content><![CDATA[<blockquote>
-<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
+<p>这是我们数据库课程的数据库使用练习，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
 </blockquote>
-<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
-<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
-<li>下载node.js，<a href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
+<h1 id="1-创建用户"><a href="#1-创建用户" class="headerlink" title="1.创建用户"></a>1.创建用户</h1><h4 id="大数据库的用户，在ALTER切换数据库之前"><a href="#大数据库的用户，在ALTER切换数据库之前" class="headerlink" title="大数据库的用户，在ALTER切换数据库之前"></a>大数据库的用户，在ALTER切换数据库之前</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">user</span> c##wshust identified <span class="hljs-keyword">by</span> wtsgyh1972; #必须要加‘c##’<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span>  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">connect</span>,resource <span class="hljs-keyword">to</span> c##wshust; #DRUGDB是大数据库，创建用户和授权都要在大数据库下操作<br></code></pre></td></tr></table></figure>
+
+<p><strong>在图形化界面中连接</strong></p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><code class="hljs clean">用户名：c##wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> （改成你自己的主机ip）<br>端口：<span class="hljs-number">1521</span><br>SID：DRUGDB<br></code></pre></td></tr></table></figure>
+
+<p><strong>在终端连接</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus c<span class="hljs-comment">##wshust/wtsgyh1972@DRUGDB</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn c##wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span><br></code></pre></td></tr></table></figure>
 
 
-<ul>
-<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
-</ul>
-<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
-<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
-<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+<h4 id="单数据库用户"><a href="#单数据库用户" class="headerlink" title="单数据库用户"></a>单数据库用户</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">alter</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">user</span> wshust identified <span class="hljs-keyword">by</span> wtsgyh1972;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">CONNECT</span>,RESOURCE <span class="hljs-keyword">TO</span> wshust; #PDBDRUGDB是小数据库，创建用户和授权都要在这个数据库下操作<br></code></pre></td></tr></table></figure>
+<p><strong>在图形化界面中连接</strong></p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm">用户名：wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210</span>.<span class="hljs-number">42</span>.<span class="hljs-number">105</span>.<span class="hljs-number">1</span> （改成你自己的主机<span class="hljs-built_in">ip</span>）<br>端口：<span class="hljs-number">1521</span><br>服务名：PDBDRUGDB<br></code></pre></td></tr></table></figure>
 
-<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
-<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
-<ul>
-<li><p><a href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
-</li>
-<li><p>hexo常用命令</p>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
+<p><strong>在终端连接</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus wshust/wtsgyh1972@PDBDRUGDB<br></code></pre></td></tr></table></figure>
 
-<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@PDBDRUGDB</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-切换用户"><a href="#2-切换用户" class="headerlink" title="2.切换用户"></a>2.切换用户</h1><p><strong>从bash以sys用户进入sql命令行</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba<br>$ sqlplus / as sysdba<br></code></pre></td></tr></table></figure>
+
+<p><strong>从bash以HR用户进入sql命令行</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus HR/HR@PDBDRUGDB<br>$ sqlplus HR/HR@210.42.105.1:1521/PDBDRUGDB <span class="hljs-comment">#这种命令允许指定ip</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>从sql切换sys用户</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn sys<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span> <span class="hljs-keyword">as</span> sysdba<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn <span class="hljs-operator">/</span> <span class="hljs-keyword">as</span> sysdba<br></code></pre></td></tr></table></figure>
+
+<p><strong>从sql切换HR用户</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@PDBDRUGDB</span><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span>:<span class="hljs-number">1521</span><span class="hljs-operator">/</span>PDBDRUGDB<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="3-更改用户密码"><a href="#3-更改用户密码" class="headerlink" title="3.更改用户密码"></a>3.更改用户密码</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">set</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">for</span> 用户名@localhost = <span class="hljs-keyword">password</span>(<span class="hljs-string">&#x27;新密码&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> password <span class="hljs-keyword">for</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> <span class="hljs-operator">=</span> password(<span class="hljs-string">&#x27;123&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">ALTER <span class="hljs-keyword">USER</span> <span class="hljs-title">用户名@localhost</span> IDENTIFIED BY 新密码;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-number">123</span>;<br></code></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
-        <category>hexo</category>
+        <category>数据库</category>
       </categories>
   </entry>
   <entry>
@@ -60,8 +65,11 @@
 <p>这是我们数据库课程的上机操作指南，通过指引，你大概率可以成功完成数据库的初始化，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
 </blockquote>
 <h1 id="PRE"><a href="#PRE" class="headerlink" title="PRE"></a>PRE</h1><p>首先下载文件，<a href="https://github.com/chide-org/Database-Initialization/releases/download/db-sample-schemas-21.1/db-sample-schemas-21.1.zip">点击此处下载db-sample-schemas-21.1.zip</a>（由于是GitHub中转，可能会有些慢）</p>
+<p><code>wget &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; https://mirror.ghproxy.com/?q&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https%3A%2F%2Fgithub.com%2FLucas04-nhr%2Fdatabase-instruction%2Fblob%2Fmain%2Fdb-sample-schemas-21.1.tar.gz &lt;span class=&quot;nt&quot;&gt;-P&lt;/span&gt; /opt/app/db-sample-schemas-21.1.tar.gz</code><br><code>&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvf&lt;/span&gt; /opt/app/db-sample-schemas-21.1.tar.gz</code></p>
 <p>接下来找到下载的db-sample-schemas-21.1.zip文件夹，在终端中解压（必须解压才能使用）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 首先移动到下载文件的目录下</span><br>$ <span class="hljs-built_in">cd</span> /home/admin/下载 <span class="hljs-comment">#！！！替换成你自己的下载路径</span><br><span class="hljs-comment"># 利用unzip解压压缩文件到上一级文件夹中</span><br>$ unzip db-sample-schemas-21.1.zip -d ../ <br><span class="hljs-comment"># 如果不是.zip文件，可以尝试下面的方法</span><br>$ tar -czf db-sample-schemas-21.1.tar.gz<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># pathway from lucas04</span><br>$ wget -c https://mirror.ghproxy.com/?q=https%3A%2F%2Fgithub.com%2FLucas04-nhr%2Fdatabase-instruction%2Fblob%2Fmain%2Fdb-sample-schemas-21.1.tar.gz -P  /opt/app/db-sample-schemas-21.1.tar.gz<br>$ tar -xvf /opt/app/db-sample-schemas-21.1.tar.gz<br></code></pre></td></tr></table></figure>
 
 
 
@@ -128,61 +136,56 @@
       </categories>
   </entry>
   <entry>
-    <title>Database practice</title>
-    <url>/2024/05/07/Database%20practice/</url>
+    <title>Blog start：HEXO + GitHub</title>
+    <url>/2024/04/17/Blog%20Start/</url>
     <content><![CDATA[<blockquote>
-<p>这是我们数据库课程的数据库使用练习，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
+<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
 </blockquote>
-<h1 id="1-创建用户"><a href="#1-创建用户" class="headerlink" title="1.创建用户"></a>1.创建用户</h1><h4 id="大数据库的用户，在ALTER切换数据库之前"><a href="#大数据库的用户，在ALTER切换数据库之前" class="headerlink" title="大数据库的用户，在ALTER切换数据库之前"></a>大数据库的用户，在ALTER切换数据库之前</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">user</span> c##wshust identified <span class="hljs-keyword">by</span> wtsgyh1972; #必须要加‘c##’<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span>  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">connect</span>,resource <span class="hljs-keyword">to</span> c##wshust; #DRUGDB是大数据库，创建用户和授权都要在大数据库下操作<br></code></pre></td></tr></table></figure>
-
-<p><strong>在图形化界面中连接</strong></p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><code class="hljs clean">用户名：c##wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> （改成你自己的主机ip）<br>端口：<span class="hljs-number">1521</span><br>SID：DRUGDB<br></code></pre></td></tr></table></figure>
-
-<p><strong>在终端连接</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus c<span class="hljs-comment">##wshust/wtsgyh1972@DRUGDB</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn c##wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span><br></code></pre></td></tr></table></figure>
+<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
+<li>下载node.js，<a href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
 
 
+<ul>
+<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
+</ul>
+<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
+<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
 
+<ul>
+<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
+<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="单数据库用户"><a href="#单数据库用户" class="headerlink" title="单数据库用户"></a>单数据库用户</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">alter</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">user</span> wshust identified <span class="hljs-keyword">by</span> wtsgyh1972;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">CONNECT</span>,RESOURCE <span class="hljs-keyword">TO</span> wshust; #PDBDRUGDB是小数据库，创建用户和授权都要在这个数据库下操作<br></code></pre></td></tr></table></figure>
-<p><strong>在图形化界面中连接</strong></p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm">用户名：wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210</span>.<span class="hljs-number">42</span>.<span class="hljs-number">105</span>.<span class="hljs-number">1</span> （改成你自己的主机<span class="hljs-built_in">ip</span>）<br>端口：<span class="hljs-number">1521</span><br>服务名：PDBDRUGDB<br></code></pre></td></tr></table></figure>
+<ul>
+<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
 
-<p><strong>在终端连接</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus wshust/wtsgyh1972@PDBDRUGDB<br></code></pre></td></tr></table></figure>
+<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
+<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
+<ul>
+<li><p><a href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
+</li>
+<li><p>hexo常用命令</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@PDBDRUGDB</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="2-切换用户"><a href="#2-切换用户" class="headerlink" title="2.切换用户"></a>2.切换用户</h1><p><strong>从bash以sys用户进入sql命令行</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba<br>$ sqlplus / as sysdba<br></code></pre></td></tr></table></figure>
-
-<p><strong>从bash以HR用户进入sql命令行</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus HR/HR@PDBDRUGDB<br>$ sqlplus HR/HR@210.42.105.1:1521/PDBDRUGDB <span class="hljs-comment">#这种命令允许指定ip</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>从sql切换sys用户</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn sys<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span> <span class="hljs-keyword">as</span> sysdba<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn <span class="hljs-operator">/</span> <span class="hljs-keyword">as</span> sysdba<br></code></pre></td></tr></table></figure>
-
-<p><strong>从sql切换HR用户</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@PDBDRUGDB</span><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span>:<span class="hljs-number">1521</span><span class="hljs-operator">/</span>PDBDRUGDB<br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="3-更改用户密码"><a href="#3-更改用户密码" class="headerlink" title="3.更改用户密码"></a>3.更改用户密码</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">set</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">for</span> 用户名@localhost = <span class="hljs-keyword">password</span>(<span class="hljs-string">&#x27;新密码&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> password <span class="hljs-keyword">for</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> <span class="hljs-operator">=</span> password(<span class="hljs-string">&#x27;123&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">ALTER <span class="hljs-keyword">USER</span> <span class="hljs-title">用户名@localhost</span> IDENTIFIED BY 新密码;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-number">123</span>;<br></code></pre></td></tr></table></figure>
-
-]]></content>
+<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
       <categories>
-        <category>数据库</category>
+        <category>hexo</category>
       </categories>
   </entry>
   <entry>

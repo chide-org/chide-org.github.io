@@ -199,7 +199,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>四月 30, 2024</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6030</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6760</span>
     </div>
   </div>
 </section>
@@ -210,8 +210,11 @@
 <p>这是我们数据库课程的上机操作指南，通过指引，你大概率可以成功完成数据库的初始化，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
 </blockquote>
 <h1 id="PRE"><a href="#PRE" class="headerlink" title="PRE"></a>PRE</h1><p>首先下载文件，<a target="_blank" rel="noopener" href="https://github.com/chide-org/Database-Initialization/releases/download/db-sample-schemas-21.1/db-sample-schemas-21.1.zip">点击此处下载db-sample-schemas-21.1.zip</a>（由于是GitHub中转，可能会有些慢）</p>
+<p><code>wget &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; https://mirror.ghproxy.com/?q&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https%3A%2F%2Fgithub.com%2FLucas04-nhr%2Fdatabase-instruction%2Fblob%2Fmain%2Fdb-sample-schemas-21.1.tar.gz &lt;span class=&quot;nt&quot;&gt;-P&lt;/span&gt; /opt/app/db-sample-schemas-21.1.tar.gz</code><br><code>&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvf&lt;/span&gt; /opt/app/db-sample-schemas-21.1.tar.gz</code></p>
 <p>接下来找到下载的db-sample-schemas-21.1.zip文件夹，在终端中解压（必须解压才能使用）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 首先移动到下载文件的目录下</span><br>$ <span class="hljs-built_in">cd</span> /home/admin/下载 <span class="hljs-comment">#！！！替换成你自己的下载路径</span><br><span class="hljs-comment"># 利用unzip解压压缩文件到上一级文件夹中</span><br>$ unzip db-sample-schemas-21.1.zip -d ../ <br><span class="hljs-comment"># 如果不是.zip文件，可以尝试下面的方法</span><br>$ tar -czf db-sample-schemas-21.1.tar.gz<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># pathway from lucas04</span><br>$ wget -c https://mirror.ghproxy.com/?q=https%3A%2F%2Fgithub.com%2FLucas04-nhr%2Fdatabase-instruction%2Fblob%2Fmain%2Fdb-sample-schemas-21.1.tar.gz -P  /opt/app/db-sample-schemas-21.1.tar.gz<br>$ tar -xvf /opt/app/db-sample-schemas-21.1.tar.gz<br></code></pre></td></tr></table></figure>
 
 
 
