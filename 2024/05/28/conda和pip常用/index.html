@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>生信 - Rapheal&#39;s blog</title>
+  <title>conda and pip - Rapheal&#39;s blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   <meta name="keywords" content="HUST, 生信, R, JS, 日常">
-  <meta name="description" content="这个博客用来记录我学习过程中的一些心得，包括但不限于计算机，生物信息领域">
+  <meta name="description" content="Conda 是一个开源的软件包管理系统和环境管理系统，...">
   <meta name="author" content="Rapheal">
   <link rel="icon" href="/images/icons/rapheal-logo.jpg" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/rapheal-logo.jpg" type="image/png" sizes="32x32">
@@ -154,7 +154,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center">分类</div>
+    <div class="center">conda and pip</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -186,29 +186,70 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h3 class="archive-total"># 生信</h3>
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/python.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">conda and pip</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>五月 28, 2024</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1231</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p><strong>Conda</strong> 是一个开源的软件包管理系统和环境管理系统，主要用于安装和管理Python包及其依赖项。可通过下载anaconda或miniconda使用</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs powershell">conda <span class="hljs-literal">--version</span><br>conda env list <span class="hljs-comment">#列出环境</span><br>conda info <span class="hljs-literal">--envs</span> <span class="hljs-comment">#列出环境</span><br>conda remove <span class="hljs-literal">--name</span> myenv <span class="hljs-literal">--all</span> <span class="hljs-comment">#删除环境</span><br>conda create <span class="hljs-literal">--name</span> newenv <span class="hljs-literal">--clone</span> myenv <span class="hljs-comment">#克隆环境</span><br>conda env export &gt; environment.yml <span class="hljs-comment">#导出环境</span><br>conda env create <span class="hljs-operator">-f</span> environment.yml <span class="hljs-comment">#从文件中创建环境</span><br>conda create <span class="hljs-literal">--name</span> myenv python=<span class="hljs-number">3.8</span><br>conda activate myenv<br>conda deactivate<br>conda install package_name<br>conda install package_name=<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span><br>conda update package_name<br>conda update <span class="hljs-literal">--all</span><span class="hljs-comment">#更新所有包</span><br>conda remove package_name<br>conda list <span class="hljs-comment">#列出所有包</span><br>conda list package_name<span class="hljs-comment">#列出特定包</span><br>conda clean <span class="hljs-literal">--all</span> <span class="hljs-comment"># 清理包缓存</span><br>conda config <span class="hljs-literal">--get</span> channels <span class="hljs-comment">#列出通道（channels）</span><br>conda config <span class="hljs-literal">--add</span> channels channel_name <span class="hljs-comment">#添加通道</span><br>conda config <span class="hljs-literal">--remove</span> channels channel_name <span class="hljs-comment">#移除通道</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>pip</strong>是 Python 的包管理工具，用于安装和管理 Python 包。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell">pip <span class="hljs-literal">--version</span><br>pip install package_name<br>pip install package_name==<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span><br>pip install <span class="hljs-literal">--upgrade</span> package_name<br>pip install <span class="hljs-literal">-r</span> requirements.txt <span class="hljs-comment">#从文件安装包</span><br>pip uninstall package_name<br>pip list<span class="hljs-comment">#列出已安装的包</span><br>pip show package_name<br>pip search package_name<br>pip list <span class="hljs-literal">--outdated</span> <span class="hljs-comment"># 检查过时的包 </span><br>pip freeze &gt; requirements.txt <span class="hljs-comment">#生成依赖文件</span><br>pip install <span class="hljs-literal">-r</span> requirements.txt <span class="hljs-comment"># 从依赖文件安装包</span><br>pip config <span class="hljs-built_in">set</span> global.index<span class="hljs-literal">-url</span> https://pypi.tuna.tsinghua.edu.cn/simple <span class="hljs-comment">#设置 pip 配置</span><br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Rapheal</li>
+    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/05/28/conda%E5%92%8Cpip%E5%B8%B8%E7%94%A8/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;05&#x2F;28&#x2F;conda%E5%92%8Cpip%E5%B8%B8%E7%94%A8&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;05&#x2F;28&#x2F;conda%E5%92%8Cpip%E5%B8%B8%E7%94%A8&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
         
         
-          
-            <h3 class="archive-year">2024 年</h3>
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2024/05/28/%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%88%86%E6%9E%90/">05/28</a>
-            <a class="archive-title" href="/2024/05/28/%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%88%86%E6%9E%90/">基因差异分析</a>
-          </div>
+        
+        
+  <nav class="nav">
+    <a href="/2024/05/28/%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%88%86%E6%9E%90/"><i class="iconfont iconleft"></i>基因差异分析</a>
+    <a href="/2024/05/07/Database%20practice/">Database practice<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
         
           
-          <div class="archive-item">
-            <a class="archive-date" href="/2024/01/31/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AC%94%E8%AE%B0/">01/31</a>
-            <a class="archive-title" href="/2024/01/31/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AC%94%E8%AE%B0/">孟德尔随机化笔记</a>
-          </div>
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
         
       </div>
     </div>
-  </section>
+  </div>
 </main>
   
 

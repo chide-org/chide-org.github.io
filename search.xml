@@ -1,56 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Blog start：HEXO + GitHub</title>
-    <url>/2024/04/17/Blog%20Start/</url>
-    <content><![CDATA[<blockquote>
-<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
-</blockquote>
-<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
-<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
-<li>下载node.js，<a href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
+    <title>python数据分析包</title>
+    <url>/2024/05/28/python%E5%B8%B8%E7%94%A8%E5%8C%85/</url>
+    <content><![CDATA[<h6 id="base"><a href="#base" class="headerlink" title="base"></a>base</h6><p><strong>base：内置函数</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">len</span>()<span class="hljs-comment">#返回对象的长度或元素个数。</span><br></code></pre></td></tr></table></figure>
 
 
-<ul>
-<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
-</ul>
-<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
-<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
+<h6 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h6><p><strong>numpy：主要用于高性能的数值计算和数组操作。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">numpy.arr([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>])<br>numpy.<span class="hljs-built_in">abs</span>(arr)<br>numpy.fabs(arr)<span class="hljs-comment">#不适用于复数</span><br>numpy.sign()<br>numpy.sqrt()<br>numpy.square()<br>numpy.power(arr,<span class="hljs-number">3</span>)  <span class="hljs-comment"># 计算每个元素的三次方</span><br>numpy.log() <span class="hljs-comment"># 计算数组中每个元素的自然对数（以 e 为底）</span><br>numpy.exp()	<span class="hljs-comment"># 计算数组中每个元素的指数（e 的幂次）</span><br>astype(<span class="hljs-built_in">float</span>)<span class="hljs-comment">#转换数据类型为float</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
-<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
-</ul>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
-<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
-<ul>
-<li><p><a href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
-</li>
-<li><p>hexo常用命令</p>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
+<h6 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a>pandas</h6><p><strong>pandas：构建在 NumPy 之上，专注于数据操作和分析，尤其是表格数据。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pandas.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])<br><br>data = &#123;<span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]&#125;<br>dat = pandas.DataFrame(data)<br>dat.columns <span class="hljs-comment">#列名</span><br>dat.shape <span class="hljs-comment">#行列数</span><br>dat.select_dtypes(include=<span class="hljs-string">&#x27;number&#x27;</span>) <span class="hljs-comment"># 选择所有数值类型的列</span><br><span class="hljs-built_in">print</span>(dat.dtypes[<span class="hljs-string">&#x27;t-Cont1&#x27;</span>]) <span class="hljs-comment">#查看数值类型</span><br>df = df.drop(<span class="hljs-string">&#x27;B&#x27;</span>, axis=<span class="hljs-number">1</span>)<span class="hljs-comment">#去掉一列</span><br>df = df.drop([<span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>], axis=<span class="hljs-number">1</span>)<span class="hljs-comment">#去除多列</span><br>df[<span class="hljs-string">&#x27;D&#x27;</span>] = [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>]<span class="hljs-comment">#添加一列</span><br>astype(<span class="hljs-built_in">float</span>)<span class="hljs-comment">#转换数据类型为float</span><br><br><span class="hljs-comment">#行名/索引</span><br>df = pd.DataFrame(&#123;<br>    <span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>    <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]<br>&#125;)<br>df.index = [<span class="hljs-string">&#x27;row1&#x27;</span>, <span class="hljs-string">&#x27;row2&#x27;</span>, <span class="hljs-string">&#x27;row3&#x27;</span>] <span class="hljs-comment">#使用index属性</span><br><br>df = pd.DataFrame(&#123; <span class="hljs-comment">#在创建DataFrame时设置行名</span><br>    <span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>    <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]<br>&#125;, index=[<span class="hljs-string">&#x27;row1&#x27;</span>, <span class="hljs-string">&#x27;row2&#x27;</span>, <span class="hljs-string">&#x27;row3&#x27;</span>])<br><br>df = pd.DataFrame(&#123;<br>    <span class="hljs-string">&#x27;name&#x27;</span>: [<span class="hljs-string">&#x27;row1&#x27;</span>, <span class="hljs-string">&#x27;row2&#x27;</span>, <span class="hljs-string">&#x27;row3&#x27;</span>],<br>    <span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>    <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]<br>&#125;)<br>df = df.set_index(<span class="hljs-string">&#x27;name&#x27;</span>)<span class="hljs-comment">#设置列为索引</span><br><br>df = pd.DataFrame(&#123;<br>    <span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>    <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]<br>&#125;, index=[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])<br>df = df.rename(index=&#123;<span class="hljs-number">0</span>: <span class="hljs-string">&#x27;row1&#x27;</span>, <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;row2&#x27;</span>, <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;row3&#x27;</span>&#125;)<span class="hljs-comment">#重命名现有的行索引</span><br>dat.reset_index()<span class="hljs-comment">#重置索引为列</span><br><br>df.melt(id_vars=<span class="hljs-string">&#x27;ID&#x27;</span>, var_name=<span class="hljs-string">&#x27;Treatment&#x27;</span>, value_name=<span class="hljs-string">&#x27;Expression&#x27;</span>)<span class="hljs-comment">#宽数据转换为长数据，id_vars为不想melt的列</span><br><br><span class="hljs-comment"># 设置显示的最大列数（None 表示显示所有列）</span><br>pd.set_option(<span class="hljs-string">&#x27;display.max_columns&#x27;</span>, <span class="hljs-literal">None</span>)<br><span class="hljs-comment"># 设置显示的列宽度</span><br>pd.set_option(<span class="hljs-string">&#x27;display.max_colwidth&#x27;</span>, <span class="hljs-literal">None</span>)<br><br>df.loc[<span class="hljs-string">&#x27;row2&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>] <span class="hljs-comment"># loc基于标签选择数据，可以使用行和列的标签名称，也可以使用布尔数组或条件表达式。</span><br>df.iloc[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>] <span class="hljs-comment"># iloc基于整数位置选择数据，索引从0开始。</span><br><span class="hljs-comment"># 设置显示的最大列数（None 表示显示所有列）</span><br>pd.set_option(<span class="hljs-string">&#x27;display.max_columns&#x27;</span>, <span class="hljs-literal">None</span>)<br><span class="hljs-comment"># 设置显示的列宽度</span><br>pd.set_option(<span class="hljs-string">&#x27;display.max_colwidth&#x27;</span>, <span class="hljs-literal">None</span>)<br><br><span class="hljs-comment"># 沿行拼接（垂直拼接）</span><br>pandas.concat([df1, df2], axis=<span class="hljs-number">0</span>)<br><span class="hljs-comment"># 沿列拼接（水平拼接）</span><br>pandas.concat([df1, df2], axis=<span class="hljs-number">1</span>)<br><br>dat.<span class="hljs-built_in">all</span>(axis=<span class="hljs-number">1</span>)<span class="hljs-comment">#1代表行，0代表列，全为TRUE则为TURE</span><br><br>dat.replace(<span class="hljs-number">0</span>, np.nan)  <span class="hljs-comment"># 将0替换为NaN，便于处理缺失值</span><br>dat.dropna(axis=<span class="hljs-number">0</span>, how=<span class="hljs-string">&#x27;any&#x27;</span>, thresh=<span class="hljs-literal">None</span>, subset=<span class="hljs-literal">None</span>, inplace=<span class="hljs-literal">False</span>)<br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">axis：指定删除行还是列。默认为 0，表示删除包含缺失值的行；如果设置为 1，则表示删除包含缺失值的列。</span><br><span class="hljs-string">how：指定删除的条件。可选的值包括：</span><br><span class="hljs-string">&#x27;any&#x27;：只要有缺失值就删除（默认值）。</span><br><span class="hljs-string">&#x27;all&#x27;：所有值都是缺失值时才删除。</span><br><span class="hljs-string">thresh：指定每行或每列至少需要具有的非缺失值数量。</span><br><span class="hljs-string">subset：指定要考虑缺失值的列或行的名称。</span><br><span class="hljs-string">inplace：指定是否在原始 DataFrame 上直接进行修改。默认为 False，表示返回一个新的 DataFrame；如果设置为 True，则在原始 DataFrame 上直接进行修改，并且不返回任何值。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><br>df.groupby(<span class="hljs-string">&#x27;Name&#x27;</span>).agg(&#123;<span class="hljs-string">&#x27;Age&#x27;</span>: <span class="hljs-string">&#x27;mean&#x27;</span>, <span class="hljs-string">&#x27;Salary&#x27;</span>: <span class="hljs-string">&#x27;median&#x27;</span>&#125;)<span class="hljs-comment">#按指定列分组并返回一个DataFrameGroupBy 对象</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">agg() 方法是 Pandas 中的一个函数，用于对数据分组后的结果应用一个或多个聚合函数，例如求和、平均值、中位数等。它通常与 groupby() 方法一起使用，用于在分组的基础上进行聚合操作。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><br>dat.ID.unique()<br>dat.ID.value_counts()<span class="hljs-comment">#返回唯一值的重复次数</span><br>dat[<span class="hljs-string">&#x27;ID&#x27;</span>].nunique()<span class="hljs-comment">#返回唯一值的数量</span><br><br>df.apply(<span class="hljs-built_in">sum</span>,axis=<span class="hljs-number">1</span>)<span class="hljs-comment">#每行运行sum函数</span><br><br>~ <span class="hljs-comment">#（按位取反运算符）：对数据的每个二进制位取反,即把1变为0,把0变为1 。~x 类似于 -x-1</span><br><span class="hljs-keyword">not</span> <span class="hljs-comment">#判断一个表达式的布尔值，并返回其相反值。</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
+
+
+<h6 id="scipy"><a href="#scipy" class="headerlink" title="scipy"></a>scipy</h6><p><strong>scipy: 一个基于NumPy的Python库，提供了许多用于科学和工程计算的函数。它包含了线性代数、积分、优化、信号处理和统计等方面的工具。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> scipy <span class="hljs-keyword">as</span> sp<br><span class="hljs-keyword">import</span> scipy.stats <span class="hljs-keyword">as</span> stats<br><span class="hljs-keyword">import</span> scipy.linalg <span class="hljs-keyword">as</span> linalg<br><span class="hljs-keyword">import</span> scipy.optimize <span class="hljs-keyword">as</span> opt<br><span class="hljs-keyword">import</span> scipy.integrate <span class="hljs-keyword">as</span> integrate<br><span class="hljs-keyword">import</span> scipy.signal <span class="hljs-keyword">as</span> signal<br><br><span class="hljs-comment">#统计</span><br>t_stat, p_value = stats.ttest_ind(sample1, sample2)<span class="hljs-comment">#计算独立样本的t检验。独立样本 t 检验用于比较两组独立样本的均值是否存在显著差异。</span><br>rv = stats.norm(loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>)<span class="hljs-comment">#正态分布对象（包含PDF、CDF等）。</span><br>corr, p_value = stats.pearsonr(x, y)<span class="hljs-comment">#计算皮尔逊相关系数。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h6><p><strong>Matplotlib: 一个广泛使用的Python 2D绘图库，用于生成图表和可视化数据。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>plt.plot(x, y)<span class="hljs-comment">#绘制线图或散点图。</span><br>plt.scatter(x, y)<span class="hljs-comment">#绘制散点图。</span><br>plt.bar(x, height)<span class="hljs-comment">#绘制条形图。</span><br>plt.hist(data, bins=<span class="hljs-number">10</span>)<br>plt.boxplot(data)<br>plt.pie(sizes, labels=labels)<span class="hljs-comment">#绘制饼图。</span><br>plt.title(<span class="hljs-string">&quot;Title of the Chart&quot;</span>)<span class="hljs-comment">#设置图表标题。</span><br>plt.xlabel(<span class="hljs-string">&quot;X-axis Label&quot;</span>)<span class="hljs-comment">#设置X轴标签。</span><br>plt.ylabel(<span class="hljs-string">&quot;Y-axis Label&quot;</span>)<br>plt.legend([<span class="hljs-string">&quot;Series 1&quot;</span>, <span class="hljs-string">&quot;Series 2&quot;</span>])<span class="hljs-comment">#显示图例。</span><br>plt.grid(<span class="hljs-literal">True</span>)<span class="hljs-comment">#添加网格线。</span><br>plt.xlim(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)<span class="hljs-comment">#设置X轴和Y轴的范围。</span><br>plt.ylim(<span class="hljs-number">0</span>, <span class="hljs-number">20</span>)<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># 2行2列的子图中的第一个。创建子图，指定行、列和子图位置。</span><br>fig, axs = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 创建2行2列的子图</span><br>axs[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>].plot(x, y)<br>plt.savefig(<span class="hljs-string">&quot;figure.png&quot;</span>)<span class="hljs-comment">#将图表保存为文件。</span><br>plt.show()<br>plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))<span class="hljs-comment">#创建一个新的图形。</span><br>plt.annotate(<span class="hljs-string">&quot;Annotation&quot;</span>, xy=(x, y), xytext=(x+<span class="hljs-number">1</span>, y+<span class="hljs-number">1</span>), arrowprops=<span class="hljs-built_in">dict</span>(facecolor=<span class="hljs-string">&#x27;black&#x27;</span>, shrink=<span class="hljs-number">0.05</span>))<span class="hljs-comment">#在图中添加注释。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="seaborn"><a href="#seaborn" class="headerlink" title="seaborn"></a>seaborn</h6><p><strong>seaborn:一个基于 Matplotlib 的 Python 数据可视化库，专注于统计可视化，与Pandas和NumPy等库无缝集成。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns<br>seaborn.scatterplot(x=<span class="hljs-string">&quot;total_bill&quot;</span>, y=<span class="hljs-string">&quot;tip&quot;</span>, data=tips)<span class="hljs-comment">#绘制散点图，用于展示两个变量之间的关系。</span><br>sns.lineplot(x=<span class="hljs-string">&quot;time&quot;</span>, y=<span class="hljs-string">&quot;value&quot;</span>, data=flights)<span class="hljs-comment">#绘制线图，用于展示数据点的趋势或时间序列数据。</span><br>sns.barplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, data=tips)<span class="hljs-comment">#绘制条形图，用于展示分类数据的汇总统计。</span><br>sns.histplot(data=tips, x=<span class="hljs-string">&quot;total_bill&quot;</span>)<span class="hljs-comment">#绘制直方图，用于展示数据分布。</span><br>sns.boxplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, data=tips)<span class="hljs-comment">#绘制箱线图，用于展示数据的分布情况及其异常值。</span><br>sns.violinplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, data=tips)<span class="hljs-comment">#绘制小提琴图，是箱线图和KDE（核密度估计）图的结合。</span><br>sns.heatmap(data=corr_matrix)<span class="hljs-comment">#绘制热力图，用于展示矩阵数据的强度。</span><br>sns.pairplot(data=tips)<span class="hljs-comment">#绘制成对关系图，用于展示数据集中每对变量之间的关系。</span><br>sns.distplot(tips[<span class="hljs-string">&quot;total_bill&quot;</span>])<span class="hljs-comment">#绘制分布图，用于展示单个变量的分布（包含直方图和KDE图）在Seaborn 0.11.0及更高版本中，distplot已经被弃用，推荐使用histplot和kdeplot。	</span><br>sns.jointplot(x=<span class="hljs-string">&quot;total_bill&quot;</span>, y=<span class="hljs-string">&quot;tip&quot;</span>, data=tips)<span class="hljs-comment">#绘制联合分布图，用于同时展示两个变量的分布及其散点图。</span><br>sns.catplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, kind=<span class="hljs-string">&quot;bar&quot;</span>, data=tips)<span class="hljs-comment">#绘制分类图，可以生成多种类型的分类图，如条形图、箱线图等</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="networkx"><a href="#networkx" class="headerlink" title="networkx"></a>networkx</h6><p><strong>networkx：一个用于创建、操作和研究复杂网络结构的Python库。它提供了丰富的功能用于处理图（网络）数据结构。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> networkx <span class="hljs-keyword">as</span> nx<br>G = nx.Graph() <span class="hljs-comment">#创建一个无向图。</span><br>G = nx.DiGraph() <span class="hljs-comment">#创建一个有向图。</span><br>G = nx.MultiGraph() <span class="hljs-comment">#创建一个允许多条边的无向图。</span><br>G = nx.MultiDiGraph()<span class="hljs-comment">#创建一个允许多条边的有向图。</span><br>G.add_node(<span class="hljs-number">1</span>) <span class="hljs-comment">#向图中添加单个节点。</span><br>G.add_nodes_from([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) <span class="hljs-comment">#向图中添加多个节点。</span><br>G.add_edge(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">#向图中添加单条边。</span><br>G.add_edges_from([(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)])<br>G.remove_node(<span class="hljs-number">1</span>)<br>G.remove_nodes_from([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br>G.remove_edge(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>G.remove_edges_from([(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)])<br>nodes = G.nodes()<span class="hljs-comment">#返回图中的所有节点。</span><br>edges = G.edges()<br>degree = G.degree(<span class="hljs-number">1</span>) <span class="hljs-comment">#返回节点的度（连接的边的数量）。</span><br>num_nodes = G.number_of_nodes()<br>num_edges = G.number_of_edges()<br><br><span class="hljs-comment">#图算法</span><br>path = nx.shortest_path(G, source=<span class="hljs-number">1</span>, target=<span class="hljs-number">3</span>) <span class="hljs-comment">#计算图中两个节点之间的最短路径。</span><br>components = <span class="hljs-built_in">list</span>(nx.connected_components(G)) <span class="hljs-comment">#返回图中的所有连通分量。</span><br>clustering_coefficients = nx.clustering(G) <span class="hljs-comment">#计算图中每个节点的聚类系数。</span><br>pr = nx.pagerank(G) <span class="hljs-comment">#计算图中每个节点的PageRank值。</span><br>centrality = nx.degree_centrality(G) <span class="hljs-comment">#计算图中每个节点的度中心性。</span><br>betweenness = nx.betweenness_centrality(G) <span class="hljs-comment">#计算图中每个节点的中介中心性。</span><br><br><span class="hljs-comment">#绘图</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>nx.draw(G) <span class="hljs-comment">#使用Matplotlib绘制图。</span><br>plt.show()<br>nx.draw_networkx(G) <span class="hljs-comment">#绘制带有标签的图。</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="os"><a href="#os" class="headerlink" title="os"></a>os</h6><p><strong>os: 提供了许多用于操作文件和目录的函数，允许你与操作系统进行交互。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br><span class="hljs-comment">#文件和目录操作</span><br>current_directory = os.getcwd()<span class="hljs-comment">#返回当前工作目录的路径。</span><br>os.chdir(<span class="hljs-string">&#x27;/path/to/directory&#x27;</span>)<span class="hljs-comment">#改变当前工作目录。</span><br>files_and_dirs = os.listdir(<span class="hljs-string">&#x27;/path/to/directory&#x27;</span>)<span class="hljs-comment">#返回指定目录下的所有文件和目录名。</span><br>os.mkdir(<span class="hljs-string">&#x27;new_directory&#x27;</span>)<span class="hljs-comment">#创建目录。</span><br>os.makedirs(<span class="hljs-string">&#x27;/path/to/new_directory&#x27;</span>)<span class="hljs-comment">#递归创建目录。</span><br>os.rmdir(<span class="hljs-string">&#x27;directory_to_remove&#x27;</span>)<span class="hljs-comment">#删除单个目录（该目录必须为空）。</span><br>os.removedirs(<span class="hljs-string">&#x27;/path/to/remove_directory&#x27;</span>)<span class="hljs-comment">#递归删除目录。</span><br>os.remove(<span class="hljs-string">&#x27;file_to_remove.txt&#x27;</span>)<span class="hljs-comment">#删除文件。</span><br>os.rename(<span class="hljs-string">&#x27;old_name.txt&#x27;</span>, <span class="hljs-string">&#x27;new_name.txt&#x27;</span>)<span class="hljs-comment">#重命名文件或目录。</span><br>os.replace(<span class="hljs-string">&#x27;old_name.txt&#x27;</span>, <span class="hljs-string">&#x27;new_name.txt&#x27;</span>)<span class="hljs-comment">#重命名文件或目录，如果目标存在则替换。</span><br><span class="hljs-keyword">for</span> dirpath, dirnames, filenames <span class="hljs-keyword">in</span> os.walk(<span class="hljs-string">&#x27;/path/to/directory&#x27;</span>): <span class="hljs-comment">#生成目录树下的所有文件名。</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Found directory: <span class="hljs-subst">&#123;dirpath&#125;</span>&#x27;</span>)<br>    <span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> filenames:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;\t<span class="hljs-subst">&#123;filename&#125;</span>&#x27;</span>)<br><br><span class="hljs-comment">#文件和目录属性</span><br>file_info = os.stat(<span class="hljs-string">&#x27;file.txt&#x27;</span>)<span class="hljs-comment">#获取文件或目录的状态信息。</span><br>exists = os.path.exists(<span class="hljs-string">&#x27;/path/to/check&#x27;</span>)<span class="hljs-comment">#检查路径是否存在。</span><br>is_file = os.path.isfile(<span class="hljs-string">&#x27;file.txt&#x27;</span>)<span class="hljs-comment">#检查路径是否为文件。</span><br>is_dir = os.path.isdir(<span class="hljs-string">&#x27;/path/to/check&#x27;</span>)<span class="hljs-comment">#检查路径是否为目录。</span><br>size = os.path.getsize(<span class="hljs-string">&#x27;file.txt&#x27;</span>)<span class="hljs-comment">#返回文件的大小（以字节为单位）。</span><br>abs_path = os.path.abspath(<span class="hljs-string">&#x27;file.txt&#x27;</span>)<span class="hljs-comment">#返回绝对路径。</span><br><br><span class="hljs-comment">#环境变量</span><br>path = os.getenv(<span class="hljs-string">&#x27;PATH&#x27;</span>)<span class="hljs-comment">#获取环境变量的值。</span><br>os.environ[<span class="hljs-string">&#x27;MY_VARIABLE&#x27;</span>] = <span class="hljs-string">&#x27;value&#x27;</span><span class="hljs-comment">#设置环境变量的值。</span><br>env_vars = os.environ<span class="hljs-comment">#获取所有环境变量。</span><br><br><span class="hljs-comment">#进程管理</span><br>os.system(<span class="hljs-string">&#x27;echo Hello World&#x27;</span>)<span class="hljs-comment">#运行系统命令。</span><br><span class="hljs-keyword">with</span> os.popen(<span class="hljs-string">&#x27;echo Hello World&#x27;</span>) <span class="hljs-keyword">as</span> f: <span class="hljs-comment">#打开一个命令并连接到它的输入/输出/错误管道。</span><br>    output = f.read()<br>pid = os.getpid() <span class="hljs-comment">#返回当前进程的ID。</span><br>pid = os.fork() <span class="hljs-comment">#在Unix系统中创建一个子进程。</span><br><span class="hljs-keyword">if</span> pid == <span class="hljs-number">0</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;This is the child process&#x27;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;This is the parent process&#x27;</span>)<br><br>os.execv(<span class="hljs-string">&#x27;/path/to/executable&#x27;</span>, [<span class="hljs-string">&#x27;arg1&#x27;</span>, <span class="hljs-string">&#x27;arg2&#x27;</span>]) <span class="hljs-comment">#用新的程序替换当前进程。</span><br><br><span class="hljs-comment">#文件描述符</span><br>fd = os.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;file.txt&#x27;</span>, os.O_RDONLY)<span class="hljs-comment">#打开文件描述符。</span><br>os.close(fd)<br>os.read(fd, <span class="hljs-number">100</span>)<span class="hljs-comment">#从文件描述符中读取数据。</span><br>os.write(fd, <span class="hljs-string">b&#x27;Hello World&#x27;</span>)<br>fd_copy = os.dup(fd)<span class="hljs-comment">#复制文件描述符。</span><br>os.dup2(fd, fd_copy)<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="scikit-learn"><a href="#scikit-learn" class="headerlink" title="scikit-learn"></a>scikit-learn</h6><p><strong>scikit-learn是Python中最流行的机器学习库之一，提供了丰富的功能和工具来实现各种机器学习任务。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> MinMaxScaler <span class="hljs-comment">#MinMaxScaler()是一个函数</span><br>scaler = MinMaxScaler()<br>scaler.fit(X)<span class="hljs-comment">#计算并存储训练数据集X的最小值和最大值。</span><br>scaler.fit_transform(X)<span class="hljs-comment">#计算并应用数据缩放到训练数据集X，并返回缩放后的数据。</span><br>scaler.transform(X)<span class="hljs-comment">#使用先前计算的最小值和最大值，对数据X进行缩放。</span><br>scaler.inverse_transform(X)<span class="hljs-comment">#将缩放后的数据X反向转换回原始数据空间。</span><br></code></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
-        <category>hexo</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python String</title>
+    <url>/2024/05/28/python%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h4 id="普通字符串（String）"><a href="#普通字符串（String）" class="headerlink" title="普通字符串（String）"></a>普通字符串（String）</h4><ul>
+<li><strong>表示形式</strong>：用单引号 <code>&#39;...&#39;</code> 或双引号 <code>&quot;...&quot;</code> 包围。</li>
+<li><strong>数据类型</strong>：<code>str</code>。</li>
+<li><strong>用途</strong>：表示常规文本。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight nsis"><table><tr><td class="code"><pre><code class="hljs nsis">python复制代码<span class="hljs-params">normal</span>_string = <span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-literal">print</span>(<span class="hljs-params">normal</span>_string)  <span class="hljs-comment"># 输出: Hello, World!</span><br><span class="hljs-literal">print</span>(type(<span class="hljs-params">normal</span>_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="原始字符串（Raw-String）"><a href="#原始字符串（Raw-String）" class="headerlink" title="原始字符串（Raw String）"></a>原始字符串（Raw String）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>r</code> 或 <code>R</code> 开头，用单引号或双引号包围，如 <code>r&#39;...&#39;</code> 或 <code>r&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：用于处理包含反斜杠（<code>\</code>）的字符串，例如正则表达式、文件路径等。反斜杠不会被解释为转义字符。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">python复制代码raw_string = <span class="hljs-string">r&#x27;C:\Users\Name\Documents&#x27;</span><br><span class="hljs-built_in">print</span>(raw_string)  <span class="hljs-comment"># 输出: C:\Users\Name\Documents</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(raw_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="字节字符串（Byte-String）"><a href="#字节字符串（Byte-String）" class="headerlink" title="字节字符串（Byte String）"></a>字节字符串（Byte String）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>b</code> 或 <code>B</code> 开头，用单引号或双引号包围，如 <code>b&#39;...&#39;</code> 或 <code>b&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：表示二进制数据或需要特定编码的文本。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">python复制代码byte_string = b<span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-built_in">print</span>(byte_string)  # 输出: b<span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-built_in">print</span>(type(byte_string))  # 输出: &lt;class <span class="hljs-string">&#x27;bytes&#x27;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="格式化字符串（Formatted-String-Literal）"><a href="#格式化字符串（Formatted-String-Literal）" class="headerlink" title="格式化字符串（Formatted String Literal）"></a>格式化字符串（Formatted String Literal）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>f</code> 或 <code>F</code> 开头，用单引号或双引号包围，如 <code>f&#39;...&#39;</code> 或 <code>f&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：用于插入变量或表达式的值，生成动态内容。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">python复制代码name = <span class="hljs-string">&quot;World&quot;</span><br>formatted_string = <span class="hljs-string">f&#x27;Hello, <span class="hljs-subst">&#123;name&#125;</span>!&#x27;</span><br><span class="hljs-built_in">print</span>(formatted_string)  <span class="hljs-comment"># 输出: Hello, World!</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(formatted_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Unicode字符串（在Python-2中）"><a href="#Unicode字符串（在Python-2中）" class="headerlink" title="Unicode字符串（在Python 2中）"></a>Unicode字符串（在Python 2中）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>u</code> 或 <code>U</code> 开头，用单引号或双引号包围，如 <code>u&#39;...&#39;</code> 或 <code>u&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：表示Unicode字符串。Python 3中默认所有字符串都是Unicode字符串，所以不需要使用前缀。</li>
+</ul>
+<p>示例（Python 2）：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">python复制代码unicode_string = <span class="hljs-string">u&#x27;Hello, World!&#x27;</span><br><span class="hljs-built_in">print</span>(unicode_string)  <span class="hljs-comment"># 输出: Hello, World!</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(unicode_string))  <span class="hljs-comment"># 输出: &lt;type &#x27;unicode&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="多行字符串（Multiline-String）"><a href="#多行字符串（Multiline-String）" class="headerlink" title="多行字符串（Multiline String）"></a>多行字符串（Multiline String）</h4><ul>
+<li><strong>表示形式</strong>：用三个单引号 <code>&#39;&#39;&#39;...&#39;&#39;&#39;</code> 或三个双引号 <code>&quot;&quot;&quot;...&quot;&quot;&quot;</code> 包围。</li>
+<li><strong>用途</strong>：表示跨多行的字符串。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">python复制代码multiline_string = <span class="hljs-string">&#x27;&#x27;&#x27;Hello,</span><br><span class="hljs-string">World!</span><br><span class="hljs-string">This is a multiline string.&#x27;&#x27;&#x27;</span><br><span class="hljs-built_in">print</span>(multiline_string)<br><span class="hljs-comment"># 输出:</span><br><span class="hljs-comment"># Hello,</span><br><span class="hljs-comment"># World!</span><br><span class="hljs-comment"># This is a multiline string.</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(multiline_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="模板字符串（Template-String）"><a href="#模板字符串（Template-String）" class="headerlink" title="模板字符串（Template String）"></a>模板字符串（Template String）</h4><ul>
+<li><strong>导入方式</strong>：从<code>string</code>模块导入<code>Template</code>类。</li>
+<li><strong>用途</strong>：提供一种简单的字符串插值机制，常用于需要替换占位符的场景。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql">python复制代码<span class="hljs-keyword">from</span> string <span class="hljs-keyword">import</span> <span class="hljs-keyword">Template</span><br><br>template = <span class="hljs-keyword">Template</span>(<span class="hljs-string">&#x27;Hello, $name!&#x27;</span>)<br>result = <span class="hljs-keyword">template</span>.substitute(<span class="hljs-type">name</span>=<span class="hljs-string">&#x27;World&#x27;</span>)<br>print(result)  # 输出: Hello, World!<br>print(<span class="hljs-keyword">type</span>(result))  # 输出: &lt;<span class="hljs-keyword">class</span> <span class="hljs-string">&#x27;str&#x27;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Python中提供了多种字符串类型来处理不同场景下的文本数据。选择合适的字符串类型可以提高代码的可读性和处理效率：</p>
+<ul>
+<li><strong>普通字符串</strong>：用于常规文本。</li>
+<li><strong>原始字符串</strong>：用于包含反斜杠的文本（如正则表达式、文件路径）。</li>
+<li><strong>字节字符串</strong>：用于处理二进制数据。</li>
+<li><strong>格式化字符串</strong>：用于插入变量或表达式的值。</li>
+<li><strong>多行字符串</strong>：用于表示跨多行的文本。</li>
+<li><strong>模板字符串</strong>：用于替换占位符。</li>
+</ul>
+<p>根据具体需求选择合适的字符串类型，可以使代码更简洁和高效。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>基因差异分析</title>
+    <url>/2024/05/28/%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h4 id="Fold-change"><a href="#Fold-change" class="headerlink" title="Fold change"></a>Fold change</h4><p><strong>Fold change：</strong>比较简单也比较常用</p>
+<ul>
+<li>优点是计算简单直观</li>
+<li>缺点是没有考虑到差异表达的统计显著性</li>
+<li>通常以2倍差异为阈值</li>
+</ul>
+<p><img  src="/./%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%88%86%E6%9E%90.assets/webp.webp"  ><span class="image-caption">img</span></p>
+<p>即用疾病样本的表达均值除以正常样本的表达均值。</p>
+<h4 id="双尾检验"><a href="#双尾检验" class="headerlink" title="双尾检验"></a>双尾检验</h4><p><strong>双尾检验（Two-tailed test）</strong>:是统计假设检验中的一种，用于检验两组数据之间是否存在显著差异，而不关心这种差异是向哪个方向发生的。在双尾检验中，我们关心的是两组数据之间的差异是否明显地偏离了零，而不是关心这种差异是向上还是向下的。</p>
+<h4 id="数据标准化"><a href="#数据标准化" class="headerlink" title="数据标准化"></a>数据标准化</h4><p><strong>Min-Max 标准化</strong>：将数据缩放到 [0, 1] 或其他范围内，适合数据范围已知且分布稳定的情况。</p>
+<p><strong>Z-score 标准化</strong>：将数据转换为均值为 0、标准差为 1 的正态分布，适合大多数情况下的数据标准化。</p>
+<p><strong>最大绝对值标准化</strong>：将数据缩放到 [-1, 1]，适合存在离群值且数据范围较大的情况。</p>
+<p><strong>Robust 标准化</strong>：使用中位数和四分位数间距，适合存在离群值的数据集。</p>
+<p><strong>归一化</strong>：将每个样本缩放为单位范数，适合文本分类或聚类任务。</p>
+<p><strong>常用变换（非严格标准化）：</strong></p>
+<ul>
+<li><p>当数据集中在一个很小的范围内时，可以通过log标准化将其展开，这是因为log具有在0-1快速增长的性质</p>
+</li>
+<li><p>同样的，当数据分布在一个很广的范围时，我们也可以通过指数函数将其收拢</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生信</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>conda and pip</title>
+    <url>/2024/05/28/conda%E5%92%8Cpip%E5%B8%B8%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>Conda</strong> 是一个开源的软件包管理系统和环境管理系统，主要用于安装和管理Python包及其依赖项。可通过下载anaconda或miniconda使用</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">conda <span class="hljs-literal">--version</span><br>conda env list <span class="hljs-comment">#列出环境</span><br>conda info <span class="hljs-literal">--envs</span> <span class="hljs-comment">#列出环境</span><br>conda remove <span class="hljs-literal">--name</span> myenv <span class="hljs-literal">--all</span> <span class="hljs-comment">#删除环境</span><br>conda create <span class="hljs-literal">--name</span> newenv <span class="hljs-literal">--clone</span> myenv <span class="hljs-comment">#克隆环境</span><br>conda env export &gt; environment.yml <span class="hljs-comment">#导出环境</span><br>conda env create <span class="hljs-operator">-f</span> environment.yml <span class="hljs-comment">#从文件中创建环境</span><br>conda create <span class="hljs-literal">--name</span> myenv python=<span class="hljs-number">3.8</span><br>conda activate myenv<br>conda deactivate<br>conda install package_name<br>conda install package_name=<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span><br>conda update package_name<br>conda update <span class="hljs-literal">--all</span><span class="hljs-comment">#更新所有包</span><br>conda remove package_name<br>conda list <span class="hljs-comment">#列出所有包</span><br>conda list package_name<span class="hljs-comment">#列出特定包</span><br>conda clean <span class="hljs-literal">--all</span> <span class="hljs-comment"># 清理包缓存</span><br>conda config <span class="hljs-literal">--get</span> channels <span class="hljs-comment">#列出通道（channels）</span><br>conda config <span class="hljs-literal">--add</span> channels channel_name <span class="hljs-comment">#添加通道</span><br>conda config <span class="hljs-literal">--remove</span> channels channel_name <span class="hljs-comment">#移除通道</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>pip</strong>是 Python 的包管理工具，用于安装和管理 Python 包。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">pip <span class="hljs-literal">--version</span><br>pip install package_name<br>pip install package_name==<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span><br>pip install <span class="hljs-literal">--upgrade</span> package_name<br>pip install <span class="hljs-literal">-r</span> requirements.txt <span class="hljs-comment">#从文件安装包</span><br>pip uninstall package_name<br>pip list<span class="hljs-comment">#列出已安装的包</span><br>pip show package_name<br>pip search package_name<br>pip list <span class="hljs-literal">--outdated</span> <span class="hljs-comment"># 检查过时的包 </span><br>pip freeze &gt; requirements.txt <span class="hljs-comment">#生成依赖文件</span><br>pip install <span class="hljs-literal">-r</span> requirements.txt <span class="hljs-comment"># 从依赖文件安装包</span><br>pip config <span class="hljs-built_in">set</span> global.index<span class="hljs-literal">-url</span> https://pypi.tuna.tsinghua.edu.cn/simple <span class="hljs-comment">#设置 pip 配置</span><br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Database practice</title>
+    <url>/2024/05/07/Database%20practice/</url>
+    <content><![CDATA[<blockquote>
+<p>这是我们数据库课程的数据库使用练习，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
+</blockquote>
+<h1 id="一、创建用户"><a href="#一、创建用户" class="headerlink" title="一、创建用户"></a>一、创建用户</h1><h4 id="1-创建连接CDB的用户（在ALTER切换数据库之前）"><a href="#1-创建连接CDB的用户（在ALTER切换数据库之前）" class="headerlink" title="1.创建连接CDB的用户（在ALTER切换数据库之前）"></a>1.创建连接CDB的用户（在ALTER切换数据库之前）</h4><p><strong>创建</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">user</span> c##wshust identified <span class="hljs-keyword">by</span> wtsgyh1972; #必须要加‘c##’<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span>  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">connect</span>,resource <span class="hljs-keyword">to</span> c##wshust; #DRUGDB是大数据库，创建用户和授权都要在大数据库下操作<br></code></pre></td></tr></table></figure>
+
+<p><strong>图形化界面连接</strong></p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><code class="hljs clean">用户名：c##wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> （改成你自己的主机ip）<br>端口：<span class="hljs-number">1521</span><br>SID：DRUGDB<br></code></pre></td></tr></table></figure>
+
+<p><strong>终端连接</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus c<span class="hljs-comment">##wshust/wtsgyh1972@DRUGDB</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn c##wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="2-创建连接PDB用户"><a href="#2-创建连接PDB用户" class="headerlink" title="2.创建连接PDB用户"></a>2.创建连接PDB用户</h4><p><strong>创建</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">alter</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">user</span> wshust identified <span class="hljs-keyword">by</span> wtsgyh1972;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">CONNECT</span>,RESOURCE <span class="hljs-keyword">TO</span> wshust; #PDBDRUGDB是小数据库，创建用户和授权都要在这个数据库下操作<br></code></pre></td></tr></table></figure>
+<p><strong>图形化界面连接</strong></p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm">用户名：wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210</span>.<span class="hljs-number">42</span>.<span class="hljs-number">105</span>.<span class="hljs-number">1</span> （改成你自己的主机<span class="hljs-built_in">ip</span>）<br>端口：<span class="hljs-number">1521</span><br>服务名：PDBDRUGDB<br></code></pre></td></tr></table></figure>
+
+<p><strong>终端连接</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus wshust/wtsgyh1972@PDBDRUGDB<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@PDBDRUGDB</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="二、切换用户"><a href="#二、切换用户" class="headerlink" title="二、切换用户"></a>二、切换用户</h1><p><strong>从bash以sys用户进入sql命令行</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba<br>$ sqlplus / as sysdba<br></code></pre></td></tr></table></figure>
+
+<p><strong>从bash以HR用户进入sql命令行</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus HR/HR@PDBDRUGDB<br>$ sqlplus HR/HR@210.42.105.1:1521/PDBDRUGDB <span class="hljs-comment">#这种命令允许指定ip</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>从sql切换sys用户</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn sys<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span> <span class="hljs-keyword">as</span> sysdba<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn <span class="hljs-operator">/</span> <span class="hljs-keyword">as</span> sysdba<br></code></pre></td></tr></table></figure>
+
+<p><strong>从sql切换HR用户</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@PDBDRUGDB</span><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span>:<span class="hljs-number">1521</span><span class="hljs-operator">/</span>PDBDRUGDB<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="三、更改用户密码"><a href="#三、更改用户密码" class="headerlink" title="三、更改用户密码"></a>三、更改用户密码</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">set</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">for</span> 用户名@localhost = <span class="hljs-keyword">password</span>(<span class="hljs-string">&#x27;新密码&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> password <span class="hljs-keyword">for</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> <span class="hljs-operator">=</span> password(<span class="hljs-string">&#x27;123&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">ALTER <span class="hljs-keyword">USER</span> <span class="hljs-title">用户名@localhost</span> IDENTIFIED BY 新密码;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-number">123</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="四、远程连接数据库"><a href="#四、远程连接数据库" class="headerlink" title="四、远程连接数据库"></a>四、远程连接数据库</h1><p><strong>！！！必须先关闭远程主机的防火墙（或者设置一个开放端口）</strong></p>
+<p>在远程主机中，先进入超级用户模式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ su<br></code></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sudo systemctl stop firewalld<br></code></pre></td></tr></table></figure>
+
+<p>没有回显说明关闭成功</p>
+<p>接着</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
       </categories>
   </entry>
   <entry>
@@ -127,6 +309,59 @@
 ]]></content>
       <categories>
         <category>数据库</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Blog start：HEXO + GitHub</title>
+    <url>/2024/04/17/Blog%20Start/</url>
+    <content><![CDATA[<blockquote>
+<p> 这是一份windows博客搭建过程记录，目前比较流行的博客搭建系统有hexo，jekyll和hugo，我首先尝试用 jekyll 搭建博客，发现在windows系统上会有很多问题，比如界面css丢失等，于是转用hexo ，竟然意外的简单，故写下本文纪念。（本文仅作参考）</p>
+</blockquote>
+<p><a href="https://www.bilibili.com/video/BV1Yb411a7ty?t=4.4">B站原教程传送门</a></p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="# 环境配置"></a># 环境配置</h3><ul>
+<li>下载node.js，<a href="https://nodejs.org/en">官网链接</a>，和node一起下载的还有包管理器npm（可以当作一个软件商店）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> node <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看node版本</span><br><span class="hljs-variable">$</span> npm <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看npm版本</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>（可选）如果直接用npm进行hexo下载时出现问题，可能是网络问题，更换映射即可，自己搜索</li>
+</ul>
+<h3 id="hexo框架下载"><a href="#hexo框架下载" class="headerlink" title="# hexo框架下载"></a># hexo框架下载</h3><ul>
+<li>下载hexo，hexo是一个静态网页生成器，并不是一个博客编辑器，hexo只负责 把md文件渲染成网页，如果想要更好的编辑体验，可以尝试<a href="https://typoraio.cn/">Typora</a>，购买可以自行搜索“数码荔枝”（中国大陆代理）</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> npm install <span class="hljs-literal">-g</span> hexo<span class="hljs-literal">-cli</span>    <span class="hljs-comment">#安装hexo框架</span><br><span class="hljs-variable">$</span> hexo <span class="hljs-literal">-v</span>	<span class="hljs-comment">#查看hexo版本</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建并初始化博客文件夹，任意找一个位置，创建一个任意名称的文件夹，我命名为blog</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">pwd</span>  <span class="hljs-comment">#查看当前工作路径</span><br><span class="hljs-variable">$</span> mkdir blog	<span class="hljs-comment">#创建blog文件夹</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cd</span> blog       <span class="hljs-comment">#导航到blog文件夹下</span><br><span class="hljs-variable">$</span> hexo init 	<span class="hljs-comment">#初始化博客</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览，点http://localhost:4000/</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="远程部署至GitHub"><a href="#远程部署至GitHub" class="headerlink" title="# 远程部署至GitHub"></a># 远程部署至GitHub</h3><ul>
+<li>接下来要把网页部署到GitHub上，首先在GitHub上新建一个名为username.github.io的仓库，然后在终端中运行以下命令</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> --save hexo-deployer-git <span class="hljs-comment">#下载git工具</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>随后在blog文件夹下面找到 _config.yml文件，在最下面修改为你自己的仓库地址，像下面这样，修改之后使用<code>$ hexo deploy</code>就可以推送到GitHub了，别人就可以通过chide-org.github.io去访问你的博客了</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/chide-org/chide-org.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="其他帮助"><a href="#其他帮助" class="headerlink" title="# 其他帮助"></a># 其他帮助</h3><ul>
+<li><p>:h恭喜你，已经完成了hexo博客搭建，剩下来的就是一些自定义内容，这里提供一些主题配置帮助和hexo命令</p>
+<ul>
+<li><p><a href="https://hexo.io/themes/index.html">hexo主题官网</a>，在这里你可以找到很多很多主题样板，让你只需要专注于输出文字，注意在应用主题的时候需要仔细阅读使用文档，一般都需要修改_config.yml的theme</p>
+</li>
+<li><p>hexo常用命令</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> hexo init    <span class="hljs-comment">#初始换当前文件夹</span><br><span class="hljs-variable">$</span> hexo new <span class="hljs-string">&quot;NEW_BLOG&quot;</span>   <span class="hljs-comment">#新建blog</span><br><span class="hljs-variable">$</span> hexo clean   <span class="hljs-comment">#清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="hljs-variable">$</span> hexo generate   <span class="hljs-comment">#根据md和theme生成静态文件</span><br><span class="hljs-variable">$</span> hexo deploy   <span class="hljs-comment">#部署网站</span><br><span class="hljs-variable">$</span> hexo server   <span class="hljs-comment">#启动本地预览</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="祝你拥有一个快乐的博客搭建体验！"><a href="#祝你拥有一个快乐的博客搭建体验！" class="headerlink" title="# 祝你拥有一个快乐的博客搭建体验！"></a># 祝你拥有一个快乐的博客搭建体验！</h2>]]></content>
+      <categories>
+        <category>hexo</category>
       </categories>
   </entry>
   <entry>
@@ -396,77 +631,6 @@
 ]]></content>
       <categories>
         <category>生信</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Database practice</title>
-    <url>/2024/05/07/Database%20practice/</url>
-    <content><![CDATA[<blockquote>
-<p>这是我们数据库课程的数据库使用练习，如果你对更多数据库知识感兴趣，可以通过页面底部的GitHub联系我。Happy Coding!</p>
-</blockquote>
-<h1 id="一、创建用户"><a href="#一、创建用户" class="headerlink" title="一、创建用户"></a>一、创建用户</h1><h4 id="1-创建连接CDB的用户（在ALTER切换数据库之前）"><a href="#1-创建连接CDB的用户（在ALTER切换数据库之前）" class="headerlink" title="1.创建连接CDB的用户（在ALTER切换数据库之前）"></a>1.创建连接CDB的用户（在ALTER切换数据库之前）</h4><p><strong>创建</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">user</span> c##wshust identified <span class="hljs-keyword">by</span> wtsgyh1972; #必须要加‘c##’<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span>  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">connect</span>,resource <span class="hljs-keyword">to</span> c##wshust; #DRUGDB是大数据库，创建用户和授权都要在大数据库下操作<br></code></pre></td></tr></table></figure>
-
-<p><strong>图形化界面连接</strong></p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><code class="hljs clean">用户名：c##wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> （改成你自己的主机ip）<br>端口：<span class="hljs-number">1521</span><br>SID：DRUGDB<br></code></pre></td></tr></table></figure>
-
-<p><strong>终端连接</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus c<span class="hljs-comment">##wshust/wtsgyh1972@DRUGDB</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn c##wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span><br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="2-创建连接PDB用户"><a href="#2-创建连接PDB用户" class="headerlink" title="2.创建连接PDB用户"></a>2.创建连接PDB用户</h4><p><strong>创建</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">alter</span> session <span class="hljs-keyword">set</span> container<span class="hljs-operator">=</span>PDBDRUGDB;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">user</span> wshust identified <span class="hljs-keyword">by</span> wtsgyh1972;<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">CONNECT</span>,RESOURCE <span class="hljs-keyword">TO</span> wshust; #PDBDRUGDB是小数据库，创建用户和授权都要在这个数据库下操作<br></code></pre></td></tr></table></figure>
-<p><strong>图形化界面连接</strong></p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm">用户名：wshust<br>密码：wtsgyh1972<br>角色：默认<br>主机名：<span class="hljs-number">210</span>.<span class="hljs-number">42</span>.<span class="hljs-number">105</span>.<span class="hljs-number">1</span> （改成你自己的主机<span class="hljs-built_in">ip</span>）<br>端口：<span class="hljs-number">1521</span><br>服务名：PDBDRUGDB<br></code></pre></td></tr></table></figure>
-
-<p><strong>终端连接</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus wshust/wtsgyh1972@PDBDRUGDB<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn wshust<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@PDBDRUGDB</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="二、切换用户"><a href="#二、切换用户" class="headerlink" title="二、切换用户"></a>二、切换用户</h1><p><strong>从bash以sys用户进入sql命令行</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus sys/wtsgyh1972@DRUGDB as sysdba<br>$ sqlplus / as sysdba<br></code></pre></td></tr></table></figure>
-
-<p><strong>从bash以HR用户进入sql命令行</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sqlplus HR/HR@PDBDRUGDB<br>$ sqlplus HR/HR@210.42.105.1:1521/PDBDRUGDB <span class="hljs-comment">#这种命令允许指定ip</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>从sql切换sys用户</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn sys<span class="hljs-operator">/</span>wtsgyh1972<span class="hljs-variable">@DRUGDB</span> <span class="hljs-keyword">as</span> sysdba<br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn <span class="hljs-operator">/</span> <span class="hljs-keyword">as</span> sysdba<br></code></pre></td></tr></table></figure>
-
-<p><strong>从sql切换HR用户</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@PDBDRUGDB</span><br><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> conn HR<span class="hljs-operator">/</span>HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span>:<span class="hljs-number">1521</span><span class="hljs-operator">/</span>PDBDRUGDB<br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="三、更改用户密码"><a href="#三、更改用户密码" class="headerlink" title="三、更改用户密码"></a>三、更改用户密码</h1><figure class="highlight pgsql"><table><tr><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">set</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">for</span> 用户名@localhost = <span class="hljs-keyword">password</span>(<span class="hljs-string">&#x27;新密码&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> password <span class="hljs-keyword">for</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> <span class="hljs-operator">=</span> password(<span class="hljs-string">&#x27;123&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">ALTER <span class="hljs-keyword">USER</span> <span class="hljs-title">用户名@localhost</span> IDENTIFIED BY 新密码;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SQL</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> HR<span class="hljs-variable">@210</span><span class="hljs-number">.42</span><span class="hljs-number">.105</span><span class="hljs-number">.1</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-number">123</span>;<br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="四、远程连接数据库"><a href="#四、远程连接数据库" class="headerlink" title="四、远程连接数据库"></a>四、远程连接数据库</h1><p><strong>！！！必须先关闭远程主机的防火墙（或者设置一个开放端口）</strong></p>
-<p>在远程主机中，先进入超级用户模式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ su<br></code></pre></td></tr></table></figure>
-
-<p>关闭防火墙</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sudo systemctl stop firewalld<br></code></pre></td></tr></table></figure>
-
-<p>没有回显说明关闭成功</p>
-<p>接着</p>
-]]></content>
-      <categories>
-        <category>数据库</category>
       </categories>
   </entry>
 </search>

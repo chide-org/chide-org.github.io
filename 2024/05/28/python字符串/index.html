@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>python String - Rapheal&#39;s blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="HUST, 生信, R, JS, 日常">
+  <meta name="description" content="普通字符串（String）
+表示形式：用单引号 &#3...">
+  <meta name="author" content="Rapheal">
+  <link rel="icon" href="/images/icons/rapheal-logo.jpg" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/rapheal-logo.jpg" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/rapheal-logo.jpg" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/rapheal-logo.jpg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/rapheal-logo.jpg">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/Aniki Hamster.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wxpay.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: 'Hi! I am Rapheal',
+          typing: true,
+          api: '',
+          data_contents: ''
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'image',
+        image: 'images/theme/wx.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">python String</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/categories " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Rapheal's blog by <a target="_blank" rel="noopener" href="https://github.com/chide-org">Rapheal</a> is licensed under <a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener noreferrer" style="display:inline-flex;">BY-NC-SA 4.0</a></p><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> and <a target="_blank" href="https://pages.github.com/" >Github Pages</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p><a target="_blank" href="http://beian.miit.gov.cn/">备案号：湘ICP备2024043771号</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/python.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">python String</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>五月 28, 2024</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2417</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h4 id="普通字符串（String）"><a href="#普通字符串（String）" class="headerlink" title="普通字符串（String）"></a>普通字符串（String）</h4><ul>
+<li><strong>表示形式</strong>：用单引号 <code>&#39;...&#39;</code> 或双引号 <code>&quot;...&quot;</code> 包围。</li>
+<li><strong>数据类型</strong>：<code>str</code>。</li>
+<li><strong>用途</strong>：表示常规文本。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nsis">python复制代码<span class="hljs-params">normal</span>_string = <span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-literal">print</span>(<span class="hljs-params">normal</span>_string)  <span class="hljs-comment"># 输出: Hello, World!</span><br><span class="hljs-literal">print</span>(type(<span class="hljs-params">normal</span>_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="原始字符串（Raw-String）"><a href="#原始字符串（Raw-String）" class="headerlink" title="原始字符串（Raw String）"></a>原始字符串（Raw String）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>r</code> 或 <code>R</code> 开头，用单引号或双引号包围，如 <code>r&#39;...&#39;</code> 或 <code>r&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：用于处理包含反斜杠（<code>\</code>）的字符串，例如正则表达式、文件路径等。反斜杠不会被解释为转义字符。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">python复制代码raw_string = <span class="hljs-string">r&#x27;C:\Users\Name\Documents&#x27;</span><br><span class="hljs-built_in">print</span>(raw_string)  <span class="hljs-comment"># 输出: C:\Users\Name\Documents</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(raw_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="字节字符串（Byte-String）"><a href="#字节字符串（Byte-String）" class="headerlink" title="字节字符串（Byte String）"></a>字节字符串（Byte String）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>b</code> 或 <code>B</code> 开头，用单引号或双引号包围，如 <code>b&#39;...&#39;</code> 或 <code>b&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：表示二进制数据或需要特定编码的文本。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">python复制代码byte_string = b<span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-built_in">print</span>(byte_string)  # 输出: b<span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><span class="hljs-built_in">print</span>(type(byte_string))  # 输出: &lt;class <span class="hljs-string">&#x27;bytes&#x27;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="格式化字符串（Formatted-String-Literal）"><a href="#格式化字符串（Formatted-String-Literal）" class="headerlink" title="格式化字符串（Formatted String Literal）"></a>格式化字符串（Formatted String Literal）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>f</code> 或 <code>F</code> 开头，用单引号或双引号包围，如 <code>f&#39;...&#39;</code> 或 <code>f&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：用于插入变量或表达式的值，生成动态内容。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">python复制代码name = <span class="hljs-string">&quot;World&quot;</span><br>formatted_string = <span class="hljs-string">f&#x27;Hello, <span class="hljs-subst">&#123;name&#125;</span>!&#x27;</span><br><span class="hljs-built_in">print</span>(formatted_string)  <span class="hljs-comment"># 输出: Hello, World!</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(formatted_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Unicode字符串（在Python-2中）"><a href="#Unicode字符串（在Python-2中）" class="headerlink" title="Unicode字符串（在Python 2中）"></a>Unicode字符串（在Python 2中）</h4><ul>
+<li><strong>表示形式</strong>：以 <code>u</code> 或 <code>U</code> 开头，用单引号或双引号包围，如 <code>u&#39;...&#39;</code> 或 <code>u&quot;...&quot;</code>。</li>
+<li><strong>用途</strong>：表示Unicode字符串。Python 3中默认所有字符串都是Unicode字符串，所以不需要使用前缀。</li>
+</ul>
+<p>示例（Python 2）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">python复制代码unicode_string = <span class="hljs-string">u&#x27;Hello, World!&#x27;</span><br><span class="hljs-built_in">print</span>(unicode_string)  <span class="hljs-comment"># 输出: Hello, World!</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(unicode_string))  <span class="hljs-comment"># 输出: &lt;type &#x27;unicode&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="多行字符串（Multiline-String）"><a href="#多行字符串（Multiline-String）" class="headerlink" title="多行字符串（Multiline String）"></a>多行字符串（Multiline String）</h4><ul>
+<li><strong>表示形式</strong>：用三个单引号 <code>&#39;&#39;&#39;...&#39;&#39;&#39;</code> 或三个双引号 <code>&quot;&quot;&quot;...&quot;&quot;&quot;</code> 包围。</li>
+<li><strong>用途</strong>：表示跨多行的字符串。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">python复制代码multiline_string = <span class="hljs-string">&#x27;&#x27;&#x27;Hello,</span><br><span class="hljs-string">World!</span><br><span class="hljs-string">This is a multiline string.&#x27;&#x27;&#x27;</span><br><span class="hljs-built_in">print</span>(multiline_string)<br><span class="hljs-comment"># 输出:</span><br><span class="hljs-comment"># Hello,</span><br><span class="hljs-comment"># World!</span><br><span class="hljs-comment"># This is a multiline string.</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(multiline_string))  <span class="hljs-comment"># 输出: &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="模板字符串（Template-String）"><a href="#模板字符串（Template-String）" class="headerlink" title="模板字符串（Template String）"></a>模板字符串（Template String）</h4><ul>
+<li><strong>导入方式</strong>：从<code>string</code>模块导入<code>Template</code>类。</li>
+<li><strong>用途</strong>：提供一种简单的字符串插值机制，常用于需要替换占位符的场景。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">python复制代码<span class="hljs-keyword">from</span> string <span class="hljs-keyword">import</span> <span class="hljs-keyword">Template</span><br><br>template = <span class="hljs-keyword">Template</span>(<span class="hljs-string">&#x27;Hello, $name!&#x27;</span>)<br>result = <span class="hljs-keyword">template</span>.substitute(<span class="hljs-type">name</span>=<span class="hljs-string">&#x27;World&#x27;</span>)<br>print(result)  # 输出: Hello, World!<br>print(<span class="hljs-keyword">type</span>(result))  # 输出: &lt;<span class="hljs-keyword">class</span> <span class="hljs-string">&#x27;str&#x27;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Python中提供了多种字符串类型来处理不同场景下的文本数据。选择合适的字符串类型可以提高代码的可读性和处理效率：</p>
+<ul>
+<li><strong>普通字符串</strong>：用于常规文本。</li>
+<li><strong>原始字符串</strong>：用于包含反斜杠的文本（如正则表达式、文件路径）。</li>
+<li><strong>字节字符串</strong>：用于处理二进制数据。</li>
+<li><strong>格式化字符串</strong>：用于插入变量或表达式的值。</li>
+<li><strong>多行字符串</strong>：用于表示跨多行的文本。</li>
+<li><strong>模板字符串</strong>：用于替换占位符。</li>
+</ul>
+<p>根据具体需求选择合适的字符串类型，可以使代码更简洁和高效。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Rapheal</li>
+    <li><strong>本文链接：</strong><a href="https://rapheal.fun/2024/05/28/python%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html" title="https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;05&#x2F;28&#x2F;python%E5%AD%97%E7%AC%A6%E4%B8%B2&#x2F;index.html">https:&#x2F;&#x2F;rapheal.fun&#x2F;2024&#x2F;05&#x2F;28&#x2F;python%E5%AD%97%E7%AC%A6%E4%B8%B2&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+        
+  <nav class="nav">
+    <a href="/2024/05/28/python%E5%B8%B8%E7%94%A8%E5%8C%85/"><i class="iconfont iconleft"></i>python数据分析包</a>
+    <a href="/2024/05/28/%E5%9F%BA%E5%9B%A0%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%88%86%E6%9E%90/">基因差异分析<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://github.com/chide-org "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Rapheal's blog by <a target="_blank" rel="noopener" href="https://github.com/chide-org">Rapheal</a> is licensed under <a class="red-text text-accent-1" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener noreferrer" style="display:inline-flex;">BY-NC-SA 4.0</a></p><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a> and <a target="_blank" href="https://pages.github.com/" >Github Pages</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p><p><a target="_blank" href="http://beian.miit.gov.cn/">备案号：湘ICP备2024043771号</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  <script defer src='https://hm.baidu.com/hm.js?02839f96a996f0ba68b104ab624106f0# id'></script>
+
+
+
+
+
+
+
+
+
+
+</html>
