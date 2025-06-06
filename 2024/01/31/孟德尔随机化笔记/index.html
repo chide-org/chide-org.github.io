@@ -5,18 +5,18 @@
 <meta property="og:site_name" content="HOME">
 <meta property="og:description" content="这是一份双样本孟德尔随机化（MR）的代码实操笔记，在这里你可以了解如何用R，在自己的电脑上判断一下两个表型之间是否具有潜在的因果关系。因为是刚刚接触MR，难免有不准确之处，本文仅作参考。  1，获取数据 现存 GWAS 数据样本大多为欧洲样本，少量其他样本  关键要点：暴露与结局数据不存在或存在少量可接受范围内的样本重叠  必须数据(snp || p || effect_allele || ot">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://img202566.test.upcdn.net/imgmr_scatter_plot.png">
-<meta property="og:image" content="http://img202566.test.upcdn.net/imgMR_hetero.png">
-<meta property="og:image" content="http://img202566.test.upcdn.net/imgMR_PRESSO.png">
-<meta property="og:image" content="http://img202566.test.upcdn.net/imgmr_funnel_plot.png">
-<meta property="og:image" content="http://img202566.test.upcdn.net/imgpleiotropy.png">
-<meta property="og:image" content="http://img202566.test.upcdn.net/imgmr_leaveoneout_plot.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_scatter_plot.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/MR_hetero.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/MR_PRESSO.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_funnel_plot.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/pleiotropy.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_leaveoneout_plot.png">
 <meta property="article:published_time" content="2024-01-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-06T07:50:51.146Z">
+<meta property="article:modified_time" content="2025-06-06T11:35:31.799Z">
 <meta property="article:author" content="Rapheal">
 <meta property="article:tag" content="孟德尔随机化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://img202566.test.upcdn.net/imgmr_scatter_plot.png"><title>孟德尔随机化笔记 - Rapheal - 个人博客</title><link rel="shortcut icon" href="/img/site-icon.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_scatter_plot.png"><title>孟德尔随机化笔记 - Rapheal - 个人博客</title><link rel="shortcut icon" href="/img/site-icon.png">
 <link rel="stylesheet" href="/css/style.css" id="dm-light">
 
 
@@ -209,7 +209,7 @@
 <li><p>mr 分析可视化：使用<code>mr_scatter_plot()</code>，第一个参数是 mr 指定三种方法的分析结果，第二个参数是协同化的数据名</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mr_scatter_plot(</span><br><span class="line">  mr_results = mr(</span><br><span class="line">    dat_harmon,</span><br><span class="line">    method_list = c(&quot;mr_ivw&quot;,</span><br><span class="line">                  &quot;mr_weighted_median&quot;,</span><br><span class="line">                  &quot;mr_egger_regression&quot;</span><br><span class="line">                    )</span><br><span class="line">    ),</span><br><span class="line">  dat_harmon</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://img202566.test.upcdn.net/imgmr_scatter_plot.png" alt="mr_scatter_plot"></p>
+<p><img src="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_scatter_plot.png" alt="mr_scatter_plot"></p>
 </li>
 </ul>
 <h2 id="8，异质性检测，"><a href="#8，异质性检测，" class="headerlink" title="8，异质性检测，"></a>8，异质性检测，</h2><ul>
@@ -224,7 +224,7 @@
 <li><p>有异质性说明结果不太靠谱，但在 mr 分析中，异质性对结果的可靠性影响不大</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dat_harmon_hetero &lt;- mr_heterogeneity(dat_harmon)</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://img202566.test.upcdn.net/imgMR_hetero.png" alt="MR_hetero"></p>
+<p><img src="https://raw.githubusercontent.com/chide-org/PicGo/main/img/MR_hetero.jpg" alt="MR_hetero"></p>
 </li>
 </ul>
 </li>
@@ -242,7 +242,7 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run_mr_presso(alzheimer_and_bmi_harmon,NbDistribution = 3000)</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://img202566.test.upcdn.net/imgMR_PRESSO.png" alt="MR_PRESSO"></p>
+<p><img src="https://raw.githubusercontent.com/chide-org/PicGo/main/img/MR_PRESSO.jpg" alt="MR_PRESSO"></p>
 </li>
 </ul>
 </li>
@@ -253,7 +253,7 @@
 <li><p>有两条线，ivw 和 mr_egger，在实践中，这两个漏斗图都应该对称，因为对称漏斗图表明 MR 方法的假设没有受到系统性的偏倚或异质性的影响</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mr_funnel_plot(singlesnp_results =</span><br><span class="line">    mr_singlesnp(dat_harmon)</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://img202566.test.upcdn.net/imgmr_funnel_plot.png" alt="mr_funnel_plot"></p>
+<p><img src="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_funnel_plot.png" alt="mr_funnel_plot"></p>
 </li>
 </ul>
 </li>
@@ -266,7 +266,7 @@
 <li><p>多效性 p 值应当大于 0.05，没有多效性；若存在多效性，则结果不可靠</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mr_pleiotropy_test(dat_harmon)</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://img202566.test.upcdn.net/imgpleiotropy.png" alt="pleiotropy"></p>
+<p><img src="https://raw.githubusercontent.com/chide-org/PicGo/main/img/pleiotropy.png"></p>
 </li>
 </ul>
 <h2 id="10，leave-one-out-analysis"><a href="#10，leave-one-out-analysis" class="headerlink" title="10，leave one out analysis"></a>10，leave one out analysis</h2><ul>
@@ -279,7 +279,7 @@
 <li><p>使用函数<code>mr_leaveoneout_plot()</code>和<code>mr_leaveoneout()</code>，数据为协同化的数据</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mr_leaveoneout_plot(</span><br><span class="line">  leaveoneout_results =</span><br><span class="line">    mr_leaveoneout(dat_harmon)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://img202566.test.upcdn.net/imgmr_leaveoneout_plot.png" alt="mr_leaveoneout_plot"></p>
+<p><img src="https://raw.githubusercontent.com/chide-org/PicGo/main/img/mr_leaveoneout_plot.png" alt="mr_leaveoneout_plot"></p>
 </li>
 </ul>
 <h2 id="补充：在线数据分析"><a href="#补充：在线数据分析" class="headerlink" title="补充：在线数据分析"></a>补充：在线数据分析</h2><ul>
