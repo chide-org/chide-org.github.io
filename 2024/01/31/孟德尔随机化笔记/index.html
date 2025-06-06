@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="author" content="Rapheal"/><meta name="keyword"/><meta name="description" content="这是一份双样本孟德尔随机化（MR）的代码实操笔记，在这里你可以了解如何用R，在自己的电脑上判断一下两个表型之间是否具有潜在的因果关系。因为是刚刚接触MR，难免有不准确之处，本文仅作参考。  1，获取数据 现存 GWAS 数据样本大多为欧洲样本，少量其他样本  关键要点：暴露与结局数据不存在或存在少量可接受范围内的样本重叠  必须数据(snp || p || effect_allele || ot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="孟德尔随机化笔记">
+<meta property="og:url" content="https://chide-org.github.io/2024/01/31/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="HOME">
+<meta property="og:description" content="这是一份双样本孟德尔随机化（MR）的代码实操笔记，在这里你可以了解如何用R，在自己的电脑上判断一下两个表型之间是否具有潜在的因果关系。因为是刚刚接触MR，难免有不准确之处，本文仅作参考。  1，获取数据 现存 GWAS 数据样本大多为欧洲样本，少量其他样本  关键要点：暴露与结局数据不存在或存在少量可接受范围内的样本重叠  必须数据(snp || p || effect_allele || ot">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgmr_scatter_plot.png">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgMR_hetero.png">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgMR_PRESSO.png">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgmr_funnel_plot.png">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgpleiotropy.png">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgmr_leaveoneout_plot.png">
+<meta property="article:published_time" content="2024-01-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-06T07:50:51.146Z">
+<meta property="article:author" content="Rapheal">
+<meta property="article:tag" content="孟德尔随机化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img202566.test.upcdn.net/imgmr_scatter_plot.png"><title>孟德尔随机化笔记 - Rapheal - 个人博客</title><link rel="shortcut icon" href="/img/site-icon.png">
+<link rel="stylesheet" href="/css/style.css" id="dm-light">
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+<meta name="generator" content="Hexo 7.3.0"></head><body><header><div class="top-nav" ondblclick="scrollToTop()"><div class="nav-info"><div class="nav-icon"><img id="nav-icon" src="/img/site-icon.png"/></div><div class="nav-title"><a id="nav-title" href="/" title="主页">HOME</a></div></div><div class="nav-ribbon"><div class="top-menu-expanded"><a class="top-menu-item" href="/archives"><span>归档</span></a><a class="top-menu-item" href="/categories"><span>分类</span></a><a class="top-menu-item" href="/tags"><span>标签</span></a><a class="top-menu-item" href="/about"><span>关于</span></a></div><div class="top-search" onclick="toggleSearchWindow()"><div id="top-search-btn" title="搜索"><i class="icon fa-solid fa-magnifying-glass"></i><span>搜索</span></div></div><div id="top-menu-btn" onclick="openTopMenu()" title="打开菜单"><i class="fa-solid fa-bars fa-lg"></i></div></div></div></header><div id="top-menu-hidden"><div class="menu-hidden-content"><div class="menu-hidden-nav"><a class="menu-hidden-item" href="/archives"><i class="fa-solid fa-box-archive fa-sm"></i><span>归档</span></a><a class="menu-hidden-item" href="/categories"><i class="fa-regular fa-folder-open fa-sm"></i><span>分类</span></a><a class="menu-hidden-item" href="/tags"><i class="fa-solid fa-tags fa-sm"></i><span>标签</span></a><a class="menu-hidden-item" href="/about"><i class="fa-solid fa-paw fa-sm"></i><span>关于</span></a></div></div><div class="menu-hidden-blank" onclick="closeTopMenu()"></div></div>
+<div class="blog-info"><div class="blog-pic"><img id="blog-pic" src="/img/site-icon.png"/></div><div class="blog-title"><i class="fa-solid fa-paw fa-2xs fa-rotate-by"></i><span>Rapheal</span><i class="fa-solid fa-paw fa-2xs fa-rotate-by"></i></div><div class="blog-desc">敲代码、读文献、探索AI如何改变生命科学，顺便记录那些灵光一现的瞬间~</div></div><div class="main"><div class="main-content"><article class="post"><div class="post-title"><h1><i class="fa-solid fa-paw"></i>孟德尔随机化笔记</h1></div><div class="post-info"><div class="post-info-first-line"><div class="post-date"><i class="icon fa-regular fa-calendar-plus" title="发布日期"></i><time class="publish-time">2024-01-31</time><i class="icon fa-regular fa-calendar-check" title="更新日期"></i><time class="update-time">2025-06-06</time></div>
+<div class="post-categories"><i class="icon fa-regular fa-folder-open" title="分类"></i><a class="post-category" href="/categories/%E7%94%9F%E4%BF%A1/">生信</a></div>
+<div class="post-tags"><i class="icon fa-solid fa-tags" title="标签"></i><a class="post-tag" href="/tags/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96/">孟德尔随机化</a></div></div><div class="post-info-second-line"><div class="post-copyright"><i class="icon fa-brands fa-creative-commons" title="版权声明"></i><span>版权声明: </span><a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" title="CC BY-NC-ND 4.0">署名-非商业性使用-禁止演绎 4.0</a></div>
+<div class="post-word-count"><i class="icon fa-solid fa-pen-to-square"></i><span>全文约3.5K字</span></div><div class="pageview-post"><i class="icon fa-regular fa-eye"></i><span id="busuanzi_container_page_pv">阅读次数: <span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner"></i></span></span></div></div></div><div class="post-content"><blockquote>
+<p>这是一份双样本孟德尔随机化（MR）的代码实操笔记，在这里你可以了解如何用R，在自己的电脑上判断一下两个表型之间是否具有潜在的因果关系。因为是刚刚接触MR，难免有不准确之处，本文仅作参考。</p>
+</blockquote>
+<h2 id="1，获取数据"><a href="#1，获取数据" class="headerlink" title="1，获取数据"></a>1，获取数据</h2><ul>
+<li><p>现存 GWAS 数据样本大多为欧洲样本，少量其他样本</p>
+</li>
+<li><p>关键要点：暴露与结局数据不存在或存在少量可接受范围内的样本重叠</p>
+</li>
+<li><p>必须数据(<code>snp</code> || <code>p</code> || <code>effect_allele</code> || <code>other_allele</code> || <code>or(beta)</code> || <code>se</code>)</p>
+<ul>
+<li><p>SNP_ID (rs123456)：唯一识别号</p>
+</li>
+<li><p>p_value：snp 位点与表型的相关程度( 0 &lt; p &lt; 1)</p>
+</li>
+<li><p>effect_allele：变异位点</p>
+</li>
+<li><p>other_allele：常规位点</p>
+</li>
+<li><p>Beta：连续型变量的相对风险比，(R，大于 0 促进发生，小于 0 抑制表型)</p>
+<ul>
+<li><p>OR：二分类变量的相对风险比，(OR &gt; 0，大于 1 促进发生，小于 1 抑制表型)</p>
+</li>
+<li><p>Beta &#x3D; ln(OR)</p>
+</li>
+</ul>
+</li>
+<li><p>Standard error(se)：标准差，代表相对风险比 Beta 的准确性</p>
+</li>
+<li><p>(非必须)Effect allele frequency(eaf)：效应位点频率，算工具变量的时候需要，计算 R^2 时需要 MAF</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2，读取数据"><a href="#2，读取数据" class="headerlink" title="2，读取数据"></a>2，读取数据</h2><ul>
+<li><p>首先设置工作环境，R-&gt; NewProject-&gt; working Env，文件名可以有路径</p>
+</li>
+<li><p>更快的数据读取方法：<code>data.table</code>包下的<code>fread()</code>函数可替代 read.table()</p>
+</li>
+<li><p>“snp_gwas.tbl.txt” -&gt; 直接用 <code>read.table()</code>读取，可加 <code>header = T</code></p>
+<ul>
+<li>.txt :文本文件，可以用记事本打开的</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- read.table(&quot;snp_gwas.tbl.txt&quot;,header = T)</span><br><span class="line">View(data)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>“snp_gwas.txt.gz” -&gt; 直接用<code>read.table()</code>读取，可加<code>header = T</code></p>
+<ul>
+<li>.gz : gzip 压缩后的文件，解压之后再读取似乎会快一点，当然也可以直接读取</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- read.table(&quot;snp_gwas.txt.gz&quot;,header = T)</span><br><span class="line">View(data)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>“snp_gwas.xlsx” -&gt; 可以使用<code>readxl</code>包下的<code>read_excel()</code>函数读取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library(readxl)</span><br><span class="line">data &lt;- read_excel(&quot;snp_gwas.xlsx&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>“ieu-b-4979.vcf.gz” -&gt; 利用<code>VariantAnnotation</code>和<code>gwasvcf</code>包将 vcf 格式文件转换成 tibble 格式文件，函数分别对应<code>readVcf()</code>和<code>vcf_to_tibble()</code>，后者 id 应该可以不加</p>
+<ul>
+<li><p>VCF: Variant Call Format，变异调用格式，是一种常用于存储基因组变异信息的文本文件格式。它是生物信息学领域中一种标准格式，用于描述个体基因组的单核苷酸变异（SNP，Single Nucleotide Polymorphism）、插入或删除等变异信息</p>
+</li>
+<li><p>VCF 文件中的列描述行（Column Header Line）包含对列名的解释，这有助于理解每个列中存储的信息，列描述行位于以 #CHROM 开始的行之前，以 ##FORMAT 开始</p>
+</li>
+<li><p>可在 bash 命令行中使用<code>head -n 20 your_vcf_file.vcf</code>查看前 20 行数据</p>
+</li>
+<li><p>可在 R 中使用<code>readLines(&quot;./ieu-a-2.vcf&quot;,n=20)</code>读取前 20 行数据</p>
+</li>
+<li><p>可在 powershell 命令行中使用<code>Get-Content -TotalCount 20 your_vcf_file.vcf</code>查看前 20 行数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data0=VariantAnnotation::readVcf(&quot;ieu-b-4979.vcf.gz&quot;)</span><br><span class="line">data1=gwasvcf::vcf_to_tibble(data0,id=&#x27;ieu-b-4979&#x27;) # 这样就能得到tibble格式的数据了，但是没有列名解释; id参数大概可以不要</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vcf20 &lt;- readLines(&quot;./MR数据/bmi-2/ieu-a-2.vcf&quot;,n=20)</span><br><span class="line">print(vcf20)# 可以看到前20行数据</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS D:\A-MR\MR数据\bmi-2&gt; Get-Content -TotalCount 20 ieu-a-2.vcf</span><br><span class="line">##fileformat=VCFv4.2</span><br><span class="line">##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;</span><br><span class="line">##INFO=&lt;ID=AF,Number=A,Type=Float,Description=&quot;Allele Frequency&quot;&gt;</span><br><span class="line">##FORMAT=&lt;ID=ES,Number=A,Type=Float,Description=&quot;Effect size estimate relative to the alternative allele&quot;&gt;</span><br><span class="line">##FORMAT=&lt;ID=SE,Number=A,Type=Float,Description=&quot;Standard error of effect size estimate&quot;&gt;</span><br><span class="line">(数据的格式)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="3，将数据写入文件"><a href="#3，将数据写入文件" class="headerlink" title="3，将数据写入文件"></a>3，将数据写入文件</h2><ul>
+<li><p>csv：一种以逗号为分隔符的文件格式，支持 excel 打开，适合存储表格数据</p>
+</li>
+<li><p>使用函数<code>write.csv()</code>，前一个变量是变量名，后一个 file &#x3D; “文件名”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write.csv(data,file = &quot;exposure.csv&quot;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4，Exposure-Data-处理，获得工具变量"><a href="#4，Exposure-Data-处理，获得工具变量" class="headerlink" title="4，Exposure Data 处理，获得工具变量"></a>4，Exposure Data 处理，获得工具变量</h2><ul>
+<li><p>相关性设置</p>
+<ul>
+<li><p>筛选条件：p &lt; 5e-08 ( 视条件而定 )</p>
+</li>
+<li><p>使用 base 包的 <code>subset( )</code> 即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data_subseted &lt;- subset(data,p &lt; 5e-08)</span><br><span class="line">View(data_subseted)</span><br><span class="line">write.csv(data_subseted,file = &quot;data_subseted.csv&quot;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>独立性设置</p>
+<ul>
+<li><p>首先将 subseted 的文件放在 TwoSampleMR 文件夹下</p>
+</li>
+<li><p>筛选条件：LD 连锁不平衡，r^2 &lt; 0.001(最大 0.1) , kb &#x3D; 10000</p>
+</li>
+<li><p>读取文件路径，使用<code>system.file()</code>函数，前一个参数是包下的相对路径，后一个参数是包名，主要作用是根据指定的包和文件路径获取完整的文件路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">road &lt;- system.file(&quot;package_folder/exposure.csv&quot;,package = &quot;TwoSampleMR&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>规范读取数据：利用 TwoSampleMR 包的 <code>read_exposure_data()</code> 规范读取数据，参数分为四个部分：文件路径、分隔符、规范列名、最后一个是当有多个暴露时，将多个暴露合在一起跑，可以通过 phenotype_col 识别每一个暴露的标识，从而单独跑每一个暴露</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">exposure_data &lt;- read_exposure_data(</span><br><span class="line"></span><br><span class="line">    filename = road,</span><br><span class="line"></span><br><span class="line">    sep = &quot;,&quot;,</span><br><span class="line"></span><br><span class="line">    snp_col = &quot;SNP_col_name&quot;,</span><br><span class="line">    pval_col = &quot;p_col_name&quot;,</span><br><span class="line">    effect_allele_col = &quot;effct_allele_col_name&quot;,</span><br><span class="line">    other_allele_col = &quot;other_allele_col_name&quot;,</span><br><span class="line">    beta_col = &quot;beta_col_name&quot;,</span><br><span class="line">    se_col = &quot;se_col_name&quot;,</span><br><span class="line">    eaf_col = &quot;eaf_col_name&quot;,</span><br><span class="line"></span><br><span class="line">    clump = F , ## 若为T则在读取的同时进行clump操作</span><br><span class="line"></span><br><span class="line">    phenotype_col = &quot;exposure_type_col_name&quot;</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>独立性设置(clump): 去除连锁不平衡的 snp，利用 TwoSampleMR 包的 <code>clump_data()</code>，必须参数是上一步读取的数据 exposure_data，可设置参数是 clump_kb &#x3D; 10000,clump_r2 &#x3D; 0.001</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exposure_data_clumped &lt;- clump_data(exposure_data)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>统计强度设置</p>
+<ul>
+<li><p>F 值可放到后面计算，影响不大</p>
+</li>
+<li><p>F &#x3D; R^2(N-2)&#x2F;(1- R^2) (F &gt; 10 的 snp 才强相关，小于 10 的可以手动剔除)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5，Outcome-Data-处理，提取结局中的-snp"><a href="#5，Outcome-Data-处理，提取结局中的-snp" class="headerlink" title="5，Outcome Data 处理，提取结局中的 snp"></a>5，Outcome Data 处理，提取结局中的 snp</h2><ul>
+<li><p>导入结局数据</p>
+<ul>
+<li><p>可能出现暴露和结局的效应等位基因不一致的情况，正常现象</p>
+</li>
+<li><p>可能出现暴露的部分 snp 在结局中没有，数量小可以容忍，数量大建议放弃</p>
+</li>
+<li><p>丢失的 snp 可以通过找代理 snp 解决，但较麻烦</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data &lt;- read.table(&quot;outcome.txt&quot;,header = T)</span><br><span class="line">## 如是其他文件格式，参见  “2，读取数据”</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>merge，提取交集，得到 outcome 数据，第一个参数是 clump 过的暴露数据名，第二个参数是刚读取的结局数据名，后面 by.x 和 by.y 分别是暴露和结局的 snp 的 rs 编号的列名，得到的数据前一部分是暴露的，后一部分是结局的，all.x 表示把暴露的 snp 的全部都找出来，在 outcome 中没有的以 NA 填充</p>
+<ul>
+<li>当 merge 后有丢失的 snp，可以在代理 snp 网站上去找（也可以不找），一个 snp 会给你一个及以上的代理 snp，拿这些 snp 与 outcome 再做一次 merge，找出可用的 snp，对于同一个丢失 snp 的对应 snp，应当选择 R^2 最大的代理 snp 作为代理 -&gt; 找到之后不用换 snp 的 rs 号，直接将数据填充 NA 即可</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">outcome &lt;- merge(</span><br><span class="line">    exposure_data_clumped,</span><br><span class="line">    data,</span><br><span class="line">    by.x = &quot;exposure_snp_col_name&quot;,</span><br><span class="line">    by.y = &quot;data_snp_col_name&quot;,</span><br><span class="line">    all.x = T</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">write.csv(outcome,file = &quot;outcome.csv&quot;  )</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>规范读取 outcome 数据，使用 TwoSampleMR 的 <code>read_outcome_data()</code>函数，第一个参数是暴露挑选出的工具变量，第二个参数是结局文件路径，第三个参数是间隔符，第四部分是列名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">outcome_data &lt;- read_outcome_data(</span><br><span class="line"></span><br><span class="line">    snps =exposure_data$SNP,</span><br><span class="line"></span><br><span class="line">    filename = &quot;outcome.csv&quot;,</span><br><span class="line"></span><br><span class="line">    sep = &quot;,&quot;,</span><br><span class="line"></span><br><span class="line">    snp_col = &quot;SNP_col_name&quot;,</span><br><span class="line">    pval_col = &quot;p_col_name&quot;,</span><br><span class="line">    effect_allele_col = &quot;effct_allele_col_name&quot;,</span><br><span class="line">    other_allele_col = &quot;other_allele_col_name&quot;,</span><br><span class="line">    beta_col = &quot;beta_col_name&quot;,</span><br><span class="line">    se_col = &quot;se_col_name&quot;,</span><br><span class="line">    eaf_col = &quot;eaf_col_name&quot;,</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常见问题</p>
+<ul>
+<li><p>样本重叠，用 meta 分析的暴露和结局下的队列样本数分别除以暴露和结局的 snp 数，得到的比重取最大值（具体待细查），蔡老师认为在 10%以下都可以接受</p>
+</li>
+<li><p>结局的 snp 数量要足够多，merge 才能丢失最少的 snp,即结局的中的 snp 多到涵盖大部分工具变量 snp</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6，Harmonize-Data-协同数据"><a href="#6，Harmonize-Data-协同数据" class="headerlink" title="6，Harmonize Data 协同数据"></a>6，Harmonize Data 协同数据</h2><ul>
+<li><p>Harmonize 协同作用</p>
+<ul>
+<li><p>将 exposure_snp 和 outcome_snp 等位基因方向协同</p>
+</li>
+<li><p>根据 eaf 大小，剔除不能判断方向的 palindromic snp</p>
+</li>
+<li><p>剔除 incompatible snp (A&#x2F;G vs. A&#x2F;C)</p>
+</li>
+</ul>
+</li>
+<li><p>使用 <code>harmonise_data()</code>即可，结果中会把 palindromic snp 和 incompatible snp 列出来并在 mr_keep 列标记为”FALSE”，意为在后面的 mr 分析中没有把这些 snp 纳入分析</p>
+</li>
+<li><p>注意要保存协同后的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dat_harmon &lt;- harmonise_data(</span><br><span class="line">  exposure_dat = exposure_dat_name,</span><br><span class="line">  outcome_dat = outcome_dat_name</span><br><span class="line">  )</span><br><span class="line">View(dat_harmon)</span><br><span class="line">write.csv(dat_harmon,file = &quot;dat_harmon.csv&quot;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="7，MR-分析，获得因果关系结果"><a href="#7，MR-分析，获得因果关系结果" class="headerlink" title="7，MR 分析，获得因果关系结果"></a>7，MR 分析，获得因果关系结果</h2><ul>
+<li><p>可使用 <code>mr()</code>直接处理协同后的数据，默认使用五种方法分析(下为方法在函数中的命名)</p>
+<ul>
+<li>mr_egger_regression</li>
+<li>mr_weighted_median</li>
+<li>mr_ivw</li>
+<li>mr_simple_mode</li>
+<li>mr_weighted_mode</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dat_harmon_mr &lt;- mr(dat_harmon)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>也可使用<code>mr_method_list()</code>看函数有哪些方法，并指定使用哪些方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dat_harmon_mr &lt;- mr(</span><br><span class="line">  dat_harmon,</span><br><span class="line">  method_list = c(</span><br><span class="line">    &quot;mr_ivw&quot;,</span><br><span class="line">    &quot;mr_egger_regression&quot;,</span><br><span class="line">    &quot;mr_weighted_median&quot;</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何看待 mr 的结果</p>
+<ul>
+<li>首先看 ivw 的 p 值，若小于 0.05 说明有因果关系</li>
+<li>其次看其他方法的 beta 值，若都大于 0 或小于 0，即方向一致，则没有问题</li>
+<li>若非如此，需要具体问题具体分析，有时（当 ivw 的结果不可靠时）会以 weight_median 的 p 值为准</li>
+<li>没有问题就可以进入下一步分析异质性</li>
+</ul>
+</li>
+<li><p>mr 分析可视化：使用<code>mr_scatter_plot()</code>，第一个参数是 mr 指定三种方法的分析结果，第二个参数是协同化的数据名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mr_scatter_plot(</span><br><span class="line">  mr_results = mr(</span><br><span class="line">    dat_harmon,</span><br><span class="line">    method_list = c(&quot;mr_ivw&quot;,</span><br><span class="line">                  &quot;mr_weighted_median&quot;,</span><br><span class="line">                  &quot;mr_egger_regression&quot;</span><br><span class="line">                    )</span><br><span class="line">    ),</span><br><span class="line">  dat_harmon</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img202566.test.upcdn.net/imgmr_scatter_plot.png" alt="mr_scatter_plot"></p>
+</li>
+</ul>
+<h2 id="8，异质性检测，"><a href="#8，异质性检测，" class="headerlink" title="8，异质性检测，"></a>8，异质性检测，</h2><ul>
+<li><p>异质性检测</p>
+<ul>
+<li><p>异质性：在 Mendelian 随机化（MR）研究中，异质性测试用于检查基因对因果效应的影响是否在不同基因位点之间存在显著差异。这有助于确定基因对因果关系的一致性</p>
+</li>
+<li><p>使用 <code>mr_heterogeneity()</code>即可得到</p>
+</li>
+<li><p>主要看 ivw 的 Q_pval ,叫做 Cochran Q test，小于 0.05 说明有异质性</p>
+</li>
+<li><p>有异质性说明结果不太靠谱，但在 mr 分析中，异质性对结果的可靠性影响不大</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dat_harmon_hetero &lt;- mr_heterogeneity(dat_harmon)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img202566.test.upcdn.net/imgMR_hetero.png" alt="MR_hetero"></p>
+</li>
+</ul>
+</li>
+<li><p>MR_PRESSO(若存在异质性)</p>
+<ul>
+<li><p>若要看产生异质性的 snp 是哪些，可以用 MR PRESSO，直接使用 TwoSampleMR 包下的<code>run_mr_presso()</code>函数，第一个参数是协同化的数据，第二个参数相当于迭代次数，snp 越多，数字要设置的越大，跑的深度越深，算出来的离群值越准确，老师推荐 10000</p>
+</li>
+<li><p>结果中会对每一个 snp 计算 p 值，小于 0.05 说明这个 snp 是离群值，Distortion Test $Outliers Indices 会指明是哪个 snp 的 p 小于 0.05</p>
+</li>
+<li><p>结果中有一个 Distortion Test $Pvalue ,大于 0.05 说明离群值没有影响，小于 0.05 说明这个离群值对结果的方向有影响，即对 SNP 的 beta 或 OR 值的一致性有影响</p>
+</li>
+<li><p>挑选出离群值之后，可以剔除离群值，再次进行 MR 分析</p>
+<ul>
+<li>实例####</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run_mr_presso(alzheimer_and_bmi_harmon,NbDistribution = 3000)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img202566.test.upcdn.net/imgMR_PRESSO.png" alt="MR_PRESSO"></p>
+</li>
+</ul>
+</li>
+<li><p>异质性可视化</p>
+<ul>
+<li><p>使用<code>mr_funnel_plot()</code>,只有一个参数 singlesnp_results，需要使用<code>mr_singlesnp()</code>函数处理协同化的数据，这样即可得到漏斗图，越对称越好</p>
+</li>
+<li><p>有两条线，ivw 和 mr_egger，在实践中，这两个漏斗图都应该对称，因为对称漏斗图表明 MR 方法的假设没有受到系统性的偏倚或异质性的影响</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mr_funnel_plot(singlesnp_results =</span><br><span class="line">    mr_singlesnp(dat_harmon)</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img202566.test.upcdn.net/imgmr_funnel_plot.png" alt="mr_funnel_plot"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9，多效性检测"><a href="#9，多效性检测" class="headerlink" title="9，多效性检测"></a>9，多效性检测</h2><ul>
+<li><p>多效性：多效性（Pleiotropy）是遗传学中的一个现象，指的是一个基因或基因变异影响多个表型特征，这些特征看似无关。这与“一个基因，一个特征”的原则相对立。多效性主要分为水平多效性和方向多效性两种类型，水平多效性代表特征之间没有强相关，方向多效性代表特征之间有强的关联</p>
+</li>
+<li><p>使用<code>mr_pleiotropy_test()</code>函数，唯一参数为协同化的数据，当结果的 pval &lt; 0.05 时说明有多效性，大于 0.05 时说明没有多效性，取决于 egger_intercept 即 egger 分析的回归直线的截距，意为暴露效应为 0 时结局的效应值，小于 0 对应 pval &lt; 0.05 ,等于 0 对应 pval &gt; 0.05</p>
+</li>
+<li><p>多效性 p 值应当大于 0.05，没有多效性；若存在多效性，则结果不可靠</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mr_pleiotropy_test(dat_harmon)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img202566.test.upcdn.net/imgpleiotropy.png" alt="pleiotropy"></p>
+</li>
+</ul>
+<h2 id="10，leave-one-out-analysis"><a href="#10，leave-one-out-analysis" class="headerlink" title="10，leave one out analysis"></a>10，leave one out analysis</h2><ul>
+<li><p>丢掉一个 snp 之后再次进行 mr 分析，如果是阳性结果，数据点应当都在 y 轴虚线的一侧，有人要求更加严格，需要置信区间也都在 y 轴的一侧</p>
+</li>
+<li><p>如果是阴性结果，则数据应当跨越 y 轴</p>
+</li>
+<li><p>snp 数量较少时效果比较大，snp 数量多时效果不大，但是为了研究的完整性，还是要做</p>
+</li>
+<li><p>使用函数<code>mr_leaveoneout_plot()</code>和<code>mr_leaveoneout()</code>，数据为协同化的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mr_leaveoneout_plot(</span><br><span class="line">  leaveoneout_results =</span><br><span class="line">    mr_leaveoneout(dat_harmon)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img202566.test.upcdn.net/imgmr_leaveoneout_plot.png" alt="mr_leaveoneout_plot"></p>
+</li>
+</ul>
+<h2 id="补充：在线数据分析"><a href="#补充：在线数据分析" class="headerlink" title="补充：在线数据分析"></a>补充：在线数据分析</h2><ul>
+<li><p>在线提取数据，优点是方便，缺点是数据不够新</p>
+</li>
+<li><p>下面代码操作之后可以直接进入 harmonization 协同化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">exposure &lt;- extract_instruments(</span><br><span class="line">  outcomes = &quot;ieu-b-40&quot;</span><br><span class="line">  )</span><br><span class="line">View(exposure)</span><br><span class="line"></span><br><span class="line">outcome &lt;-extract_outcome_data(</span><br><span class="line">  snps = exposure$SNP,</span><br><span class="line">  outcome = &quot;ieu-b-2&quot;</span><br><span class="line">  )</span><br><span class="line">View(outcome)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</div><div class="post-end"><div class="post-prev"><a href="/2025/05/18/WGS%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/" title="上一篇文章"><i class="fa-solid fa-chevron-left fa-lg"></i></a></div><div class="post-reward" onclick="openPostReward()" title="赞赏"><i class="fa-regular fa-thumbs-up fa-xl fa-beat-fade"></i></div><div id="reward-panel" onclick="closePostReward()"><div class="reward-container"><p>如果您喜欢这篇文章，欢迎赞赏支持作者，谢谢&#128151;</p>
+<div class="reward-nav"><div class="reward-item"><img class="reward-img" src="/img/reward/wechat.jpg" title="Wechat" alt="Wechat"/><span>Wechat</span></div><div class="reward-item"><img class="reward-img" src="/img/reward/alipay.jpg" title="Alipay" alt="Alipay"/><span>Alipay</span></div></div></div></div><div class="post-next"></div></div></article><div class="comment" id="comment"><script src="https://giscus.app/client.js" crossorigin="anonymous" async="async"></script></div><div id="post-toc"><aside class="toc-aside"><div class="toc-title"><span><i class="fa-solid fa-paw"></i>目录</span></div><div class="toc-container" id="toc-body"><ol class="toc-content"><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#1%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-content-number">1.</span> <span class="toc-content-text">1，获取数据</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#2%EF%BC%8C%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-content-number">2.</span> <span class="toc-content-text">2，读取数据</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#3%EF%BC%8C%E5%B0%86%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-content-number">3.</span> <span class="toc-content-text">3，将数据写入文件</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#4%EF%BC%8CExposure-Data-%E5%A4%84%E7%90%86%EF%BC%8C%E8%8E%B7%E5%BE%97%E5%B7%A5%E5%85%B7%E5%8F%98%E9%87%8F"><span class="toc-content-number">4.</span> <span class="toc-content-text">4，Exposure Data 处理，获得工具变量</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#5%EF%BC%8COutcome-Data-%E5%A4%84%E7%90%86%EF%BC%8C%E6%8F%90%E5%8F%96%E7%BB%93%E5%B1%80%E4%B8%AD%E7%9A%84-snp"><span class="toc-content-number">5.</span> <span class="toc-content-text">5，Outcome Data 处理，提取结局中的 snp</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#6%EF%BC%8CHarmonize-Data-%E5%8D%8F%E5%90%8C%E6%95%B0%E6%8D%AE"><span class="toc-content-number">6.</span> <span class="toc-content-text">6，Harmonize Data 协同数据</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#7%EF%BC%8CMR-%E5%88%86%E6%9E%90%EF%BC%8C%E8%8E%B7%E5%BE%97%E5%9B%A0%E6%9E%9C%E5%85%B3%E7%B3%BB%E7%BB%93%E6%9E%9C"><span class="toc-content-number">7.</span> <span class="toc-content-text">7，MR 分析，获得因果关系结果</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#8%EF%BC%8C%E5%BC%82%E8%B4%A8%E6%80%A7%E6%A3%80%E6%B5%8B%EF%BC%8C"><span class="toc-content-number">8.</span> <span class="toc-content-text">8，异质性检测，</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#9%EF%BC%8C%E5%A4%9A%E6%95%88%E6%80%A7%E6%A3%80%E6%B5%8B"><span class="toc-content-number">9.</span> <span class="toc-content-text">9，多效性检测</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#10%EF%BC%8Cleave-one-out-analysis"><span class="toc-content-number">10.</span> <span class="toc-content-text">10，leave one out analysis</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A%E5%9C%A8%E7%BA%BF%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-content-number">11.</span> <span class="toc-content-text">补充：在线数据分析</span></a></li></ol></div></aside><div class="toc-blank" onclick="tocToggle()"></div></div></div></div><div id="tool-bar"><div id="tool-bar-main"><div id="tool-toggle" onclick="toolToggle()" title="设置"><i class="fa-solid fa-gear"></i></div><div id="toc-toggle" onclick="tocToggle()" title="目录"><i class="fa-solid fa-list-ul"></i></div><div id="go-to-comment" onclick="gotoComment()" title="评论"><i class="fa-regular fa-message fa-flip-horizontal"></i></div><div id="back-to-top" onclick="scrollToTop()" title="返回顶部"><i class="fa-solid fa-chevron-up"></i></div></div><div id="tool-bar-more" style="display: none;"><div id="darkmode-switch" onclick="darkmodeSwitch()" title="深色模式"><i class="fa-solid fa-circle-half-stroke"></i></div><div id="font-size-increase" onclick="fontSizeIncrease()" title="放大字体"><i class="fa-solid fa-plus"></i></div><div id="font-size-decrease" onclick="fontSizeDecrease()" title="缩小字体"><i class="fa-solid fa-minus"></i></div></div></div><div id="search-panel"><div class="search-container"><div class="search-head"><div class="search-title"><span><i class="fa-solid fa-paw"></i>搜索</span></div><div class="search-close-btn" onclick="toggleSearchWindow()"><i class="fa-regular fa-circle-xmark"></i></div></div><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="search-input" type="text" placeholder="请输入需要搜索的内容……" value=""/></div><div class="search-body"><div id="search-count">匹配结果数: </div><div id="search-result"></div><div id="search-result-empty">未搜索到匹配的文章。</div></div></div></div><footer><div class="footer-content"><div class="copyright-info"><i class="fa-regular fa-copyright fa-xs"></i><span>2024 - 2025 </span><a href="/about">Rapheal</a><i class="fa-solid fa-cat fa-sm"></i><span>Powered by </span><a href="https://hexo.io/" target="_blank">Hexo</a><span> &amp; </span><a href="https://github.com/chanwj/hexo-theme-meow" target="_blank" title="v2.1.5">Theme Meow</a></div><div class="upyun-logo"><span>本网站由</span><a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="_blank" rel="noopener noreferrer" style="display: inline-flex;vertical-align: middle;"><img src="http://img202566.test.upcdn.net/img%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png" //="//" Replace="Replace" with="with" actual="actual" UPYun="UPYun" logo="logo" URL="URL" alt="UPYun" style="height: 27px;margin: 0 5px 5px 5px; display: inline-block;vertical-align: middle;"/></a><span>提供CDN加速/云存储服务</span></div><div class="pageview-site"><span id="busuanzi_container_site_pv">总访问量 : <span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner"></i></span></span><span id="busuanzi_container_site_uv">总访客数 : <span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner"></i></span></span></div></div></footer>
+<script>const GLOBAL_CONFIG = {
+  comment: { theme: ''}
+}
+</script>
+<script src="/js/third-party/darkmode.js"></script>
+<script>var options = {
+  dark: '/css/darkmode.css',
+  startAt: '24:00',
+  endAt: '06:00',
+  checkSystemScheme: 'false',
+  saveOnToggle: 'true'
+};
+var darkMode = new DarkMode(options);
+// change comment theme synchronously 同步修改评论区主题
+if (darkMode.getMode() == "dark" && (true || true)) {
+  if (document.getElementById('comment')) {
+    document.getElementById('comment').getElementsByTagName('script')[0].setAttribute('data-theme', 'noborder_dark');
+  }
+}
+</script><script>if (localStorage.getItem('font-size')) {
+  document.querySelector('.post-content').style.fontSize = localStorage.getItem('font-size') + 'px';
+}
+</script>
+<script src="/js/theme/tool-bar.js"></script>
+
+
+<script src="/js/theme/menu.js"></script>
+
+
+<script src="/js/third-party/clipboard.min.js"></script>
+
+
+<script src="/js/theme/copy.js"></script>
+<script>copyCode();
+</script>
+<script src="/js/theme/reward.js"></script>
+
+<script src="/js/jquery-3.7.1.min.js"></script>
+
+
+<script src="/js/theme/search.js"></script>
+<script>searchFunc('/search.xml', 'search-input', 'search-result');
+</script></body></html>

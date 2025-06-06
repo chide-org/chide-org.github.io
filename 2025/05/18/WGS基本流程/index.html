@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="author" content="Rapheal"/><meta name="keyword"/><meta name="description" content="本文内容：  WGS基础流程 WGS文件流 WGS文件格式  WGS基础流程大体上分为三步：  原始数据质控 数据预处理 变异检测  具体一些的流程参考下面的流程图  WGS文件流我自己整理了一个思维导图：  荧光黄加双方框：步骤名称 淡红色方块：输入文件 荧光黄方块：输出文件 黑色方框：软件 灰色方框：软件的模块   WGS文件格式本节介绍的文件格式：  fastq fasta bam &amp;amp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WGS基础流程">
+<meta property="og:url" content="https://chide-org.github.io/2025/05/18/WGS%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="HOME">
+<meta property="og:description" content="本文内容：  WGS基础流程 WGS文件流 WGS文件格式  WGS基础流程大体上分为三步：  原始数据质控 数据预处理 变异检测  具体一些的流程参考下面的流程图  WGS文件流我自己整理了一个思维导图：  荧光黄加双方框：步骤名称 淡红色方块：输入文件 荧光黄方块：输出文件 黑色方框：软件 灰色方框：软件的模块   WGS文件格式本节介绍的文件格式：  fastq fasta bam &amp;amp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgwgs%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B.jpg">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgWGS%E6%96%87%E4%BB%B6%E6%B5%81%EF%BC%88%E6%B0%B4%E5%8D%B0%EF%BC%89.png">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgbam%20file.jpg">
+<meta property="og:image" content="http://img202566.test.upcdn.net/imgbam%20record.jpg">
+<meta property="article:published_time" content="2025-05-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-06T07:52:49.475Z">
+<meta property="article:author" content="Rapheal">
+<meta property="article:tag" content="WGS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img202566.test.upcdn.net/imgwgs%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B.jpg"><title>WGS基础流程 - Rapheal - 个人博客</title><link rel="shortcut icon" href="/img/site-icon.png">
+<link rel="stylesheet" href="/css/style.css" id="dm-light">
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+<meta name="generator" content="Hexo 7.3.0"></head><body><header><div class="top-nav" ondblclick="scrollToTop()"><div class="nav-info"><div class="nav-icon"><img id="nav-icon" src="/img/site-icon.png"/></div><div class="nav-title"><a id="nav-title" href="/" title="主页">HOME</a></div></div><div class="nav-ribbon"><div class="top-menu-expanded"><a class="top-menu-item" href="/archives"><span>归档</span></a><a class="top-menu-item" href="/categories"><span>分类</span></a><a class="top-menu-item" href="/tags"><span>标签</span></a><a class="top-menu-item" href="/about"><span>关于</span></a></div><div class="top-search" onclick="toggleSearchWindow()"><div id="top-search-btn" title="搜索"><i class="icon fa-solid fa-magnifying-glass"></i><span>搜索</span></div></div><div id="top-menu-btn" onclick="openTopMenu()" title="打开菜单"><i class="fa-solid fa-bars fa-lg"></i></div></div></div></header><div id="top-menu-hidden"><div class="menu-hidden-content"><div class="menu-hidden-nav"><a class="menu-hidden-item" href="/archives"><i class="fa-solid fa-box-archive fa-sm"></i><span>归档</span></a><a class="menu-hidden-item" href="/categories"><i class="fa-regular fa-folder-open fa-sm"></i><span>分类</span></a><a class="menu-hidden-item" href="/tags"><i class="fa-solid fa-tags fa-sm"></i><span>标签</span></a><a class="menu-hidden-item" href="/about"><i class="fa-solid fa-paw fa-sm"></i><span>关于</span></a></div></div><div class="menu-hidden-blank" onclick="closeTopMenu()"></div></div>
+<div class="blog-info"><div class="blog-pic"><img id="blog-pic" src="/img/site-icon.png"/></div><div class="blog-title"><i class="fa-solid fa-paw fa-2xs fa-rotate-by"></i><span>Rapheal</span><i class="fa-solid fa-paw fa-2xs fa-rotate-by"></i></div><div class="blog-desc">敲代码、读文献、探索AI如何改变生命科学，顺便记录那些灵光一现的瞬间~</div></div><div class="main"><div class="main-content"><article class="post"><div class="post-title"><h1><i class="fa-solid fa-paw"></i>WGS基础流程</h1></div><div class="post-info"><div class="post-info-first-line"><div class="post-date"><i class="icon fa-regular fa-calendar-plus" title="发布日期"></i><time class="publish-time">2025-05-18</time><i class="icon fa-regular fa-calendar-check" title="更新日期"></i><time class="update-time">2025-06-06</time></div>
+<div class="post-categories"><i class="icon fa-regular fa-folder-open" title="分类"></i><a class="post-category" href="/categories/%E7%94%9F%E4%BF%A1/">生信</a></div>
+<div class="post-tags"><i class="icon fa-solid fa-tags" title="标签"></i><a class="post-tag" href="/tags/WGS/">WGS</a></div></div><div class="post-info-second-line"><div class="post-copyright"><i class="icon fa-brands fa-creative-commons" title="版权声明"></i><span>版权声明: </span><a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" title="CC BY-NC-ND 4.0">署名-非商业性使用-禁止演绎 4.0</a></div>
+<div class="post-word-count"><i class="icon fa-solid fa-pen-to-square"></i><span>全文约2.5K字</span></div><div class="pageview-post"><i class="icon fa-regular fa-eye"></i><span id="busuanzi_container_page_pv">阅读次数: <span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner"></i></span></span></div></div></div><div class="post-content"><p>本文内容：</p>
+<ul>
+<li>WGS基础流程</li>
+<li>WGS文件流</li>
+<li>WGS文件格式</li>
+</ul>
+<h1 id="WGS基础流程"><a href="#WGS基础流程" class="headerlink" title="WGS基础流程"></a>WGS基础流程</h1><p>大体上分为三步：</p>
+<ul>
+<li>原始数据质控</li>
+<li>数据预处理</li>
+<li>变异检测</li>
+</ul>
+<p>具体一些的流程参考下面的流程图</p>
+<p><img src="http://img202566.test.upcdn.net/imgwgs%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B.jpg" alt="wgs数据分析流程"></p>
+<h1 id="WGS文件流"><a href="#WGS文件流" class="headerlink" title="WGS文件流"></a>WGS文件流</h1><p>我自己整理了一个思维导图：</p>
+<ul>
+<li>荧光黄加双方框：步骤名称</li>
+<li>淡红色方块：输入文件</li>
+<li>荧光黄方块：输出文件</li>
+<li>黑色方框：软件</li>
+<li>灰色方框：软件的模块</li>
+</ul>
+<p><img src="http://img202566.test.upcdn.net/imgWGS%E6%96%87%E4%BB%B6%E6%B5%81%EF%BC%88%E6%B0%B4%E5%8D%B0%EF%BC%89.png" alt="WGS文件流（水印）"></p>
+<h1 id="WGS文件格式"><a href="#WGS文件格式" class="headerlink" title="WGS文件格式"></a>WGS文件格式</h1><p>本节介绍的文件格式：</p>
+<ul>
+<li>fastq</li>
+<li>fasta</li>
+<li>bam &amp; sam &amp; cram &amp; bai</li>
+<li>vcf</li>
+</ul>
+<h2 id="fastq"><a href="#fastq" class="headerlink" title="fastq"></a>fastq</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@DJB775P1:248:D0MDGACXX:7:1202:12362:49613</span><br><span class="line">TGCTTACTCTGCGTTGATACCACTGCTTAGATCGGAAGAGCACACGTCTGAA</span><br><span class="line">+</span><br><span class="line">JJJJJIIJJJJJJHIHHHGHFFFFFFCEEEEEDBD?DDDDDDBDDDABDDCA</span><br><span class="line">@DJB775P1:248:D0MDGACXX:7:1202:12782:49716</span><br><span class="line">CTCTGCGTTGATACCACTGCTTACTCTGCGTTGATACCACTGCTTAGATCGG</span><br><span class="line">+</span><br><span class="line">IIIIIIIIIIIIIIIHHHHHHFFFFFFEECCCCBCECCCCCCCCCCCCCCCC</span><br></pre></td></tr></table></figure>
+<p>类型：文本文件</p>
+<p>内容：产生自测序仪的原始测序数据</p>
+<p>标识：.fastq  .fq  .fq.gz</p>
+<p>组成：每四行成为一个独立的单元，我们称之为read。</p>
+<ul>
+<li>第一行：以‘@’开头，是这一条read的名字，这个字符串是根据测序时的状态信息转换过来的，中间不会有空格，它是每一条read的唯一标识符，同一份FASTQ文件中不会重复出现，甚至不同的FASTQ文件里也不会有重复；</li>
+<li>第二行：测序read的序列，由A，C，G，T和N这五种字母构成，这也是我们真正关心的DNA序列，N代表的是测序时那些无法被识别出来的碱基；</li>
+<li>第三行：以‘+’开头，在旧版的FASTQ文件中会直接重复第一行的信息，但现在一般什么也不加（节省存储空间）；</li>
+<li>第四行：测序read的质量值，这个和第二行的碱基信息一样重要，它描述的是每个测序碱基的可靠程度，用ASCII码表示。<blockquote>
+<p>质量值：碱基测量错误率越低，质量值就越高。测序错误率为p_error，质量值为Q：Q &#x3D; -10lg(p_error)<br>ASCII码与质量值Q的对应关系标准如下所示，我们把加33的的质量值体系称之为Phred33，现在一般都是使用Phred33这个体系</p>
+</blockquote>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>测序平台</th>
+<th>ASCII码范围</th>
+<th>下限</th>
+<th>质量值类型</th>
+<th>质量值范围</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sanger, Illumina(版本1.8及以上)</td>
+<td>33-126</td>
+<td>33</td>
+<td>Phred quality score</td>
+<td>0-93</td>
+<td>现在沿用</td>
+</tr>
+<tr>
+<td>Solexa, Illumina早期版本(&lt;1.3)</td>
+<td>59-126</td>
+<td>64</td>
+<td>Solexa quality score</td>
+<td>5-62</td>
+<td>除了已测序数据之外，不再使用</td>
+</tr>
+<tr>
+<td>Illumina(版本1.3-1.7)</td>
+<td>64-126</td>
+<td>64</td>
+<td>Phred quality score</td>
+<td>0-62</td>
+<td>除了已测序数据之外，不再使用</td>
+</tr>
+</tbody></table>
+<h2 id="fasta"><a href="#fasta" class="headerlink" title="fasta"></a>fasta</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;gene_00284728 length=231;type=dna</span><br><span class="line">GAGAACTGATTCTGTTACCGCAGGGCATTCGGATGTGCTAAGGTAGTAATCCATTATAAGTAACATG</span><br><span class="line">CGCGGAATATCCGGGAGGTCATAGTCGTAATGCATAATTATTCCCTCCCTCAGAAGGACTCCCTTGC</span><br><span class="line">GAGACGCCAATACCAAAGACTTTCGTAAGCTGGAACGATTGGACGGCCCAACCGGGGGGAGTCGGCT</span><br><span class="line">ATACGTCTGATTGCTACGCCTGGACTTCTCTT</span><br></pre></td></tr></table></figure>
+<p>类型：文本文件</p>
+<p>内容：存储着<strong>有顺序</strong>的序列数据<br>（如参考基因组序列、蛋白质序列、编码DNA序列、转录本序列）</p>
+<p>标识：.fasta  .fa  .fa.gz</p>
+<p>组成：</p>
+<ul>
+<li><strong>头信息</strong>：一个空格把头信息分为两个部分。第一部分是序列名字，它和大于号（&gt;）紧接在一起；第二部分是注释信息，这个可以没有，就看具体需要。</li>
+<li><strong>序列</strong>：具体的序列数据</li>
+</ul>
+<h2 id="bam-sam-cram-bai"><a href="#bam-sam-cram-bai" class="headerlink" title="bam &amp; sam &amp; cram &amp; bai"></a>bam &amp; sam &amp; cram &amp; bai</h2><p>sam是一个存储着序列比对数据的文本文件；bam是其二进制压缩格式，也是目前通用的对比数据存储格式；cram是bam的高压缩格式；bai是bam文件的索引文件</p>
+<p><img src="http://img202566.test.upcdn.net/imgbam%20file.jpg" alt="bam file"></p>
+<p>组成：SAM文件分为两个部分：header和record。这里额外说一句，许多NGS组学数据的存储格式都是由header和record两部分组成的。</p>
+<ul>
+<li>header内容不多，也不会太复杂，每一行都用‘@’ 符号开头，里面主要包含了版本信息，序列比对的参考序列信息，如果是标准工具（bwa，bowtie，picard）生成的BAM，<strong>一般还会包含生成该份文件的参数信息（如上图），</strong>@<strong>PG标签开头的那些</strong>。</li>
+<li>这里需要重点提一下的是header中的@RG也就是Read group信息，这是在做后续数据分析时专门用于区分不同样本的重要信息。<strong>它的重要性还体现在，如果原来样本的测序深度比较深，一般会按照不同的lane分开比对，最后再合并在一起，那么这个时候你会在这个BAM文件中看到有多个RG，里面记录了不同的lane，甚至测序文库的信息，唯一不变的一定是SM的sample信息，这样合并后才能正确处理</strong>。</li>
+<li>record：这是我们通常所说的序列比对内容，每一行都是一条read比对信息，recoed中的每一个信息都是用制表符tab分开的，如下图所示：</li>
+</ul>
+<p><img src="http://img202566.test.upcdn.net/imgbam%20record.jpg" alt="bam record"></p>
+<table>
+<thead>
+<tr>
+<th>对应上图</th>
+<th>列序号</th>
+<th>名称</th>
+<th>内容描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>read name</td>
+<td>1</td>
+<td>QNAME</td>
+<td>fq的read ID (QNAME中的Q表示Query)</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>2</td>
+<td>FLAG</td>
+<td>比对信息位 (bitwise FLAG)，是一个由16位整数</td>
+</tr>
+<tr>
+<td>position</td>
+<td>3</td>
+<td>RNAME</td>
+<td>参考序列染色体名称 (RNAME中的R表示Reference)</td>
+</tr>
+<tr>
+<td>position</td>
+<td>4</td>
+<td>POS</td>
+<td>比对位置,从对应染色体的第1位开始往后计算</td>
+</tr>
+<tr>
+<td>MAPQ</td>
+<td>5</td>
+<td>MAPQ</td>
+<td>比对质量值 (Mapping Quality)</td>
+</tr>
+<tr>
+<td>CIGAR</td>
+<td>6</td>
+<td>CIGAR</td>
+<td>比对信息</td>
+</tr>
+<tr>
+<td>Mate information</td>
+<td>7</td>
+<td>RNEXT</td>
+<td>配对read所比对到的染色体 (仅Pair end 测序的数据才有)</td>
+</tr>
+<tr>
+<td>Mate information</td>
+<td>8</td>
+<td>PNEXT</td>
+<td>配对read所比对到的位置 (仅Pair end 测序的数据才有)</td>
+</tr>
+<tr>
+<td>Mate information</td>
+<td>9</td>
+<td>TLEN</td>
+<td>插入片段长度 (仅Pair end 测序的数据才有)</td>
+</tr>
+<tr>
+<td>Read sequence</td>
+<td>10</td>
+<td>SEQ</td>
+<td>read序列</td>
+</tr>
+<tr>
+<td>Quality scores</td>
+<td>11</td>
+<td>QUAL</td>
+<td>read质量值</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>12</td>
+<td>Metadata</td>
+<td>元信息,从第12列开始往后都是metadata,一般会包括RG信息, missmatch信息等</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<h2 id="vcf"><a href="#vcf" class="headerlink" title="vcf"></a>vcf</h2><p>vcf （Variant Call Format）是一种用于存储基因组序列中的变异信息</p>
+<ul>
+<li>一般用在 单核苷酸变异（SNV），小片段插入缺失（INDEL）等</li>
+<li>也用于 拷贝数变异（CNV），SV（结构变异）等</li>
+<li>SNV：参考基因组在1号染色体7845190为 C，但检测样本在同样位置为 A</li>
+<li>INDEL：包含插入和缺失两种<ul>
+<li>Insertion：参考基因组某片段为 ACTTG，但是检测样本同样位置为 ACCCTTG，插入了CC</li>
+<li>Deletion：参考基因组某片段为 TTCGG，但是检测样本同样位置为 TTGG，缺失 C</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#CHROM  POS ID  REF ALT QUAL    FILTER  INFO</span><br><span class="line">1   10177   rs367896724 A   AC  100 PASS    AC=2130;AF=0.425319;AN=5008;NS=2504;DP=103152;EAS_AF=0.3363;AMR_AF=0.3602;AFR_AF=0.4909;EUR_AF=0.4056;SAS_AF=0.4949;AA=|||unknown(NO_COVERAGE);VT=INDEL</span><br><span class="line">1   10235   rs540431307 T   TA  100 PASS    AC=6;AF=0.00119808;AN=5008;NS=2504;DP=78015;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0;SAS_AF=0.0051;AA=|||unknown(NO_COVERAGE);VT=INDEL</span><br><span class="line">1   10352   rs555500075 T   TA  100 PASS    AC=2191;AF=0.4375;AN=5008;NS=2504;DP=88915;EAS_AF=0.4306;AMR_AF=0.4107;AFR_AF=0.4788;EUR_AF=0.4264;SAS_AF=0.4192;AA=|||unknown(NO_COVERAGE);VT=INDEL</span><br><span class="line">1   10505   rs548419688 A   T   100 PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=9632;EAS_AF=0;AMR_AF=0;AFR_AF=0.0008;EUR_AF=0;SAS_AF=0;AA=.|||;VT=SNP</span><br><span class="line">1   10506   rs568405545 C   G   100 PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=9676;EAS_AF=0;AMR_AF=0;AFR_AF=0.0008;EUR_AF=0;SAS_AF=0;AA=.|||;VT=SNP</span><br><span class="line">1   10511   rs534229142 G   A   100 PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=9869;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0;SAS_AF=0;AA=.|||;VT=SNP</span><br><span class="line">1   10539   rs537182016 C   A   100 PASS    AC=3;AF=0.000599042;AN=5008;NS=2504;DP=9203;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0.001;SAS_AF=0.001;AA=.|||;VT=SNP</span><br><span class="line">1   10542   rs572818783 C   T   100 PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=9007;EAS_AF=0.001;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0;AA=.|||;VT=SNP</span><br><span class="line">1   10579   rs538322974 C   A   100 PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=5502;EAS_AF=0;AMR_AF=0;AFR_AF=0.0008;EUR_AF=0;SAS_AF=0;AA=.|||;VT=SNP</span><br><span class="line">1   10616   rs376342519 CCGCCGTTGCAAAGGCGCGCCG  C   100 PASS    AC=4973;AF=0.993011;AN=5008;NS=2504;DP=2365;EAS_AF=0.9911;AMR_AF=0.9957;AFR_AF=0.9894;EUR_AF=0.994;SAS_AF=0.9969;VT=INDEL</span><br><span class="line">1   10642   rs558604819 G   A   100 PASS    AC=21;AF=0.00419329;AN=5008;NS=2504;DP=1360;EAS_AF=0.003;AMR_AF=0.0014;AFR_AF=0.0129;EUR_AF=0;SAS_AF=0;AA=.|||;VT=SNP</span><br><span class="line">1   11008   rs575272151 C   G   100 PASS    AC=441;AF=0.0880591;AN=5008;NS=2504;DP=2232;EAS_AF=0.0367;AMR_AF=0.0965;AFR_AF=0.1346;EUR_AF=0.0885;SAS_AF=0.0716;AA=.|||;VT=SNP</span><br><span class="line">1   11012   rs544419019 C   G   100 PASS    AC=441;AF=0.0880591;AN=5008;NS=2504;DP=2090;EAS_AF=0.0367;AMR_AF=0.0965;AFR_AF=0.1346;EUR_AF=0.0885;SAS_AF=0.0716;AA=.|||;VT=SNP</span><br></pre></td></tr></table></figure>
+
+
+<p>组成：文件一般包含两部分，</p>
+<ul>
+<li>注释信息（header）：位于文件开始，每行以 #开始</li>
+<li>变异信息（body）：没有 #即为记录的变异信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHROM</td>
+<td>染色体号，注意不需要前缀 chr</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>POS</td>
+<td>变异位点，对于 INDEL，为 INDEL 的第一个碱基位点</td>
+<td align="center">10616</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>dbSNP 的编号，.为置空</td>
+<td align="center">rs376342519</td>
+</tr>
+<tr>
+<td>REF</td>
+<td>参考基因组的碱基，也就是等位基因</td>
+<td align="center">CCGCCGTTGCAAAGGCGCGCCG</td>
+</tr>
+<tr>
+<td>ALT</td>
+<td>检测样本的碱基，同一位置有多个则以,分隔</td>
+<td align="center">C</td>
+</tr>
+<tr>
+<td>QUAL</td>
+<td>Phred 的质量值，表示改位点存在变异的可能性。分数越高则认为越可靠，但同时需要考虑测序深度，覆盖度等因素。.代表置空，不代表质量值为 0。</td>
+<td align="center">100</td>
+</tr>
+<tr>
+<td>FILTER</td>
+<td>过滤标志，如果为 PASS则认为是一个变异</td>
+<td align="center">PASS</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>详细信息，用 key&#x3D;value的格式来表示。key 一般是简写，具体描述在文件开头的 header lines 中显示。</td>
+<td align="center">AC&#x3D;4973;AF&#x3D;0.993011;AN&#x3D;5008;VT&#x3D;INDEL</td>
+</tr>
+<tr>
+<td>FORMAT</td>
+<td>可选，变异位点格式，包括 GT，AD，DP，GQ，PL&#x2F; GT，AD，DP，GQ，PGT，PID，PL，PS</td>
+<td align="center">GT:DP:GQ:PL</td>
+</tr>
+<tr>
+<td>SAMPLEs</td>
+<td>可选，各个样本的值，来自 BAM 文件 @RG 的 SM 标签。一般每个样本对应一列，因此该文件会超过十列。每个样本会与 FORMAT 列的格式一一对应，不同格式用 :分隔</td>
+<td align="center">0&#x2F;1:50:99:0,20,200</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>这部分暂时咕咕</p>
+</blockquote>
+<h1 id="WGS软件"><a href="#WGS软件" class="headerlink" title="WGS软件"></a>WGS软件</h1><p>本节介绍的软件：</p>
+<ul>
+<li>FastQC</li>
+<li>Trimmomatic</li>
+<li>BWA</li>
+<li>Samtools</li>
+<li>Picard</li>
+<li>GATK</li>
+</ul>
+<h2 id="FastQC"><a href="#FastQC" class="headerlink" title="FastQC"></a>FastQC</h2><h2 id="Trimmomatic"><a href="#Trimmomatic" class="headerlink" title="Trimmomatic"></a>Trimmomatic</h2><h2 id="BWA"><a href="#BWA" class="headerlink" title="BWA"></a>BWA</h2><h2 id="Samtools"><a href="#Samtools" class="headerlink" title="Samtools"></a>Samtools</h2><h2 id="Picard"><a href="#Picard" class="headerlink" title="Picard"></a>Picard</h2><h2 id="GATK"><a href="#GATK" class="headerlink" title="GATK"></a>GATK</h2></div><div class="post-end"><div class="post-prev"><a href="/2025/06/06/hello-world/" title="上一篇文章"><i class="fa-solid fa-chevron-left fa-lg"></i></a></div><div class="post-reward" onclick="openPostReward()" title="赞赏"><i class="fa-regular fa-thumbs-up fa-xl fa-beat-fade"></i></div><div id="reward-panel" onclick="closePostReward()"><div class="reward-container"><p>如果您喜欢这篇文章，欢迎赞赏支持作者，谢谢&#128151;</p>
+<div class="reward-nav"><div class="reward-item"><img class="reward-img" src="/img/reward/wechat.jpg" title="Wechat" alt="Wechat"/><span>Wechat</span></div><div class="reward-item"><img class="reward-img" src="/img/reward/alipay.jpg" title="Alipay" alt="Alipay"/><span>Alipay</span></div></div></div></div><div class="post-next"><a href="/2024/01/31/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AC%94%E8%AE%B0/" title="下一篇文章"><i class="fa-solid fa-chevron-right fa-lg"></i></a></div></div></article><div class="comment" id="comment"><script src="https://giscus.app/client.js" crossorigin="anonymous" async="async"></script></div><div id="post-toc"><aside class="toc-aside"><div class="toc-title"><span><i class="fa-solid fa-paw"></i>目录</span></div><div class="toc-container" id="toc-body"><ol class="toc-content"><li class="toc-content-item toc-content-level-1"><a class="toc-content-link" href="#WGS%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B"><span class="toc-content-number">1.</span> <span class="toc-content-text">WGS基础流程</span></a></li><li class="toc-content-item toc-content-level-1"><a class="toc-content-link" href="#WGS%E6%96%87%E4%BB%B6%E6%B5%81"><span class="toc-content-number">2.</span> <span class="toc-content-text">WGS文件流</span></a></li><li class="toc-content-item toc-content-level-1"><a class="toc-content-link" href="#WGS%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-content-number">3.</span> <span class="toc-content-text">WGS文件格式</span></a><ol class="toc-content-child"><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#fastq"><span class="toc-content-number">3.1.</span> <span class="toc-content-text">fastq</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#fasta"><span class="toc-content-number">3.2.</span> <span class="toc-content-text">fasta</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#bam-sam-cram-bai"><span class="toc-content-number">3.3.</span> <span class="toc-content-text">bam &amp; sam &amp; cram &amp; bai</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#vcf"><span class="toc-content-number">3.4.</span> <span class="toc-content-text">vcf</span></a></li></ol></li><li class="toc-content-item toc-content-level-1"><a class="toc-content-link" href="#WGS%E8%BD%AF%E4%BB%B6"><span class="toc-content-number">4.</span> <span class="toc-content-text">WGS软件</span></a><ol class="toc-content-child"><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#FastQC"><span class="toc-content-number">4.1.</span> <span class="toc-content-text">FastQC</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#Trimmomatic"><span class="toc-content-number">4.2.</span> <span class="toc-content-text">Trimmomatic</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#BWA"><span class="toc-content-number">4.3.</span> <span class="toc-content-text">BWA</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#Samtools"><span class="toc-content-number">4.4.</span> <span class="toc-content-text">Samtools</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#Picard"><span class="toc-content-number">4.5.</span> <span class="toc-content-text">Picard</span></a></li><li class="toc-content-item toc-content-level-2"><a class="toc-content-link" href="#GATK"><span class="toc-content-number">4.6.</span> <span class="toc-content-text">GATK</span></a></li></ol></li></ol></div></aside><div class="toc-blank" onclick="tocToggle()"></div></div></div></div><div id="tool-bar"><div id="tool-bar-main"><div id="tool-toggle" onclick="toolToggle()" title="设置"><i class="fa-solid fa-gear"></i></div><div id="toc-toggle" onclick="tocToggle()" title="目录"><i class="fa-solid fa-list-ul"></i></div><div id="go-to-comment" onclick="gotoComment()" title="评论"><i class="fa-regular fa-message fa-flip-horizontal"></i></div><div id="back-to-top" onclick="scrollToTop()" title="返回顶部"><i class="fa-solid fa-chevron-up"></i></div></div><div id="tool-bar-more" style="display: none;"><div id="darkmode-switch" onclick="darkmodeSwitch()" title="深色模式"><i class="fa-solid fa-circle-half-stroke"></i></div><div id="font-size-increase" onclick="fontSizeIncrease()" title="放大字体"><i class="fa-solid fa-plus"></i></div><div id="font-size-decrease" onclick="fontSizeDecrease()" title="缩小字体"><i class="fa-solid fa-minus"></i></div></div></div><div id="search-panel"><div class="search-container"><div class="search-head"><div class="search-title"><span><i class="fa-solid fa-paw"></i>搜索</span></div><div class="search-close-btn" onclick="toggleSearchWindow()"><i class="fa-regular fa-circle-xmark"></i></div></div><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="search-input" type="text" placeholder="请输入需要搜索的内容……" value=""/></div><div class="search-body"><div id="search-count">匹配结果数: </div><div id="search-result"></div><div id="search-result-empty">未搜索到匹配的文章。</div></div></div></div><footer><div class="footer-content"><div class="copyright-info"><i class="fa-regular fa-copyright fa-xs"></i><span>2024 - 2025 </span><a href="/about">Rapheal</a><i class="fa-solid fa-cat fa-sm"></i><span>Powered by </span><a href="https://hexo.io/" target="_blank">Hexo</a><span> &amp; </span><a href="https://github.com/chanwj/hexo-theme-meow" target="_blank" title="v2.1.5">Theme Meow</a></div><div class="upyun-logo"><span>本网站由</span><a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="_blank" rel="noopener noreferrer" style="display: inline-flex;vertical-align: middle;"><img src="http://img202566.test.upcdn.net/img%E5%8F%88%E6%8B%8D%E4%BA%91_logo5.png" //="//" Replace="Replace" with="with" actual="actual" UPYun="UPYun" logo="logo" URL="URL" alt="UPYun" style="height: 27px;margin: 0 5px 5px 5px; display: inline-block;vertical-align: middle;"/></a><span>提供CDN加速/云存储服务</span></div><div class="pageview-site"><span id="busuanzi_container_site_pv">总访问量 : <span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner"></i></span></span><span id="busuanzi_container_site_uv">总访客数 : <span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner"></i></span></span></div></div></footer>
+<script>const GLOBAL_CONFIG = {
+  comment: { theme: ''}
+}
+</script>
+<script src="/js/third-party/darkmode.js"></script>
+<script>var options = {
+  dark: '/css/darkmode.css',
+  startAt: '24:00',
+  endAt: '06:00',
+  checkSystemScheme: 'false',
+  saveOnToggle: 'true'
+};
+var darkMode = new DarkMode(options);
+// change comment theme synchronously 同步修改评论区主题
+if (darkMode.getMode() == "dark" && (true || true)) {
+  if (document.getElementById('comment')) {
+    document.getElementById('comment').getElementsByTagName('script')[0].setAttribute('data-theme', 'noborder_dark');
+  }
+}
+</script><script>if (localStorage.getItem('font-size')) {
+  document.querySelector('.post-content').style.fontSize = localStorage.getItem('font-size') + 'px';
+}
+</script>
+<script src="/js/theme/tool-bar.js"></script>
+
+
+<script src="/js/theme/menu.js"></script>
+
+
+<script src="/js/third-party/clipboard.min.js"></script>
+
+
+<script src="/js/theme/copy.js"></script>
+<script>copyCode();
+</script>
+<script src="/js/theme/reward.js"></script>
+
+<script src="/js/jquery-3.7.1.min.js"></script>
+
+
+<script src="/js/theme/search.js"></script>
+<script>searchFunc('/search.xml', 'search-input', 'search-result');
+</script></body></html>
